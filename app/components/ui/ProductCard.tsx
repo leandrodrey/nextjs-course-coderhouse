@@ -1,12 +1,19 @@
 import {FC} from "react";
 
-const ProductCard:FC = () => {
+interface ProductCardProps {
+    name: string;
+    image: string;
+    description: string;
+}
+
+const ProductCard:FC<ProductCardProps> = ({name, image , description }) => {
     return (
         <>
             <div className="bg-white shadow rounded-lg p-4">
-                <h2 className="text-lg font-bold mb-2 text-blue-400">Producto 1</h2>
-                <p className="text-gray-700 mb-4">Descripción del producto 1.</p>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Comprar</button>
+                <img alt={name} src={{ image }} />
+                <h2 className="text-lg mb-2 text-blue-400">{ name }</h2>
+                <p className="text-gray-700 mb-4 text-sm">{ description }</p>
+                <button className="bg-blue-500 text-white text-sm py-1 px-2 rounded hover:bg-blue-600">Comprar</button>
             </div>
         </>
     )
