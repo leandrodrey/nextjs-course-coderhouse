@@ -19,7 +19,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-            <main className="w-full py-5 shadow flex">
+            <main className="w-full shadow flex">
                 <NavBar />
                 <div className="content h-screen flex-1 p-7">
                     {children}
