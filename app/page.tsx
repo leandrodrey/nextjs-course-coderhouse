@@ -1,10 +1,9 @@
 import {ReactElement} from "react";
-import Header from "@/app/components/ui/Header";
 
 export default function Home(): ReactElement {
     return (
         <>
-            <Header />
+            <h1 className="text-base font-bold"> Next.js + Tailwind CSS</h1>
         </>
     )
 }
