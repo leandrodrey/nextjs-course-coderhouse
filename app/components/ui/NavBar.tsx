@@ -1,19 +1,12 @@
 "use client";
 import {FC, useState} from "react";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import SocialIcons from "@/app/components/ui/SocialIcons";
+import Menu from "@/app/components/ui/Menu";
 
 const NavBar: FC = () => {
 
     const [open, setOpen] = useState(true);
-
-    const Menus = [
-        {title: "Dashboard", icon: <DashboardIcon />},
-        {title: "Inbox", icon: <DashboardIcon />},
-        {title: "Accounts", icon: <DashboardIcon />, gap: true},
-        {title: "Schedule ", icon: <DashboardIcon />}
-    ];
 
     return (
         <>
@@ -30,19 +23,7 @@ const NavBar: FC = () => {
                             My App
                         </h1>
                     </div>
-                    <ul className="pt-6">
-                        {Menus.map((Menu, index) => (
-                            <li
-                                key={index}
-                                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"} `}
-                            >
-                                { Menu.icon }
-                                <span className={`${!open && "hidden"} origin-left duration-200`}>
-                                    {Menu.title}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
+                    <Menu open={open} />
                 </div>
                 <SocialIcons menuOpen={open} />
             </div>
