@@ -9,7 +9,7 @@ interface SocialIconsProps {
 
 const SocialIcons: FC<SocialIconsProps> = ({ menuOpen }) => {
     return (
-        <div className={`flex ${menuOpen ? "space-x-3 opacity-100" : "space-y-3 opacity-50 items-center flex-col"} transition-opacity duration-600 `}>
+        <div className={`flex ${menuOpen ? "space-x-3 opacity-100" : "space-y-3 opacity-50 flex-col items-center"} justify-center transition-opacity duration-500 `}>
             <a href="#" className="text-xs text-blue-300 hover:text-white transition duration-300">
                 <FacebookIcon fontSize={menuOpen ? "large" : "medium"} />
             </a>

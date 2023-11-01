@@ -10,9 +10,9 @@ const NavBar: FC = () => {
 
     return (
         <>
-            <div className={` ${open ? "w-72" : "w-20 "} flex flex-col justify-between bg-[#0f0f0f] h-screen p-5 pt-8 relative duration-300`}>
+            <div className={` ${open ? "w-60" : "w-20 "} flex flex-col justify-between bg-[#0f0f0f] h-screen p-5 pt-8 relative duration-300`}>
                 <div>
-                    <ArrowCircleLeftIcon className={`absolute cursor-pointer -right-3 top-9 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
+                    <ArrowCircleLeftIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-9 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
                     <div className="flex gap-x-4 items-center">
                         <img
                             alt={"logo"}

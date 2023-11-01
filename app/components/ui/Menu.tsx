@@ -22,7 +22,7 @@ const Menu: FC<MenuProps> = ({ open }) => {
                     className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"} `}
                 >
                     {Menu.icon}
-                    <span className={`${!open && "hidden"} origin-left duration-200`}>
+                    <span className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300`}>
                         {Menu.title}
                     </span>
                 </li>
