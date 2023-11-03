@@ -1,6 +1,7 @@
 // Menu.tsx
 import { FC } from "react";
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import Link from "next/link";
 
 interface MenuProps {
     open: boolean;
@@ -8,10 +9,9 @@ interface MenuProps {
 
 const Menu: FC<MenuProps> = ({ open }) => {
     const Menus = [
-        { title: "Dashboard", icon: <DashboardIcon /> },
-        { title: "Inbox", icon: <DashboardIcon /> },
-        { title: "Accounts", icon: <DashboardIcon />, gap: true },
-        { title: "Schedule ", icon: <DashboardIcon /> }
+        { title: "Dashboard", url:'/', icon: <DashboardIcon />, gap: true },
+        { title: "Seinen", url:'/category/1', icon: <DashboardIcon /> },
+        { title: "Isekai", url:'/category/2', icon: <DashboardIcon /> },
     ];
 
     return (
@@ -23,7 +23,7 @@ const Menu: FC<MenuProps> = ({ open }) => {
                 >
                     {Menu.icon}
                     <span className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300`}>
-                        {Menu.title}
+                        <Link href={Menu.url}>{Menu.title}</Link>
                     </span>
                 </li>
             ))}
