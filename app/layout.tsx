@@ -7,8 +7,8 @@ import NavBar from "@/app/components/ui/NavBar";
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-    title: 'My App',
-    description: 'My super App',
+    title: 'Game Bazar',
+    description: 'Tus juegos en un lugar',
 }
 
 export default function RootLayout({
