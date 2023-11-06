@@ -12,7 +12,7 @@ const NavBar: FC = () => {
         <>
             <div className={` ${open ? "w-60" : "w-20 "} flex flex-col justify-between bg-[#0f0f0f] h-screen p-5 pt-8 relative duration-300`}>
                 <div>
-                    <ArrowCircleLeftIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-9 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
+                    <ArrowCircleLeftIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-9 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}/>
                     <div className="flex flex-col gap-x-4 items-center">
                         <img
                             alt={"logo"}
@@ -20,12 +20,12 @@ const NavBar: FC = () => {
                             className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
                         />
                         <h1 className={`py-2 text-white origin-left font-medium text-2xl duration-200 ${!open && "scale-0"}`}>
-                            My App
+                            Game Bazar
                         </h1>
                     </div>
-                    <Menu open={open} />
+                    <Menu open={open}/>
                 </div>
-                <SocialIcons menuOpen={open} />
+                <SocialIcons menuOpen={open}/>
             </div>
         </>
     )
