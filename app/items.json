@@ -1,38 +1,38 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "title": "Elden Ring 01",
         "description": "Las Tierras Intermedias se encuentran en un conflicto continuo a causa de la fragmentación del Anillo de Elden. En medio de las batallas y el caos, aparece un tiznado que debe seguir la Guía de la Gracia y convertirse en el Señor de Elden. Elegido por el corcel espectral Torrent y protegido por la doncella Melina, inicia su aventura…",
         "image": "/placeHolder.jpg",
-        "price": "2000",
-        "categoryId": "1",
+        "price": 2000,
+        "categoryId": 1,
         "categoryName": "Seinen"
     },
     {
-        "id": "2",
+        "id": 2,
         "title": "Aquella vez que me convertí en Slime 04",
         "description": "EMPIEZA UNA NUEVA INVASIÓN! ¿QUÉ HARÁ NUESTRO PROTAGONISTA? Una noticia sacude el gran bosque de Jura... El señor de los orcos, el monstruo de la desgracia, ha empezado a invadirlo con un ejército de 200 000 soldados. Tras aceptar la petición de la supervisora del bosque, Rimur planea una alianza con los hombres lagarto...",
         "image": "/placeHolder.jpg",
-        "price": "2000",
-        "categoryId": "2",
+        "price": 2000,
+        "categoryId": 2,
         "categoryName": "Isekai"
     },
     {
-        "id": "3",
+        "id": 3,
         "title": "Sword Art Online: Calibur",
         "description": "¡Sumamos un nuevo arco de SAO, esta vez en tomo único! Kirito enfrenta una complicada travesía para obtener la implacable arma legendaria \"Holy Sword Excalibur\" y así salvar a la diosa Urd de la invasión de los gigantes de hielo a su tierra natal, Jotunheim.",
         "image": "/placeHolder.jpg",
-        "price": "2200",
-        "categoryId": "2",
+        "price": 2200,
+        "categoryId": 2,
         "categoryName": "Isekai"
     },
     {
-        "id": "4",
+        "id": 4,
         "title": "Chainsaw Man 13",
         "description": "Chainsaw Man narra la historia de Denji, un pobre infeliz que haría cualquier cosa por guita. Su padre se suicidó dejándole una deuda impagable con la mafia, jamás en su vida lo abrazaron y gracias si puede apuntar a comerse una rodaja de pan lactal por día. ",
         "image": "/placeHolder.jpg",
-        "price": "1800",
-        "categoryId": "1",
+        "price": 1800,
+        "categoryId": 1,
         "categoryName": "Seinen"
     }
 ]

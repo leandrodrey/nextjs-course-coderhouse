@@ -1,23 +1,18 @@
+"use client"
 import {FC} from "react";
 import Image from 'next/image'
+import { Product } from "@/app/interfaces/product";
 import data from "@/app/items.json";
 
 interface ProductDetailProps {
     params: {
-        id: string;
+        id: number;
     };
-}
-
-interface ProductProps {
-    id: string;
-    title: string;
-    image: string;
-    description: string;
 }
 
 const ProductDetail:FC<ProductDetailProps> = ({ params }) => {
 
-    const product: ProductProps | undefined = data.find((item) => item.id === params.id);
+    const product: Product | undefined = data.find((item) => Number(item.id) === Number(params.id));
 
     if (!product) {
         return <div>Producto no encontrado</div>;

@@ -9,8 +9,8 @@ interface MenuProps {
 
 const Menu: FC<MenuProps> = ({ open }) => {
     const Menus = [
-        { title: "Dashboard", url:'/', icon: <DashboardIcon />, gap: true },
-        { title: "Seinen", url:'/category/1', icon: <DashboardIcon /> },
+        { title: "Dashboard", url:'/', icon: <DashboardIcon /> },
+        { title: "Seinen", url:'/category/1', icon: <DashboardIcon />, gap: true },
         { title: "Isekai", url:'/category/2', icon: <DashboardIcon /> },
     ];
 

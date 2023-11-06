@@ -1,11 +1,12 @@
 import {ReactElement} from "react";
-import ProductContainer from "@/app/components/ui/ProductContainer";
+import ProductsContainer from "@/app/components/ui/ProductsContainer";
+import data from "@/app/items.json";
 
 export default function Home(): ReactElement {
     return (
         <>
             <h1 className="text-base font-bold"> Next.js + Tailwind CSS</h1>
-            <ProductContainer />
+            <ProductsContainer products={data} />
         </>
     )
 }
