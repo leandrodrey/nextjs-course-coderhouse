@@ -23,7 +23,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
     let img = myCld.image(`${product.image}`);
 
     return (
-        <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 md:w-full">
+        <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4">
             <Image
                 src={img.toURL()}
                 alt={`Imagen del producto: ${product.title}`}
