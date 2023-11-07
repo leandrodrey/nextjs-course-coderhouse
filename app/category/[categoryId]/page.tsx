@@ -1,4 +1,3 @@
-"use client"
 import { FC } from "react";
 import { Product } from "@/app/interfaces/product";
 import ProductsContainer from "@/app/components/ui/ProductsContainer";
@@ -15,6 +14,10 @@ const ProductCategory: FC<ProductCategoryProps> = ({ params }) => {
     const filteredProducts: Product[] = data.filter((item) =>
         Number(item.categoryId) === Number(params.categoryId)
     );
+
+    if (!filteredProducts.length) {
+        return <div>Productos no encontrados</div>;
+    }
 
     return (
         <ProductsContainer products={filteredProducts} />
