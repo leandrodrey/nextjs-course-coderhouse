@@ -1,7 +1,6 @@
-"use client"
 import {FC} from "react";
 import Image from 'next/image'
-import { Product } from "@/app/interfaces/product";
+import {Product} from "@/app/interfaces/product";
 import data from "@/app/items.json";
 
 interface ProductDetailProps {
@@ -10,7 +9,7 @@ interface ProductDetailProps {
     };
 }
 
-const ProductDetail:FC<ProductDetailProps> = ({ params }) => {
+const ProductDetail: FC<ProductDetailProps> = ({params}) => {
 
     const product: Product | undefined = data.find((item) => Number(item.id) === Number(params.id));
 
