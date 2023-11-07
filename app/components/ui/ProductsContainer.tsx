@@ -9,9 +9,9 @@ interface ProductsContainerProps {
 const ProductsContainer: FC<ProductsContainerProps> = ({products}) => {
 
     return (
-        <div className="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="flex-1 p-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
             {products.map((product: Product) => (
-                <ProductCard key={product.id} id={product.id} name={product.title} image={product.image} description={product.description}/>
+                <ProductCard key={product.id} product={product}/>
             ))}
         </div>
     );
