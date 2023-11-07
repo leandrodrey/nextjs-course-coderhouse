@@ -12,7 +12,9 @@ const Menu: FC<MenuProps> = ({open}) => {
     const Menus = [
         {title: "Home", url: '/', icon: <CabinIcon/>},
         {title: "RPG", url: '/category/1', icon: <VideogameAssetIcon/>, gap: true},
-        {title: "Arcade", url: '/category/2', icon: <SportsEsportsIcon/>},
+        {title: "Survival", url: '/category/2', icon: <SportsEsportsIcon/>},
+        {title: "Simulation", url: '/category/3', icon: <VideogameAssetIcon/>},
+        {title: "Rogue Like", url: '/category/4', icon: <SportsEsportsIcon/>},
     ];
 
     return (
