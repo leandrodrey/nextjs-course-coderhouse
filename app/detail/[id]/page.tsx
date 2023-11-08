@@ -1,5 +1,6 @@
 import {FC} from "react";
-import Image from 'next/image'
+import Image from 'next/image';
+import Link from "next/link";
 import {Product} from "@/app/interfaces/product";
 import data from "@/app/items.json";
 import CloudinaryImage from "@/app/services/CloudinaryImage";
@@ -20,28 +21,46 @@ const ProductDetail: FC<ProductDetailProps> = ({params}) => {
     const image = CloudinaryImage(product.image);
 
     return (
-        <div className="max-w-5xl mx-auto p-5">
-            <div className="bg-white rounded-lg overflow-hidden shadow-xl">
-                <Image
-                    src={image}
-                    alt={`Imagen de ${product.title}`}
-                    width={640}
-                    height={360}
-                    className="w-full object-cover"
-                />
-                <div className="p-6">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className="text-4xl font-bold text-gray-800 mr-3">{product.title}</h1>
-                        <span className="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm">
-                            {product.categoryName}
-                        </span>
-                    </div>
-                    <p className="text-gray-600 text-lg mb-4">{product.description}</p>
+        <div className="container mx-auto mt-10 p-5">
+            <div className="md:flex md:items-start">
+                <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center mb-4 md:mb-0">
+                    <Image
+                        src={image}
+                        alt={`Imagen de ${product.title}`}
+                        width={640}
+                        height={640}
+                        className="object-contain"
+                    />
+                </div>
+                <div className="w-full md:w-1/2 lg:w-2/3 bg-stone-900 bg-opacity-90 rounded-lg p-6 shadow-xl">
+                    <h1 className="text-3xl font-bold text-blue-300 mb-3">{product.title}</h1>
+                    <p className="text-gray-300 text-lg mb-4">{product.description}</p>
                     <div className="flex justify-between items-center">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Comprar
+                        <span className="text-xl font-bold text-gray-300">${product.price}</span>
+                        <Link href={`/category/${product.categoryId}`}>
+                            <span className="px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+                                {product.categoryName}
+                            </span>
+                        </Link>
+                    </div>
+                    <div className="my-4">
+                        <div className="flex items-center mt-2">
+                            <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 hover:text-white">
+                                -
+                            </button>
+                            <span className="mx-2 text-gray-300">1</span>
+                            <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 hover:text-white">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div className="flex py-4">
+                        <button className="bg-blue-300 text-black text-sm py-2 px-4 rounded transition duration-300 hover:bg-blue-600 hover:text-white mr-2">
+                            Añadir al carrito
                         </button>
-                        <span className="text-xl font-bold text-gray-800">${product.price}</span>
+                        <button className="bg-blue-300 text-black text-sm py-2 px-4 rounded transition duration-300 hover:bg-blue-600 hover:text-white">
+                            Comprar ahora
+                        </button>
                     </div>
                 </div>
             </div>

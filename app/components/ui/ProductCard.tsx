@@ -17,13 +17,15 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
 
     return (
         <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
-            <Image
-                src={image}
-                alt={`Imagen del producto: ${product.title}`}
-                width={640}
-                height={360}
-                className="max-w-full h-auto rounded-lg"
-            />
+            <Link href={`/detail/${product.id}`} className="transition duration-300 hover:text-blue-600" role="link">
+                <Image
+                    src={image}
+                    alt={`Imagen del producto: ${product.title}`}
+                    width={640}
+                    height={360}
+                    className="max-w-full h-auto rounded-lg"
+                />
+            </Link>
             <div className="px-1 py-2">
                 <div className={"flex justify-between items-center mb-3"}>
                     <h2 className="text-lg text-blue-300">
