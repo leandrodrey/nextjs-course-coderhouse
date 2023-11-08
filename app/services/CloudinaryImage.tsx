@@ -1,15 +1,14 @@
-import {FC} from "react";
 import {Cloudinary} from "@cloudinary/url-gen";
 
 const CloudinaryImage = (imagePath: string): string => {
 
-    const myCld = new Cloudinary({
+    const myCloudinary = new Cloudinary({
         cloud: {
             cloudName: "dmef6dgiq",
         },
     });
 
-    const cloudinaryImg = myCld.image(`${imagePath}`);
+    const cloudinaryImg = myCloudinary.image(`${imagePath}`);
     const cloudinaryImageUrl = cloudinaryImg.toURL();
 
     return (
