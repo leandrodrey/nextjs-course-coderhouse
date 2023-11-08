@@ -2,8 +2,7 @@ import {FC} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {Product} from "@/app/interfaces/product";
-import {AdvancedImage} from '@cloudinary/react'
-import {Cloudinary} from '@cloudinary/url-gen';
+import CloudinaryImage from "@/app/services/CloudinaryImage";
 
 interface ProductCardProps {
     product: Product;
@@ -14,18 +13,12 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
     const maxLength = 100;
     const descriptionShort = product.description.length > maxLength ? `${product.description.substring(0, maxLength)}...` : product.description;
 
-    const myCld = new Cloudinary({
-        cloud: {
-            cloudName: "dmef6dgiq",
-        },
-    });
-
-    let img = myCld.image(`${product.image}`);
+    const image = CloudinaryImage(product.image);
 
     return (
         <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
             <Image
-                src={img.toURL()}
+                src={image}
                 alt={`Imagen del producto: ${product.title}`}
                 width={640}
                 height={360}
