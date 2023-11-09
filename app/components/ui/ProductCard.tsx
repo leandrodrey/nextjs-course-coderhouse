@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {Product} from "@/app/interfaces/product";
 import CloudinaryImage from "@/app/services/CloudinaryImage";
+import Button from "@/app/components/ui/Button";
 
 interface ProductCardProps {
     product: Product;
@@ -43,8 +44,8 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
                 <p className="text-white-700 mb-4 text-sm">{descriptionShort}</p>
                 <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                        <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 hover:text-white mr-3" role="button">Comprar</button>
-                        <p className="text-gray-300 text-lg font-bold">${product.price}</p>
+                        <Button text="Comprar"/>
+                        <p className="text-gray-300 text-lg font-bold ml-2">${product.price}</p>
                     </div>
                     <Link href={`/detail/${product.id}`} className="text-blue-900 text-sm transition duration-300 hover:text-blue-600" role="link">Ver más</Link>
                 </div>
