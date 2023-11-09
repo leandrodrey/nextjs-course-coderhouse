@@ -4,6 +4,7 @@ import Link from "next/link";
 import {Product} from "@/app/interfaces/product";
 import data from "@/app/items.json";
 import CloudinaryImage from "@/app/services/CloudinaryImage";
+import Button from "@/app/components/ui/Button";
 
 interface ProductDetailProps {
     params: {
@@ -54,13 +55,9 @@ const ProductDetail: FC<ProductDetailProps> = ({params}) => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex py-4">
-                        <button className="bg-blue-300 text-black text-sm py-2 px-4 rounded transition duration-300 hover:bg-blue-600 hover:text-white mr-2">
-                            Añadir al carrito
-                        </button>
-                        <button className="bg-blue-300 text-black text-sm py-2 px-4 rounded transition duration-300 hover:bg-blue-600 hover:text-white">
-                            Comprar ahora
-                        </button>
+                    <div className="flex py-4 justify-between">
+                        <Button text="Añadir al carrito"/>
+                        <Button text="Comprar ahora"/>
                     </div>
                 </div>
             </div>
