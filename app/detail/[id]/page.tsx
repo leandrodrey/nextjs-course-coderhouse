@@ -18,14 +18,14 @@ const ProductDetail: FC<ProductDetailProps> = ({params}) => {
         return <div className="text-center text-xl text-red-500 p-5">Producto no encontrado</div>;
     }
 
-    const image = CloudinaryImage(product.image);
+    const productImage = CloudinaryImage(product.image);
 
     return (
         <div className="container mx-auto mt-10 p-5">
             <div className="md:flex md:items-start">
                 <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center mb-4 md:mb-0">
                     <Image
-                        src={image}
+                        src={productImage}
                         alt={`Imagen de ${product.title}`}
                         width={640}
                         height={640}

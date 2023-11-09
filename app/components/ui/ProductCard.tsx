@@ -13,13 +13,13 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
     const maxLength = 100;
     const descriptionShort = product.description.length > maxLength ? `${product.description.substring(0, maxLength)}...` : product.description;
 
-    const image = CloudinaryImage(product.image);
+    const productImage = CloudinaryImage(product.image);
 
     return (
         <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
             <Link href={`/detail/${product.id}`} className="transition duration-300 hover:text-blue-600" role="link">
                 <Image
-                    src={image}
+                    src={productImage}
                     alt={`Imagen del producto: ${product.title}`}
                     width={640}
                     height={360}
