@@ -12,19 +12,19 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-    children,
-}: {
+                                       children,
+                                   }: {
     children: ReactNode
 }) {
     return (
         <html lang="en">
         <body className={inter.className}>
-            <main className="w-full shadow flex">
-                <NavBar />
-                <div className="content h-screen flex-1 p-7">
-                    {children}
-                </div>
-            </main>
+        <main className="flex w-full h-screen">
+            <NavBar/>
+            <div className="content h-screen flex-1 p-7">
+                {children}
+            </div>
+        </main>
         </body>
         </html>
     )
