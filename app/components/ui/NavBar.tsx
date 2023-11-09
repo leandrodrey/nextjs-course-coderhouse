@@ -6,7 +6,7 @@ import Menu from "@/app/components/ui/Menu";
 
 const NavBar: FC = () => {
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     return (
         <>
