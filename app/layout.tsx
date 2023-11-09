@@ -11,9 +11,7 @@ export const metadata: Metadata = {
     description: 'Tus juegos en un lugar',
 }
 
-export default function RootLayout({
-                                       children,
-                                   }: {
+export default function RootLayout({children,}: {
     children: ReactNode
 }) {
     return (

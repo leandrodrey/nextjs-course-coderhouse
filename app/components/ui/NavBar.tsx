@@ -10,8 +10,8 @@ const NavBar: FC = () => {
 
     return (
         <>
-            <div className={` ${open ? "w-60" : "w-20"} `}>
-                <div className={` ${open ? "w-60" : "w-20"} flex flex-col justify-between bg-[#0f0f0f] p-5 pt-8 z-[999] duration-300 fixed top-0 left-0 h-full`}>
+            <div className={` ${open ? "w-60" : "w-20"} duration-600 transition`}>
+                <div className={` ${open ? "w-60" : "w-20"} flex flex-col justify-between bg-[#0f0f0f] p-5 pt-8 z-[999] duration-600 transition fixed top-0 left-0 h-full`}>
                     <div>
                         <ArrowBackIosOutlinedIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-10 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}/>
                         <div className="flex flex-col gap-x-4 items-center">
