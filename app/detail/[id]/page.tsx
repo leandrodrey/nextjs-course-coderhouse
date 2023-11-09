@@ -13,6 +13,7 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: FC<ProductDetailProps> = ({params}) => {
+    
     const product: Product | undefined = data.find((item) => Number(item.id) === Number(params.id));
 
     if (!product) {
