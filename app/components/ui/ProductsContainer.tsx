@@ -9,7 +9,7 @@ interface ProductsContainerProps {
 const ProductsContainer: FC<ProductsContainerProps> = ({products}) => {
 
     return (
-        <div className="flex flex-wrap justify-center p-4 gap-4">
+        <div className="flex flex-wrap justify-center p-1 md:p-4 md:gap-4 ">
             {products.map((product: Product) => (
                 <ProductCard key={product.id} product={product}/>
             ))}

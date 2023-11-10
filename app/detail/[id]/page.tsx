@@ -13,7 +13,7 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: FC<ProductDetailProps> = ({params}) => {
-    
+
     const product: Product | undefined = data.find((item) => Number(item.id) === Number(params.id));
 
     if (!product) {
@@ -23,7 +23,7 @@ const ProductDetail: FC<ProductDetailProps> = ({params}) => {
     const productImage = CloudinaryImage(product.image);
 
     return (
-        <div className="container mx-auto mt-10 p-5">
+        <div className="container mx-auto mt-10 md:p-5">
             <div className="md:flex md:items-stretch">
                 <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center mb-4 md:mb-0">
                     <Image
