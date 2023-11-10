@@ -17,9 +17,9 @@ export default function RootLayout({children,}: {
     return (
         <html lang="en">
         <body className={inter.className}>
-        <main className="flex w-full h-screen">
+        <main className="w-full md:flex">
             <NavBar/>
-            <div className="content h-screen flex-1 p-7">
+            <div className="content h-screen flex-1 p-7 pl-20 md:pl-0">
                 {children}
             </div>
         </main>
