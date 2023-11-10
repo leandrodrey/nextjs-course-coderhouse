@@ -17,7 +17,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
     const productImage = CloudinaryImage(product.image);
 
     return (
-        <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+        <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full mt-4 md:mt-0 md:w-1/2 lg:w-1/3 xl:w-1/4">
             <Link href={`/detail/${product.id}`} className="transition duration-300 hover:text-blue-600" role="link">
                 <Image
                     src={productImage}
