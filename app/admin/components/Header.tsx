@@ -1,12 +1,16 @@
 "use client";
 import {FC} from "react";
+import Image from "next/image";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import CloudinaryImage from "@/app/services/CloudinaryImage";
 
 interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = () => {
+
+    const avatarImage = CloudinaryImage("user_avatar");
+
     return (
         <header className="bg-stone-900 shadow-sm">
             <div className="flex justify-between items-center py-4 px-6">
@@ -19,7 +23,14 @@ const Header: FC<HeaderProps> = () => {
                     />
                 </div>
                 <div className="flex items-center">
-                    <AccountCircleOutlinedIcon/>
+                    <h1 className="mr-3"> Bienvenido, <span className="text-blue-300 font-semibold">Admin</span></h1>
+                    <Image
+                        src={avatarImage}
+                        alt="User Avatar"
+                        width={100}
+                        height={100}
+                        className="object-contain rounded-full shadow-md"
+                    />
                 </div>
             </div>
         </header>
