@@ -8,7 +8,7 @@ const CloudinaryImage = (imagePath: string): string => {
         },
     });
 
-    const cloudinaryImg = myCloudinary.image(`${imagePath}`);
+    const cloudinaryImg = myCloudinary.image(`gamebazar/${imagePath}`);
     const cloudinaryImageUrl = cloudinaryImg.toURL();
 
     return (

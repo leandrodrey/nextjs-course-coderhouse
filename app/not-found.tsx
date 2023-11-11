@@ -5,10 +5,10 @@ import CloudinaryImage from "@/app/services/CloudinaryImage";
 
 const NotFoundPage: NextPage = () => {
 
-    const notFoundImage = CloudinaryImage("gamebazar/404error");
+    const notFoundImage = CloudinaryImage("404error");
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen text-center">
+        <div className="flex flex-col items-center justify-center h-full text-center">
             <Image
                 src={notFoundImage}
                 alt="Page Not Found"

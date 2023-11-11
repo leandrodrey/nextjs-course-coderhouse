@@ -3,7 +3,7 @@
         "id": 1,
         "title": "Elden Ring",
         "description": "An action RPG set in a fantasy world created by Hidetaka Miyazaki and George R. R. Martin.",
-        "image": "/gamebazar/xfomwfx5y1ktqma2vszw",
+        "image": "xfomwfx5y1ktqma2vszw",
         "price": 59.99,
         "categoryId": 1,
         "categoryName": "RPG"
@@ -12,7 +12,7 @@
         "id": 2,
         "title": "Cyberpunk 2077",
         "description": "A story-driven, open world RPG set in a dark future from CD Projekt Red.",
-        "image": "/gamebazar/zif2rpcnmcpmqixuelil",
+        "image": "zif2rpcnmcpmqixuelil",
         "price": 49.99,
         "categoryId": 1,
         "categoryName": "RPG"
@@ -21,7 +21,7 @@
         "id": 3,
         "title": "Valheim",
         "description": "A brutal exploration and survival game for 1-10 players set in a procedurally-generated purgatory inspired by viking culture.",
-        "image": "/gamebazar/kbh8a8jmzm1mmknsmi4h",
+        "image": "kbh8a8jmzm1mmknsmi4h",
         "price": 19.99,
         "categoryId": 2,
         "categoryName": "Survival"
@@ -30,7 +30,7 @@
         "id": 4,
         "title": "The Witcher 3: Wild Hunt",
         "description": "A story-driven, open-world RPG with a fantasy universe full of meaningful choices and impactful consequences.",
-        "image": "/gamebazar/muqsfnnlle6la2pdgp18",
+        "image": "muqsfnnlle6la2pdgp18",
         "price": 39.99,
         "categoryId": 1,
         "categoryName": "RPG"
@@ -39,7 +39,7 @@
         "id": 5,
         "title": "Stardew Valley",
         "description": "A farming simulation game where you have inherited your grandfather's old farm plot in Stardew Valley.",
-        "image": "/gamebazar/fbtowkvbqmi8qo94r3k1",
+        "image": "fbtowkvbqmi8qo94r3k1",
         "price": 14.99,
         "categoryId": 3,
         "categoryName": "Simulation"
@@ -48,7 +48,7 @@
         "id": 6,
         "title": "Hades",
         "description": "A rogue-like dungeon crawler in which you defy the god of the dead as you hack and slash out of the Underworld of Greek myth.",
-        "image": "/gamebazar/yv3rvtvxhhduzaokjrrj",
+        "image": "yv3rvtvxhhduzaokjrrj",
         "price": 24.99,
         "categoryId": 4,
         "categoryName": "Rogue-like"
@@ -57,7 +57,7 @@
         "id": 7,
         "title": "Half-Life: Alyx",
         "description": "Valve's VR return to the Half-Life series.",
-        "image": "/gamebazar/syr9wgpffixbwiinnr0c",
+        "image": "syr9wgpffixbwiinnr0c",
         "price": 59.99,
         "categoryId": 4,
         "categoryName": "VR Shooter"
@@ -66,7 +66,7 @@
         "id": 8,
         "title": "Divinity: Original Sin 2",
         "description": "A critically acclaimed single-player and cooperative multiplayer fantasy RPG with deep storytelling and tactical combat.",
-        "image": "/gamebazar/elel2wgp5687jqxwsnxo",
+        "image": "elel2wgp5687jqxwsnxo",
         "price": 44.99,
         "categoryId": 1,
         "categoryName": "RPG"
@@ -75,7 +75,7 @@
         "id": 9,
         "title": "Among Us",
         "description": "An online and local party game of teamwork and betrayal for 4-10 players...in space!",
-        "image": "/gamebazar/xgide9yxemixpjpyjhms",
+        "image": "xgide9yxemixpjpyjhms",
         "price": 5.99,
         "categoryId": 5,
         "categoryName": "Party"
@@ -84,7 +84,7 @@
         "id": 10,
         "title": "Doom Eternal",
         "description": "Experience the ultimate combination of speed and power in DOOM Eternal - the next leap in push-forward, first-person combat.",
-        "image": "/gamebazar/vckcujitdjqh7i7ajkz3",
+        "image": "vckcujitdjqh7i7ajkz3",
         "price": 59.99,
         "categoryId": 6,
         "categoryName": "FPS"
@@ -93,7 +93,7 @@
         "id": 11,
         "title": "Control",
         "description": "A third-person action-adventure game combining Remedy's trademark gunplay with supernatural abilities.",
-        "image": "/gamebazar/jjq7vlarfzzu3lgnz0ea",
+        "image": "jjq7vlarfzzu3lgnz0ea",
         "price": 29.99,
         "categoryId": 7,
         "categoryName": "Adventure"
@@ -102,7 +102,7 @@
         "id": 12,
         "title": "Subnautica",
         "description": "An underwater adventure game set on an alien ocean planet. A massive, open world full of wonder and peril awaits you!",
-        "image": "/gamebazar/xmhrlip3hz53js34zk5u",
+        "image": "xmhrlip3hz53js34zk5u",
         "price": 24.99,
         "categoryId": 2,
         "categoryName": "Survival"

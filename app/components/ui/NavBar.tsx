@@ -10,7 +10,7 @@ const NavBar: FC = () => {
 
     const [open, setOpen] = useState(false);
 
-    const logoImage = CloudinaryImage("/gamebazar/logo.png");
+    const logoImage = CloudinaryImage("logo.png");
 
     return (
         <>
