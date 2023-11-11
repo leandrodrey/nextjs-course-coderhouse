@@ -54,7 +54,7 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                 </thead>
                                 <tbody>
                                 {products.map((product) => (
-                                    <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
                                         <td className="py-4 px-6">{product.id}</td>
                                         <td className="py-4 px-6">{product.title}</td>
                                         <td className="py-4 px-6">{product.description}</td>
