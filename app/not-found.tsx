@@ -1,13 +1,16 @@
-import { NextPage } from 'next';
+import {NextPage} from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import CloudinaryImage from "@/app/services/CloudinaryImage";
 
 const NotFoundPage: NextPage = () => {
+
+    const notFoundImage = CloudinaryImage("gamebazar/404error");
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen text-center">
             <Image
-                src="/404_Error.svg"
+                src={notFoundImage}
                 alt="Page Not Found"
                 width={400}
                 height={400}
