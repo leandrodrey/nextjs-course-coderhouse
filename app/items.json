@@ -59,7 +59,7 @@
         "description": "Valve's VR return to the Half-Life series.",
         "image": "syr9wgpffixbwiinnr0c",
         "price": 59.99,
-        "categoryId": 4,
+        "categoryId": 5,
         "categoryName": "VR Shooter"
     },
     {
@@ -77,7 +77,7 @@
         "description": "An online and local party game of teamwork and betrayal for 4-10 players...in space!",
         "image": "xgide9yxemixpjpyjhms",
         "price": 5.99,
-        "categoryId": 5,
+        "categoryId": 6,
         "categoryName": "Party"
     },
     {
@@ -86,7 +86,7 @@
         "description": "Experience the ultimate combination of speed and power in DOOM Eternal - the next leap in push-forward, first-person combat.",
         "image": "vckcujitdjqh7i7ajkz3",
         "price": 59.99,
-        "categoryId": 6,
+        "categoryId": 7,
         "categoryName": "FPS"
     },
     {
@@ -95,7 +95,7 @@
         "description": "A third-person action-adventure game combining Remedy's trademark gunplay with supernatural abilities.",
         "image": "jjq7vlarfzzu3lgnz0ea",
         "price": 29.99,
-        "categoryId": 7,
+        "categoryId": 8,
         "categoryName": "Adventure"
     },
     {
