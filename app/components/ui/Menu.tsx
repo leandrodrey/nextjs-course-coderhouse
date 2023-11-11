@@ -4,6 +4,7 @@ import {usePathname} from 'next/navigation'
 import CabinIcon from '@mui/icons-material/Cabin';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 
 interface MenuProps {
     open: boolean;
@@ -19,6 +20,7 @@ const Menu: FC<MenuProps> = ({open}) => {
         {title: "Survival", url: '/category/2', icon: <SportsEsportsIcon/>},
         {title: "Simulation", url: '/category/3', icon: <VideogameAssetIcon/>},
         {title: "Rogue Like", url: '/category/4', icon: <SportsEsportsIcon/>},
+        {title: "Admin", url: '/admin', icon: <AccountBoxOutlinedIcon/>, gap: true},
     ];
 
     return (

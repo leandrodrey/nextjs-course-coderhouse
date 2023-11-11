@@ -5,17 +5,16 @@ import CabinIcon from '@mui/icons-material/Cabin';
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 
 interface SidebarProps {
-    // Define additional props if needed
 }
 
 const Sidebar: FC<SidebarProps> = () => {
 
     const Menus = [
-        {title: "Dashboard", url: '/', icon: <CabinIcon/>},
-        {title: "Productos", url: '/category/1', icon: <VideogameAssetIcon/>, gap: true},
-        {title: "Productos", url: '/', icon: <VideogameAssetIcon/>},
-        {title: "Productos", url: '/', icon: <VideogameAssetIcon/>},
-        {title: "Productos", url: '/', icon: <VideogameAssetIcon/>},
+        {title: "Dashboard", url: '/admin', icon: <CabinIcon/>},
+        {title: "Productos", url: '/admin', icon: <VideogameAssetIcon/>, gap: true},
+        {title: "Productos", url: '/admin', icon: <VideogameAssetIcon/>},
+        {title: "Productos", url: '/admin', icon: <VideogameAssetIcon/>},
+        {title: "Productos", url: '/admin', icon: <VideogameAssetIcon/>},
     ];
 
     return (

@@ -1,17 +1,21 @@
 "use client";
 import {FC} from "react";
+import EditIcon from '@mui/icons-material/Edit';
+import {Product} from "@/app/interfaces/product";
+import CloudinaryImage from "@/app/services/CloudinaryImage";
+import Link from "next/link";
 
 interface MainContentProps {
-    // Define additional props if needed
+    products: Product[];
 }
 
-const MainContent: FC<MainContentProps> = () => {
+const MainContent: FC<MainContentProps> = ({products}) => {
+
     return (
         <main className="flex-1 bg-gray-100">
             <div className="py-6">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                     <div className="bg-white shadow rounded-lg p-6">
-                        {/* Content goes here */}
                         <div className="flex justify-between items-center mb-8">
                             <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -43,26 +47,33 @@ const MainContent: FC<MainContentProps> = () => {
                                     <th scope="col" className="py-3 px-6">
                                         Category Name
                                     </th>
+                                    <th scope="col" className="py-3 px-6">
+                                        Edit
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {/* Aquí irían las filas de datos generadas dinámicamente */}
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td className="py-4 px-6">1</td>
-                                    <td className="py-4 px-6">Product Title</td>
-                                    <td className="py-4 px-6">Product Description</td>
-                                    <td className="py-4 px-6">
-                                        <img src="image_url.jpg" alt="Product" className="w-10 h-10 rounded-full" />
-                                    </td>
-                                    <td className="py-4 px-6">$99.99</td>
-                                    <td className="py-4 px-6">10</td>
-                                    <td className="py-4 px-6">Electronics</td>
-                                </tr>
-                                {/* Repite las filas según los datos que tengas */}
+                                {products.map((product) => (
+                                    <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <td className="py-4 px-6">{product.id}</td>
+                                        <td className="py-4 px-6">{product.title}</td>
+                                        <td className="py-4 px-6">{product.description}</td>
+                                        <td className="py-4 px-6">
+                                            <img src={`${CloudinaryImage(product.image)}`} alt={product.title} className="w-10 h-10 rounded-full"/>
+                                        </td>
+                                        <td className="py-4 px-6">${product.price.toFixed(2)}</td>
+                                        <td className="py-4 px-6">{product.categoryId}</td>
+                                        <td className="py-4 px-6">{product.categoryName}</td>
+                                        <td className="py-4 px-6">
+                                            <Link href={`/admin/product/${product.id}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
+                                                <EditIcon/>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
