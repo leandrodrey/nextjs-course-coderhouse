@@ -23,7 +23,7 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                             </button>
                         </div>
                         <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-                            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <table className="hidden md:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" className="py-3 px-6">ID</th>
@@ -57,11 +57,32 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                 ))}
                                 </tbody>
                             </table>
+                            <div className="sm:hidden">
+                                {products.map((product) => (
+                                    <div key={product.id} className="bg-white text-gray-800 dark:text-gray-500 p-4 rounded-lg mb-2 shadow">
+                                        <div className="flex justify-between items-center">
+                                            <div><strong>ID {product.id}</strong> - {product.title}</div>
+                                            <img src={`${CloudinaryImage(product.image)}`} alt={product.title} className="w-20 h-20 rounded-full"/>
+                                        </div>
+                                        <div><strong>Title:</strong> {product.title}</div>
+                                        <div><strong>Description:</strong> {`${product.description.substring(0, 100)}...`}</div>
+                                        <div><strong>Price:</strong> ${product.price.toFixed(2)}</div>
+                                        <div><strong>Category ID:</strong> {product.categoryId}</div>
+                                        <div className="flex justify-between">
+                                            <div><strong>Category Name:</strong> {product.categoryName}</div>
+                                            <Link href={`/admin/product/${product.id}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
+                                                <EditIcon/>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     );
 };
 
