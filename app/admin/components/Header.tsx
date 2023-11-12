@@ -13,8 +13,8 @@ const Header: FC<HeaderProps> = () => {
 
     return (
         <header className="bg-stone-900 shadow-sm">
-            <div className="flex justify-between items-center py-2 px-4">
-                <div className="flex items-center">
+            <div className="flex justify-end md:justify-between items-center py-2 px-4">
+                <div className="flex items-center hidden md:block">
                     <SearchOutlinedIcon/>
                     <input
                         type="search"
@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = () => {
                     />
                 </div>
                 <div className="flex items-center">
-                    <h1 className="mr-3"> Bienvenido, <span className="text-blue-300 font-semibold">Admin</span></h1>
+                    <h1 className="mr-3">Bienvenido, <span className="text-blue-300 font-semibold">Admin</span></h1>
                     <Image
                         src={avatarImage}
                         alt="User Avatar"

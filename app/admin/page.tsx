@@ -1,19 +1,18 @@
-import React from 'react';
+import {ReactElement} from 'react';
 import Sidebar from '@/app/admin/components/Sidebar';
 import Header from '@/app/admin/components/Header';
 import MainContent from '@/app/admin/components/MainContent';
 import data from "@/app/items.json";
 
-const AdminPage: React.FC = () => {
+export default function AdminPage(): ReactElement {
+
     return (
-        <div className="flex h-full  bg-gray-100">
+        <>
             <Sidebar/>
             <div className="flex-1 flex flex-col">
                 <Header/>
                 <MainContent products={data}/>
             </div>
-        </div>
+        </>
     );
 };
-
-export default AdminPage;
