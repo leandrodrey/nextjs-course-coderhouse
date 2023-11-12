@@ -28,7 +28,7 @@ const Sidebar: FC<SidebarProps> = () => {
                                 ${Menu.gap ? "mt-9" : "mt-2"} 
                             `}
                         >
-                            <Link href="/admin/dashboard" className="flex items-center p-2 w-full text-sm font-medium text-white rounded-lg hover:bg-blue-800">
+                            <Link href={Menu.url} className="flex items-center p-2 w-full text-sm font-medium text-white rounded-lg hover:bg-blue-800">
                                 {Menu.title}
                             </Link>
                         </li>

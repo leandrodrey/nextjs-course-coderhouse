@@ -14,13 +14,13 @@ const MainContent: FC<MainContentProps> = ({products}) => {
     return (
         <>
             <div className="flex md:hidden text-black justify-between p-2">
-                <Link href="/admin/dashboard" className="">
+                <Link href="/admin" className="">
                     Productos
                 </Link>
-                <Link href="/admin/dashboard" className="">
+                <Link href="/admin" className="">
                     Productos
                 </Link>
-                <Link href="/admin/dashboard" className="">
+                <Link href="/admin" className="">
                     Productos
                 </Link>
             </div>
@@ -72,17 +72,17 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                 </table>
                                 <div className="sm:hidden">
                                     {products.map((product) => (
-                                        <div key={product.id} className="bg-white text-gray-800 dark:text-gray-500 p-4 rounded-lg mb-2 mt-5 shadow">
-                                            <div className="flex justify-between items-center">
+                                        <div key={product.id} className="bg-white text-gray-800 dark:text-gray-500 rounded-lg mt-5 shadow-2xl border-1 border-black">
+                                            <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 dark:text-gray-400 p-2 rounded-t-lg mb-1">
                                                 <div><strong>ID {product.id}</strong> - {product.title}</div>
                                                 <img src={`${CloudinaryImage(product.image)}`} alt={product.title} className="w-20 h-20 rounded-full"/>
                                             </div>
-                                            <div>
+                                            <div className="p-2">
                                                 <strong>Description:</strong> {`${product.description.substring(0, 50)}...`}
                                             </div>
-                                            <div><strong>Price:</strong> ${product.price.toFixed(2)}</div>
-                                            <div><strong>Category ID:</strong> {product.categoryId}</div>
-                                            <div className="flex justify-between">
+                                            <div className="p-2"><strong>Price:</strong> ${product.price.toFixed(2)}</div>
+                                            <div className="p-2"><strong>Category ID:</strong> {product.categoryId}</div>
+                                            <div className="flex justify-between p-2">
                                                 <div><strong>Category Name:</strong> {product.categoryName}</div>
                                                 <Link href={`/admin/product/${product.id}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
                                                     <EditIcon/>
