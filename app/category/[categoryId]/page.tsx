@@ -1,7 +1,13 @@
 import { FC } from "react";
+import type { Metadata, ResolvingMetadata } from 'next'
 import { Product } from "@/app/interfaces/product";
 import ProductsContainer from "@/app/components/ui/ProductsContainer";
 import data from "@/app/items.json";
+
+export const metadata: Metadata = {
+    title: 'Productos por categoría',
+    description: 'Productos filtrados por categoría',
+}
 
 interface ProductCategoryProps {
     params: {
