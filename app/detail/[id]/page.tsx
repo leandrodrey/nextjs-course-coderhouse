@@ -20,6 +20,13 @@ export async function generateMetadata(
 
     const product: Product | undefined  = data.find((item) => Number(item.id) === Number(params.id));
 
+    if (!product) {
+        return {
+            title: "Producto no encontrado",
+            description: "El producto solicitado no existe en nuestra base de datos.",
+        };
+    }
+
     return {
         title: product.title,
         description: product.description,
