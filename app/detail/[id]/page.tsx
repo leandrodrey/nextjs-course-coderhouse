@@ -2,9 +2,9 @@ import {FC} from "react";
 import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
-import {Product} from "@/app/interfaces/product";
-import data from "@/app/items.json";
 import CloudinaryImage from "@/app/services/CloudinaryImage";
+import data from "@/app/items.json";
+import {Product} from "@/app/interfaces/product";
 import Button from "@/app/components/ui/Button";
 
 type Props = {
@@ -13,11 +13,9 @@ type Props = {
 }
 
 export async function generateMetadata(
-    {params, searchParams}: Props,
+    {params}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const id = params.id
-
     const product: Product | undefined  = data.find((item) => Number(item.id) === Number(params.id));
 
     if (!product) {
