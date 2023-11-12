@@ -22,11 +22,11 @@ Este documento describe las diferentes rutas disponibles en la aplicación y su 
 
 - **Descripción**: Muestra el detalle de un producto específico según su id.
 
-## Sección de Administración
-
 ### `/cart`
 
 - **Descripción**: Página donde se muestran los productos que se tienen en el carrito.
+
+## Sección de Administración
 
 ### `/admin`
 
