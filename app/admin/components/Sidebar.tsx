@@ -18,8 +18,7 @@ const Sidebar: FC<SidebarProps> = () => {
     ];
 
     return (
-        <aside className="w-64 h-screen bg-blue-700 text-white" aria-label="Sidebar">
-
+        <aside className={`w-64 h-screen bg-blue-700 text-white hidden md:block`} aria-label="Sidebar">
             <div className="overflow-y-auto py-4 px-3">
                 <ul className="space-y-2">
                     {Menus.map((Menu, index) => (
