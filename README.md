@@ -24,7 +24,11 @@ Este documento describe las diferentes rutas disponibles en la aplicación y su 
 
 ## Sección de Administración
 
-### `/admin`
+### `/cart`
+
+- **Descripción**: Página donde se muestran los productos que se tienen en el carrito.
+
+- ### `/admin`
 
 - **Descripción**: Página principal de administración para usuarios.
 - **Layout Específico**: Utiliza otro layout que proporciona una barra lateral de navegación extra y un encabezado
