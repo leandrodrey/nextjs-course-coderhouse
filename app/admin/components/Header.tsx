@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = () => {
     return (
         <header className="bg-stone-900 shadow-sm">
             <div className="flex justify-end md:justify-between items-center py-2 pr-2 md:pr-0 md:px-4">
-                <div className="items-center hidden md:block">
+                <div className="items-center hidden md:flex">
                     <SearchOutlinedIcon/>
                     <input
                         type="search"
