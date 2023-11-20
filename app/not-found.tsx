@@ -1,7 +1,7 @@
 import {NextPage} from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import CloudinaryImage from "@/services/CloudinaryImage";
 
 const NotFoundPage: NextPage = () => {
 
