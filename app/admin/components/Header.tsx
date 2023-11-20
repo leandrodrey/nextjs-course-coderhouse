@@ -2,7 +2,7 @@
 import {FC} from "react";
 import Image from "next/image";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import CloudinaryImage from "@/services/CloudinaryImage";
 
 interface HeaderProps {
 }
