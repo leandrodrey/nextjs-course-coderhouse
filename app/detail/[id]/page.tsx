@@ -2,9 +2,9 @@ import {FC} from "react";
 import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import CloudinaryImage from "@/services/CloudinaryImage";
 import data from "@/app/items.json";
-import {Product} from "@/app/interfaces/product";
+import {IProduct} from "@/interfaces/IProduct";
 import Button from "@/app/components/ui/Button";
 
 type Props = {
@@ -16,7 +16,7 @@ export async function generateMetadata(
     {params}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const product: Product | undefined  = data.find((item) => Number(item.id) === Number(params.id));
+    const product: IProduct | undefined  = data.find((item) => Number(item.id) === Number(params.id));
 
     if (!product) {
         return {
@@ -39,7 +39,7 @@ interface ProductDetailProps {
 
 const ProductDetail: FC<ProductDetailProps> = ({params}) => {
 
-    const product: Product | undefined = data.find((item) => Number(item.id) === Number(params.id));
+    const product: IProduct | undefined = data.find((item) => Number(item.id) === Number(params.id));
 
     if (!product) {
         return <div className="text-center text-xl text-red-500 p-5">Producto no encontrado</div>;

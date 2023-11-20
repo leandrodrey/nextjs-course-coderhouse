@@ -1,6 +1,6 @@
 import { FC } from "react";
 import type { Metadata, ResolvingMetadata } from 'next'
-import { Product } from "@/app/interfaces/product";
+import { IProduct } from "@/interfaces/IProduct";
 import ProductsContainer from "@/app/components/ui/ProductsContainer";
 import data from "@/app/items.json";
 
@@ -17,7 +17,7 @@ interface ProductCategoryProps {
 
 const ProductCategory: FC<ProductCategoryProps> = ({ params }) => {
 
-    const filteredProducts: Product[] = data.filter((item) =>
+    const filteredProducts: IProduct[] = data.filter((item) =>
         Number(item.categoryId) === Number(params.categoryId)
     );
 

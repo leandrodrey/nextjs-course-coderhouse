@@ -1,12 +1,12 @@
 import {FC} from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {Product} from "@/app/interfaces/product";
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import {IProduct} from "@/interfaces/IProduct";
+import CloudinaryImage from "@/services/CloudinaryImage";
 import Button from "@/app/components/ui/Button";
 
 interface ProductCardProps {
-    product: Product;
+    product: IProduct;
 }
 
 const ProductCard: FC<ProductCardProps> = ({product}) => {
