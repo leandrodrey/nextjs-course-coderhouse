@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Product } from '@/app/interfaces/product';
+import { IProduct } from '@/interfaces/IProduct';
 import Image from 'next/image';
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import CloudinaryImage from "@/services/CloudinaryImage";
 
 interface CartProps {
-    cartItems: Product[];
+    cartItems: IProduct[];
 }
 
 const Cart: FC<CartProps> = ({ cartItems }) => {
