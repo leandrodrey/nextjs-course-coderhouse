@@ -1,16 +1,16 @@
 import {FC} from "react";
-import {Product} from "@/app/interfaces/product";
+import {IProduct} from "@/interfaces/IProduct";
 import ProductCard from "@/app/components/ui/ProductCard";
 
 interface ProductsContainerProps {
-    products: Product[];
+    products: IProduct[];
 }
 
 const ProductsContainer: FC<ProductsContainerProps> = ({products}) => {
 
     return (
         <div className="flex flex-wrap justify-center p-1 md:p-4 md:gap-4 ">
-            {products.map((product: Product) => (
+            {products.map((product: IProduct) => (
                 <ProductCard key={product.id} product={product}/>
             ))}
         </div>
