@@ -11,7 +11,7 @@ const ProductsContainer: FC<ProductsContainerProps> = ({products}) => {
     return (
         <div className="flex flex-wrap justify-center p-1 md:p-4 md:gap-4 ">
             {products.map((product: IProduct) => (
-                <ProductCard key={product.id} product={product}/>
+                <ProductCard key={product._id.toString()} product={product}/>
             ))}
         </div>
     );
