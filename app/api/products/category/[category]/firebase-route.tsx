@@ -2,20 +2,32 @@ import {NextRequest, NextResponse} from 'next/server';
 import {collection, getDocs, query, where, doc, setDoc} from "firebase/firestore";
 import {db} from "@/firebase/config";
 
-export async function GET(request: NextRequest) {
-    const categoryParam = request.nextUrl.searchParams.get('category');
-
+export async function GET(request: NextRequest, { params }: { params: { category: string } }) {
+    const categoryParam = params.category;
     let q;
-    if (categoryParam) {
-        if (!isNaN(Number(categoryParam))) {
-            q = query(collection(db, "products"), where("categoryId", "==", Number(categoryParam)));
-        } else {
-            q = query(collection(db, "products"), where("categoryName", "==", categoryParam));
-        }
-    } else {
-        q = query(collection(db, "products"));
-    }
 
+    if (categoryParam === 'all') {
+        q = query(collection(db, "products"));
+    } else {
+        const numericCategoryId = parseInt(categoryParam);
+        if (!isNaN(numericCategoryId)) {
+            q = query(collection(db, "products"), where("categoryId", "==", numericCategoryId));
+        } else {
+            const categorySnapshot = await getDocs(query(collection(db, "category"), where("name", "==", categoryParam)));
+            if (!categorySnapshot.empty) {
+                const categoryDocData = categorySnapshot.docs[0].data();
+                const categoryId = categoryDocData.id;
+                q = query(collection(db, "products"), where("categoryId", "==", categoryId));
+            } else {
+                return new NextResponse(JSON.stringify({ error: 'Category not found' }), {
+                    status: 404,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            }
+        }
+    }
     try {
         const querySnapshot = await getDocs(q);
         const products = querySnapshot.docs.map(doc => ({
@@ -46,19 +58,20 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const productData = await request.json();
+        const productsArray = await request.json();
         const productsCol = collection(db, "products");
-        const newDocRef = doc(productsCol);
 
-        await setDoc(newDocRef, productData);
+        for (const productData of productsArray) {
+            const newDocRef = doc(productsCol);
+            await setDoc(newDocRef, productData);
+        }
 
-        return new NextResponse(JSON.stringify({ id: newDocRef.id }), {
+        return new NextResponse(JSON.stringify({ message: 'Products added successfully' }), {
             status: 201,
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-
     } catch (error) {
         let errorMessage = 'An unknown error occurred';
         if (error instanceof Error) {
