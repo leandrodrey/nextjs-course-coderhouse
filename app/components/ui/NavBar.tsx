@@ -2,7 +2,7 @@
 import {FC, useState} from "react";
 import Link from "next/link";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import CloudinaryImage from "@/services/CloudinaryImage";
 import SocialIcons from "@/app/components/ui/SocialIcons";
 import Menu from "@/app/components/ui/Menu";
 

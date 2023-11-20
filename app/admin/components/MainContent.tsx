@@ -2,11 +2,11 @@
 import {FC} from "react";
 import Link from "next/link";
 import EditIcon from '@mui/icons-material/Edit';
-import {Product} from "@/app/interfaces/product";
-import CloudinaryImage from "@/app/services/CloudinaryImage";
+import {IProduct} from "@/interfaces/IProduct";
+import CloudinaryImage from "@/services/CloudinaryImage";
 
 interface MainContentProps {
-    products: Product[];
+    products: IProduct[];
 }
 
 const MainContent: FC<MainContentProps> = ({products}) => {
