@@ -28,8 +28,6 @@ export async function GET(request: NextRequest, { params }: { params: { category
                 products = await ProductModel.find({ categoryId: categoryData._id });
             }
         }
-        await db.disconnect();
-
         return new NextResponse(JSON.stringify(products), {
             status: 200,
             headers: {
@@ -37,17 +35,17 @@ export async function GET(request: NextRequest, { params }: { params: { category
             }
         });
     } catch (error) {
-        await db.disconnect();
         let errorMessage = 'An unknown error occurred';
         if (error instanceof Error) {
             errorMessage = error.message;
         }
-
         return new NextResponse(JSON.stringify({ error: errorMessage }), {
             status: 500,
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+    } finally {
+        await db.disconnect();
     }
 }
