@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Productos filtrados por categoría',
 }
 
-async function getProductByCategory(category: number | string) {
+async function getProductByCategory(category: number | string): Promise<IProduct[]> {
     const res = await fetch(`http://localhost:3000/api/products/category/${category}`);
     if (!res.ok) {
         throw new Error('Failed to fetch data')
@@ -26,7 +26,7 @@ const ProductCategory: FC<ProductCategoryProps> = async ({ params }) => {
 
     const {category} = params;
 
-    const filteredProducts = await getProductByCategory(category);
+    const filteredProducts: IProduct[] = await getProductByCategory(category);
 
     if (!filteredProducts.length) {
         return <div>Productos no encontrados</div>;
