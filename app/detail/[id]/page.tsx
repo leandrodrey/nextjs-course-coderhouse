@@ -3,23 +3,16 @@ import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
 import CloudinaryImage from "@/services/CloudinaryImage";
+import {getProductById} from "@/services/ProductService";
 import {IProduct} from "@/interfaces/IProduct";
 import Button from "@/app/components/ui/Button";
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-async function getProductById(productId: number): Promise<IProduct> {
-    const res = await fetch(`http://localhost:3000/api/products/${productId}`);
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
-    return res.json();
-}
-
-/*export async function generateMetadata(
+export async function generateMetadata(
     {params}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
@@ -35,8 +28,8 @@ async function getProductById(productId: number): Promise<IProduct> {
     return {
         title: product.title,
         description: product.description,
-    }
-}*/
+        }
+}
 
 interface ProductDetailProps {
     params: {
