@@ -1,10 +1,10 @@
 "use client";
 import {FC} from "react";
 import Link from "next/link";
-import EditIcon from '@mui/icons-material/Edit';
+import Image from "next/image";
 import {IProduct} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
-import Image from "next/image";
+import EditIcon from '@mui/icons-material/Edit';
 
 interface MainContentProps {
     products: IProduct[];

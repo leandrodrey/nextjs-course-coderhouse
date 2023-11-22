@@ -1,17 +1,20 @@
 import {ReactElement} from 'react';
+import {getProductByCategory} from "@/services/ProductService";
 import Sidebar from '@/app/admin/components/Sidebar';
 import Header from '@/app/admin/components/Header';
 import MainContent from '@/app/admin/components/MainContent';
-import data from "@/app/items.json";
+import {IProduct} from "@/interfaces/IProduct";
 
-export default function AdminPage(): ReactElement {
+export default async function AdminPage(): Promise<ReactElement> {
+
+    const allProducts: IProduct[] = await getProductByCategory('all');
 
     return (
         <>
             <Sidebar/>
             <div className="flex-1 flex flex-col">
                 <Header/>
-                <MainContent products={data}/>
+                <MainContent products={allProducts}/>
             </div>
         </>
     );
