@@ -4,7 +4,7 @@ import ProductModel from '@/models/Products';
 import CategoryModel from '@/models/Category';
 import { db } from "@/database";
 
-export async function GET(request: NextRequest, { params }: { params: { category: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { category: string } }): Promise<NextResponse> {
     const { category } = params;
 
     await db.connect();

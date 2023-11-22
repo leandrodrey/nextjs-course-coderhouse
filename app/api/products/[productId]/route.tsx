@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import {NextRequest, NextResponse} from 'next/server';
 import mongoose from 'mongoose';
 import ProductModel from '@/models/Products';
 import { db } from "@/database";
 
-export async function GET({ params }: { params: { productId: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { productId: string } }): Promise<NextResponse> {
     const { productId } = params;
 
     if (!mongoose.isValidObjectId(productId)) {

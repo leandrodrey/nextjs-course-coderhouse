@@ -4,6 +4,7 @@ import Link from "next/link";
 import EditIcon from '@mui/icons-material/Edit';
 import {IProduct} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
+import Image from "next/image";
 
 interface MainContentProps {
     products: IProduct[];
@@ -51,18 +52,26 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                     </thead>
                                     <tbody>
                                     {products.map((product) => (
-                                        <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
-                                            <td className="py-4 px-6">{product.id}</td>
+                                        <tr key={product._id.toString()} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
+                                            <td className="py-4 px-6">{product._id.toString()}</td>
                                             <td className="py-4 px-6">{product.title}</td>
                                             <td className="py-4 px-6 hidden sm:table-cell">{`${product.description.substring(0, 100)}...`}</td>
                                             <td className="py-4 px-6 hidden lg:table-cell">
-                                                <img src={`${CloudinaryImage(product.image)}`} alt={product.title} className="w-10 h-10 rounded-full"/>
+                                                <Image
+                                                    src={`${CloudinaryImage(product.image)}`}
+                                                    alt={`Imagen del producto: ${product.title}`}
+                                                    width={640}
+                                                    height={360}
+                                                    className="w-10 h-10 rounded-full"
+                                                    placeholder = "blur"
+                                                    blurDataURL={`${CloudinaryImage(product.image)}`}
+                                                />
                                             </td>
                                             <td className="py-4 px-6">${product.price.toFixed(2)}</td>
-                                            <td className="py-4 px-6 hidden md:table-cell">{product.categoryId}</td>
-                                            <td className="py-4 px-6 hidden md:table-cell">{product.categoryName}</td>
+                                            <td className="py-4 px-6 hidden md:table-cell">{product.categoryId.toString()}</td>
+                                            <td className="py-4 px-6 hidden md:table-cell">Categoria</td>
                                             <td className="py-4 px-6">
-                                                <Link href={`/admin/product/${product.id}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
+                                                <Link href={`/admin/product/${product._id.toString()}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
                                                     <EditIcon/>
                                                 </Link>
                                             </td>
@@ -72,19 +81,27 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                 </table>
                                 <div className="sm:hidden">
                                     {products.map((product) => (
-                                        <div key={product.id} className="bg-white text-gray-800 dark:text-gray-500 rounded-lg mt-5 shadow-2xl border-1 border-black">
+                                        <div key={product._id.toString()} className="bg-white text-gray-800 dark:text-gray-500 rounded-lg mt-5 shadow-2xl border-1 border-black">
                                             <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 dark:text-gray-400 p-2 rounded-t-lg mb-1">
-                                                <div><strong>ID {product.id}</strong> - {product.title}</div>
-                                                <img src={`${CloudinaryImage(product.image)}`} alt={product.title} className="w-20 h-20 rounded-full"/>
+                                                <div><strong>ID {product._id.toString()}</strong> - {product.title}</div>
+                                                <Image
+                                                    src={`${CloudinaryImage(product.image)}`}
+                                                    alt={`Imagen del producto: ${product.title}`}
+                                                    width={640}
+                                                    height={360}
+                                                    className="w-20 h-20 rounded-full"
+                                                    placeholder = "blur"
+                                                    blurDataURL={`${CloudinaryImage(product.image)}`}
+                                                />
                                             </div>
                                             <div className="p-2">
                                                 <strong>Description:</strong> {`${product.description.substring(0, 50)}...`}
                                             </div>
                                             <div className="p-2"><strong>Price:</strong> ${product.price.toFixed(2)}</div>
-                                            <div className="p-2"><strong>Category ID:</strong> {product.categoryId}</div>
+                                            <div className="p-2"><strong>Category ID:</strong> {product.categoryId.toString()}</div>
                                             <div className="flex justify-between p-2">
-                                                <div><strong>Category Name:</strong> {product.categoryName}</div>
-                                                <Link href={`/admin/product/${product.id}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
+                                                <div><strong>Category Name:</strong> Categoria </div>
+                                                <Link href={`/admin/product/${product._id.toString()}`} className="text-blue-300 hover:text-blue-700 transition duration-300">
                                                     <EditIcon/>
                                                 </Link>
                                             </div>
