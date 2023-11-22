@@ -2,9 +2,9 @@ import {FC} from "react";
 import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
+import {IProduct} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {getProductById} from "@/services/ProductService";
-import {IProduct} from "@/interfaces/IProduct";
 import Button from "@/app/components/ui/Button";
 
 type Props = {
