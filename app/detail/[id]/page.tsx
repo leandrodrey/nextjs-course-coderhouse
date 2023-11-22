@@ -3,7 +3,6 @@ import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
 import CloudinaryImage from "@/services/CloudinaryImage";
-import data from "@/app/items.json";
 import {IProduct} from "@/interfaces/IProduct";
 import Button from "@/app/components/ui/Button";
 
@@ -12,11 +11,19 @@ type Props = {
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata(
+async function getProductById(productId: number): Promise<IProduct> {
+    const res = await fetch(`http://localhost:3000/api/products/${productId}`);
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+    return res.json();
+}
+
+/*export async function generateMetadata(
     {params}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const product: IProduct | undefined  = data.find((item) => Number(item.id) === Number(params.id));
+    const product: IProduct | undefined  = await getProductById(params.id);
 
     if (!product) {
         return {
@@ -29,7 +36,7 @@ export async function generateMetadata(
         title: product.title,
         description: product.description,
     }
-}
+}*/
 
 interface ProductDetailProps {
     params: {
@@ -37,9 +44,11 @@ interface ProductDetailProps {
     };
 }
 
-const ProductDetail: FC<ProductDetailProps> = ({params}) => {
+const ProductDetail: FC<ProductDetailProps> = async ({params}) => {
 
-    const product: IProduct | undefined = data.find((item) => Number(item.id) === Number(params.id));
+    const {id} = params;
+
+    const product: IProduct = await getProductById(id);
 
     if (!product) {
         return <div className="text-center text-xl text-red-500 p-5">Producto no encontrado</div>;
@@ -57,6 +66,8 @@ const ProductDetail: FC<ProductDetailProps> = ({params}) => {
                         width={640}
                         height={640}
                         className="object-contain"
+                        placeholder = "blur"
+                        blurDataURL={productImage}
                     />
                 </div>
                 <div className="w-full md:w-1/2 lg:w-2/3 bg-stone-900 bg-opacity-90 rounded-lg p-6 shadow-xl flex flex-col justify-between">
@@ -67,7 +78,7 @@ const ProductDetail: FC<ProductDetailProps> = ({params}) => {
                             <span className="text-xl font-bold text-gray-300">${product.price}</span>
                             <Link href={`/category/${product.categoryId}`}>
                                 <span className="px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-                                    {product.categoryName}
+                                    {/*{product.categoryName}*/}
                                 </span>
                             </Link>
                         </div>
