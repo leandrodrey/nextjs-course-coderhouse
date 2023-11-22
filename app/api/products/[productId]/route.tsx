@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import ProductModel from '@/models/Products';
 import { db } from "@/database";
 
-export async function GET(request: NextRequest, { params }: { params: { productId: string } }) {
+export async function GET({ params }: { params: { productId: string } }) {
     const { productId } = params;
 
     if (!mongoose.isValidObjectId(productId)) {
@@ -26,7 +26,6 @@ export async function GET(request: NextRequest, { params }: { params: { productI
                 }
             });
         }
-
         return new NextResponse(JSON.stringify(product), {
             status: 200,
             headers: {
@@ -38,7 +37,6 @@ export async function GET(request: NextRequest, { params }: { params: { productI
         if (error instanceof Error) {
             errorMessage = error.message;
         }
-
         return new NextResponse(JSON.stringify({ error: errorMessage }), {
             status: 500,
             headers: {
