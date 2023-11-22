@@ -1,8 +1,8 @@
 "use client";
 import {FC, useState} from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
-import CloudinaryImage from "@/services/CloudinaryImage";
 import SocialIcons from "@/app/components/ui/SocialIcons";
 import Menu from "@/app/components/ui/Menu";
 
@@ -10,7 +10,7 @@ const NavBar: FC = () => {
 
     const [open, setOpen] = useState(false);
 
-    const logoImage = CloudinaryImage("logo.png");
+    const logoImage = "/logo.webp";
 
     return (
         <>
@@ -20,10 +20,13 @@ const NavBar: FC = () => {
                         <ArrowBackIosOutlinedIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-10 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}/>
                         <div className="flex flex-col gap-x-4 items-center">
                             <Link href="/">
-                                <img
-                                    alt={"logo"}
+                                <Image
                                     src={logoImage}
+                                    alt="Game Bazar Logo"
+                                    width={640}
+                                    height={360}
                                     className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
+                                    priority={true}
                                 />
                             </Link>
                             <h1 className={`py-2 text-white origin-left font-medium text-2xl duration-200 ${!open && "scale-0"}`}>
