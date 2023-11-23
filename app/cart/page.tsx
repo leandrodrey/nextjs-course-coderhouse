@@ -1,11 +1,9 @@
 import {ReactElement} from "react";
-import data from "@/app/items.json";
-import Cart from "@/app/components/ui/Cart";
+/*import Cart from "@/app/components/ui/Cart";*/
 
-export default function Home(): ReactElement {
+export default function Cart(): ReactElement {
     return (
         <>
-            <Cart cartItems={data}/>
         </>
     )
 }
