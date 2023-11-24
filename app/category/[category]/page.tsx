@@ -4,6 +4,8 @@ import { IProduct } from "@/interfaces/IProduct";
 import {getProductByCategory} from "@/services/ProductService";
 import ProductsContainer from "@/app/components/ui/ProductsContainer";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: 'Productos por categoría',
     description: 'Productos filtrados por categoría',

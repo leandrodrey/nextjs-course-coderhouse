@@ -7,6 +7,8 @@ import CloudinaryImage from "@/services/CloudinaryImage";
 import {getProductById} from "@/services/ProductService";
 import Button from "@/app/components/ui/Button";
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
     params: { id: number }
     searchParams: { [key: string]: string | string[] | undefined }
