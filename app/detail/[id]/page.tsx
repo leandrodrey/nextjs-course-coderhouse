@@ -14,10 +14,7 @@ type Props = {
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata(
-    {params}: Props,
-    parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
     const product: IProduct | undefined  = await getProductById(params.id);
 
     if (!product) {
@@ -26,7 +23,6 @@ export async function generateMetadata(
             description: "El producto solicitado no existe en nuestra base de datos.",
         };
     }
-
     return {
         title: product.title,
         description: product.description,
