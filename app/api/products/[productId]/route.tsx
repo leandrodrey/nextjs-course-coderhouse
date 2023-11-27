@@ -1,13 +1,15 @@
 import {NextRequest, NextResponse} from 'next/server';
 import mongoose from 'mongoose';
+import CategoryModel from "@/models/Category";
 import ProductModel from '@/models/Products';
-import { db } from "@/database";
+import {IProductWithCategory} from "@/interfaces/IProduct";
+import {db} from "@/database";
 
-export async function GET(request: NextRequest, { params }: { params: { productId: string } }): Promise<NextResponse> {
-    const { productId } = params;
+export async function GET(request: NextRequest, {params}: { params: { productId: string } }): Promise<NextResponse> {
+    const {productId} = params;
 
     if (!mongoose.isValidObjectId(productId)) {
-        return new NextResponse(JSON.stringify({ error: 'Invalid product ID' }), {
+        return new NextResponse(JSON.stringify({error: 'Invalid product ID'}), {
             status: 400,
             headers: {
                 'Content-Type': 'application/json'
@@ -19,14 +21,20 @@ export async function GET(request: NextRequest, { params }: { params: { productI
     try {
         const product = await ProductModel.findById(productId);
         if (!product) {
-            return new NextResponse(JSON.stringify({ error: 'Product not found' }), {
+            return new NextResponse(JSON.stringify({error: 'Product not found'}), {
                 status: 404,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
         }
-        return new NextResponse(JSON.stringify(product), {
+        const category = await CategoryModel.findById(product.categoryId);
+        const responseProduct: IProductWithCategory = {
+            ...product.toObject(),
+            categoryName: category ? category.title : 'Unknown'
+        };
+
+        return new NextResponse(JSON.stringify(responseProduct), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json'
@@ -37,7 +45,7 @@ export async function GET(request: NextRequest, { params }: { params: { productI
         if (error instanceof Error) {
             errorMessage = error.message;
         }
-        return new NextResponse(JSON.stringify({ error: errorMessage }), {
+        return new NextResponse(JSON.stringify({error: errorMessage}), {
             status: 500,
             headers: {
                 'Content-Type': 'application/json'

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import ProductModel from '@/models/Products';
 import CategoryModel from '@/models/Category';
+import {IProductWithCategory} from "@/interfaces/IProduct";
 import { db } from "@/database";
 
 export async function GET(request: NextRequest, { params }: { params: { category: string } }): Promise<NextResponse> {
@@ -28,7 +29,16 @@ export async function GET(request: NextRequest, { params }: { params: { category
                 products = await ProductModel.find({ categoryId: categoryData._id });
             }
         }
-        return new NextResponse(JSON.stringify(products), {
+
+        const productsWithCategory: IProductWithCategory[] = await Promise.all(products.map(async (product) => {
+            const categoryData = await CategoryModel.findById(product.categoryId);
+            return {
+                ...product.toObject(),
+                categoryName: categoryData ? categoryData.title : 'Unknown'
+            } as IProductWithCategory;
+        }));
+
+        return new NextResponse(JSON.stringify(productsWithCategory), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json'

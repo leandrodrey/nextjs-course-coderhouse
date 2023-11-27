@@ -2,7 +2,7 @@ import {FC} from "react";
 import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
-import {IProduct} from "@/interfaces/IProduct";
+import {IProductWithCategory} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {getProductById} from "@/services/ProductService";
 import Button from "@/app/components/ui/Button";
@@ -14,7 +14,8 @@ type Props = {
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
+/*export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
+    const {id} = params;
     const product: IProduct | undefined  = await getProductById(params.id);
 
     if (!product) {
@@ -27,7 +28,7 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
         title: product.title,
         description: product.description,
         }
-}
+}*/
 
 interface ProductDetailProps {
     params: {
@@ -39,7 +40,7 @@ const ProductDetail: FC<ProductDetailProps> = async ({params}) => {
 
     const {id} = params;
 
-    const product: IProduct = await getProductById(id);
+    const product: IProductWithCategory = await getProductById(id);
 
     if (!product) {
         return <div className="text-center text-xl text-red-500 p-5">Producto no encontrado</div>;
@@ -69,7 +70,7 @@ const ProductDetail: FC<ProductDetailProps> = async ({params}) => {
                             <span className="text-xl font-bold text-gray-300">${product.price}</span>
                             <Link href={`/category/${product.categoryId}`}>
                                 <span className="px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-                                    {/*{product.categoryName}*/}
+                                    {product.categoryName}
                                 </span>
                             </Link>
                         </div>

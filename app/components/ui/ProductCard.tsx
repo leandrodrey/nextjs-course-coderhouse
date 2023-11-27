@@ -38,9 +38,9 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
                     </h2>
 
                     <Link href={`/category/${product.categoryId}`}
-                        className="px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+                        className="uppercase px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
                         role="link">
-                        {/*{product.categoryName}*/}
+                        {product.categoryName}
                     </Link>
                 </div>
                 <p className="text-white-700 mb-4 text-sm">{descriptionShort}</p>

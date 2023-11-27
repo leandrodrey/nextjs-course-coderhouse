@@ -7,4 +7,9 @@ export interface IProduct {
     image: string;
     price: number;
     categoryId: Types.ObjectId;
+    categoryName: string;
+}
+
+export interface IProductWithCategory extends IProduct {
+    categoryName: string;
 }
