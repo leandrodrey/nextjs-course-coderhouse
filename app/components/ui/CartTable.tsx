@@ -1,15 +1,15 @@
-import {FC, ReactElement, useContext} from "react";
+import {FC, useContext} from "react";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {ICart} from "@/interfaces/ICart";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {CartContext} from "@/context/CartProvider";
+import {IProduct} from "@/interfaces/IProduct";
 
-const CartTable: FC<{ cartItems: ICart }> = ({ cartItems }): ReactElement | null => {
+const CartTable: FC = () => {
 
     const {cart, dispatch} = useContext(CartContext);
 
-    const removeItemFromCart = (product) => {
+    const removeItemFromCart = (product: IProduct) => {
         dispatch({
             type: 'REMOVE_ITEM_FROM_CART',
             payload: product
@@ -30,7 +30,7 @@ const CartTable: FC<{ cartItems: ICart }> = ({ cartItems }): ReactElement | null
                 </tr>
                 </thead>
                 <tbody>
-                {cartItems.items.map((product) => (
+                {cart.items.map((product: IProduct) => (
                     <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
                         <td className="py-4 px-6">{product.id}</td>
                         <td className="py-4 px-6">{product.title}</td>
