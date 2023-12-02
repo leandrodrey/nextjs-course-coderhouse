@@ -1,5 +1,5 @@
 import {FC} from "react";
-import type {Metadata, ResolvingMetadata} from 'next';
+/*import type {Metadata, ResolvingMetadata} from 'next';*/
 import Image from 'next/image';
 import Link from "next/link";
 import {IProductWithCategory} from "@/interfaces/IProduct";
@@ -9,10 +9,10 @@ import Button from "@/app/components/ui/Button";
 
 export const dynamic = 'force-dynamic';
 
-type Props = {
+/*type Props = {
     params: { id: number }
     searchParams: { [key: string]: string | string[] | undefined }
-}
+}*/
 
 /*export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
     const {id} = params;

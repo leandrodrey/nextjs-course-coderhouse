@@ -2,7 +2,7 @@ import {FC, Suspense} from "react";
 import type { Metadata } from 'next'
 import { IProduct } from "@/interfaces/IProduct";
 import {getProductByCategory} from "@/services/ProductService";
-import ProductsContainer from "@/app/components/ui/ProductsContainer";
+import ProductsList from "@/app/components/ui/ProductsList";
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +30,7 @@ const ProductCategory: FC<ProductCategoryProps> = async ({ params }) => {
     return (
         <>
             <Suspense fallback={<div>Loading...</div>}>
-                <ProductsContainer products={filteredProducts} />
+                <ProductsList products={filteredProducts} />
             </Suspense>
         </>
     )

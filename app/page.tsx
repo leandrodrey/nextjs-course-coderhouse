@@ -1,6 +1,6 @@
 import {ReactElement} from "react";
 import {getProductByCategory} from "@/services/ProductService";
-import ProductsContainer from "@/app/components/ui/ProductsContainer";
+import ProductsList from "@/app/components/ui/ProductsList";
 import {IProduct} from "@/interfaces/IProduct";
 
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ export default async function Home(): Promise<ReactElement> {
 
     return (
         <>
-            <ProductsContainer products={allProducts}/>
+            <ProductsList products={allProducts}/>
         </>
     )
 }
