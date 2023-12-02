@@ -1,15 +1,30 @@
-import {FC} from "react";
+"use client"
+import {FC, useContext} from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {IProduct} from "@/interfaces/IProduct";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
+import {CartContext} from "@/context/CartProvider";
 import Button from "@/app/components/ui/Button";
+import useItemCount from "@/hooks/useItemCount";
 
 interface ProductCardProps {
     product: IProduct;
 }
 
 const ProductCard: FC<ProductCardProps> = ({product}) => {
+console.log(product);
+    const { dispatch: cartDispatch } = useContext(CartContext);
+    const {count, handleSum, handleRest} = useItemCount();
+
+    const addCart = (product: IProductWithCount) => {
+        cartDispatch({
+            type: 'ADD_TO_CART',
+            payload: product,
+        });
+    };
 
     const maxLength = 100;
     const descriptionShort = product.description.length > maxLength ? `${product.description.substring(0, maxLength)}...` : product.description;
@@ -32,7 +47,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
             <div className="px-1 py-2">
                 <div className={"flex justify-between items-center mb-3"}>
                     <h2 className="text-lg text-blue-300">
-                        <Link href={`/detail/${product._id}`} className="transition duration-300 hover:text-blue-600" role="link">
+                        <Link href={`/detail/${product.id}`} className="transition duration-300 hover:text-blue-600" role="link">
                             {product.title}
                         </Link>
                     </h2>
@@ -46,10 +61,20 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
                 <p className="text-white-700 mb-4 text-sm">{descriptionShort}</p>
                 <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                        <Button text="Comprar"/>
+                        <button onClick={() => handleRest()} className="cardActions__restButton" color="secondary" disabled={count === 1}><ChevronLeftIcon/></button>
+                        <span>{count}</span>
+                        <button onClick={() => handleSum()} className="cardActions__sumButton" color="secondary"><ChevronRightIcon/></button>
+                    </div>
+                    <div className="flex items-center">
                         <p className="text-gray-300 text-lg font-bold ml-2">${product.price}</p>
                     </div>
-                    <Link href={`/detail/${product._id}`} className="text-blue-900 text-sm transition duration-300 hover:text-blue-600" role="link">Ver más</Link>
+                </div>
+                <div>
+                    <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 shadow hover:text-white"
+                        onClick={() => addCart({...product, count})}
+                    >
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
         </div>
