@@ -18,7 +18,7 @@ const Cart: FC<CartProps> = ({ cartItems }) => {
                     <>
                         <div>
                             {cartItems.map((item) => (
-                                <div key={item._id.toString()} className="flex items-center justify-between mb-4">
+                                <div key={item.id} className="flex items-center justify-between mb-4">
                                     <div className="flex items-center">
                                         <Image src={`${CloudinaryImage(item.image)}`} alt={item.title} width={60} height={60} className="rounded-md"/>
                                         <div className="ml-4">
