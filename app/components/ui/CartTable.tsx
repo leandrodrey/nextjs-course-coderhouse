@@ -1,9 +1,8 @@
 import {FC, ReactElement, useContext} from "react";
 import Image from "next/image";
-import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CloudinaryImage from "@/services/CloudinaryImage";
 import {ICart} from "@/interfaces/ICart";
+import CloudinaryImage from "@/services/CloudinaryImage";
 import {CartContext} from "@/context/CartProvider";
 
 const CartTable: FC<{ cartItems: ICart }> = ({ cartItems }): ReactElement | null => {
