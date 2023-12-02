@@ -25,6 +25,18 @@ const productSchema = new Schema<IProduct>({
     }
 }, { timestamps: true });
 
+productSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+productSchema.set('toJSON', {
+    virtuals: true
+});
+
+productSchema.set('toObject', {
+    virtuals: true
+});
+
 const ProductModel: Model<IProduct> = mongoose.models.Product || mongoose.model<IProduct>('Product', productSchema);
 
 export default ProductModel;
