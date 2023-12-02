@@ -5,6 +5,7 @@ import Image from "next/image";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import SocialIcons from "@/app/components/ui/SocialIcons";
 import Menu from "@/app/components/ui/Menu";
+import CartWidget from "@/app/components/ui/CartWidget";
 
 const NavBar: FC = () => {
 
@@ -34,6 +35,7 @@ const NavBar: FC = () => {
                             </h1>
                         </div>
                         <Menu open={open}/>
+                        <CartWidget />
                     </div>
                     <SocialIcons menuOpen={open}/>
                 </div>
