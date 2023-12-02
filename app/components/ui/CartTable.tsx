@@ -4,7 +4,7 @@ import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {CartContext} from "@/context/CartProvider";
-import {IProduct} from "@/interfaces/IProduct";
+import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
 
 const CartTable: FC = () => {
 
@@ -27,11 +27,13 @@ const CartTable: FC = () => {
                     <th scope="col" className="py-3 px-6 hidden sm:table-cell">Description</th>
                     <th scope="col" className="py-3 px-6 hidden lg:table-cell">Image</th>
                     <th scope="col" className="py-3 px-6">Price</th>
+                    <th scope="col" className="py-3 px-6">Count</th>
+                    <th scope="col" className="py-3 px-6">Subtotal</th>
                     <th scope="col" className="py-3 px-6">Remove</th>
                 </tr>
                 </thead>
                 <tbody>
-                {cart.items.map((product: IProduct) => (
+                {cart.items.map((product: IProductWithCount) => (
                     <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
                         <td className="py-4 px-6">{product.id}</td>
                         <td className="py-4 px-6">{product.title}</td>
@@ -48,6 +50,8 @@ const CartTable: FC = () => {
                             />
                         </td>
                         <td className="py-4 px-6">${product.price.toFixed(2)}</td>
+                        <td className="py-4 px-6">{product.count}</td>
+                        <td className="py-4 px-6">${(product.price * product.count).toFixed(2)}</td>
                         <td className="py-4 px-6">
                             <DeleteIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer' onClick={() => removeItemFromCart(product)} />
                         </td>
@@ -55,7 +59,7 @@ const CartTable: FC = () => {
                 ))}
                 </tbody>
             </table>
-            <p className="text-lg text-gray-300 mt-4">Total del Pedido: <span className='text-2xl'>${cart.totalPayment.toFixed(2)}</span></p>
+            <p className="text-lg text-gray-300 mt-4 text-right">Total del Pedido: <span className='text-2xl'>${cart.totalPayment.toFixed(2)}</span></p>
         </div>
     );
 }
