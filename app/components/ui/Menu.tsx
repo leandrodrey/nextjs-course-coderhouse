@@ -17,10 +17,10 @@ const Menu: FC<MenuProps> = ({open}) => {
 
     const Menus = [
         {title: "Home", url: '/', icon: <CabinIcon/>},
-        {title: "RPG", url: '/category/1', icon: <VideogameAssetIcon/>, gap: true},
-        {title: "Survival", url: '/category/2', icon: <SportsEsportsIcon/>},
-        {title: "Simulation", url: '/category/3', icon: <VideogameAssetIcon/>},
-        {title: "Rogue Like", url: '/category/4', icon: <SportsEsportsIcon/>},
+        {title: "RPG", url: '/category/655bc7e6efbb8e81bde7f50e', icon: <VideogameAssetIcon/>, gap: true},
+        {title: "Survival", url: '/category/655bc7e6efbb8e81bde7f4f7', icon: <SportsEsportsIcon/>},
+        {title: "Simulation", url: '/category/655bc7e6efbb8e81bde7f50e', icon: <VideogameAssetIcon/>},
+        {title: "Rogue Like", url: '/category/655bc7e6efbb8e81bde7f50e', icon: <SportsEsportsIcon/>},
         {title: "Admin", url: '/admin', icon: <AccountBoxOutlinedIcon/>, gap: true},
     ];
 

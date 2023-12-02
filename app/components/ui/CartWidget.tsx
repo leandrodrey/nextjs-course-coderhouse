@@ -7,7 +7,7 @@ import {CartContext} from "@/context/CartProvider";
 const CartWidget: FC = () => {
 
     const {cart} = useContext(CartContext);
-    console.log(cart);
+
     return (
         <>
             <Link href='/cart' className='flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 relative'>
@@ -20,7 +20,7 @@ const CartWidget: FC = () => {
                             </span>
                         </div>
                         <div>
-                            Productos
+
                         </div>
                     </div>
                 )}
