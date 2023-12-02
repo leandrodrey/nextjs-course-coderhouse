@@ -7,7 +7,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {CartContext} from "@/context/CartProvider";
-import Button from "@/app/components/ui/Button";
 import useItemCount from "@/hooks/useItemCount";
 
 interface ProductCardProps {

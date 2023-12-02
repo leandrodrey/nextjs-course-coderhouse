@@ -1,8 +1,8 @@
-import {ICartItem} from "@/interfaces/ICart";
+import {IProductWithCount} from "@/interfaces/IProduct";
 
 export interface AddToCartAction {
     type: 'ADD_TO_CART';
-    payload: ICartItem;
+    payload: IProductWithCount;
 }
 
 export interface RemoveItemFromCartAction {

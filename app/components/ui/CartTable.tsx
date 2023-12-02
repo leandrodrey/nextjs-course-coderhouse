@@ -1,3 +1,4 @@
+'use client'
 import {FC, useContext} from "react";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";

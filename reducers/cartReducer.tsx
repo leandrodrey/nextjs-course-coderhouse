@@ -1,6 +1,6 @@
 'use client'
 import { getCartFromSessionStorage, saveCartInSessionStorage } from "@/helpers/SessionStorage";
-import {ICartItem, ICart} from "@/interfaces/ICart";
+import {ICart} from "@/interfaces/ICart";
 import CartAction from "@/reducers/cartReducerTypes";
 
 const storedCart = getCartFromSessionStorage('cart');
@@ -10,7 +10,7 @@ export const cartInitialState: ICart = {
     totalPayment: storedCart ? storedCart.totalPayment : 0,
 };
 
-const calculateTotalPayment = (cartItems: ICartItem[]): number => {
+const calculateTotalPayment = (cartItems: any[]): number => {
     return cartItems.reduce((total, item) => total + item.price * item.count, 0);
 };
 

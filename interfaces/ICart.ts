@@ -1,11 +1,12 @@
+import {IProductWithCount} from "@/interfaces/IProduct";
 
 export interface ICart {
-    items: ICartItem[];
+    items: IProductWithCount[];
     totalPayment: number;
 }
 
 export interface ICartItem {
-    id?: string;
+    id: string;
     price: number;
     count: number;
 }
