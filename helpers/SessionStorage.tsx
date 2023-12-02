@@ -1,15 +1,15 @@
 'use client'
-import {ICartItem} from "@/interfaces/ICart";
+import {ICart} from "@/interfaces/ICart";
 
-export const saveCartInSessionStorage = (key: string, item: ICartItem): void => {
+export const saveCartInSessionStorage = (key: string, item: ICart): void => {
     sessionStorage.setItem(key, JSON.stringify(item));
 }
 
-export const getCartFromSessionStorage = (key: string): ICartItem | null => {
+export const getCartFromSessionStorage = (key: string): ICart | null => {
     const storedItem = sessionStorage.getItem(key);
     if (storedItem) {
         try {
-            const parsedCart: ICartItem = JSON.parse(storedItem);
+            const parsedCart: ICart = JSON.parse(storedItem);
             if ('items' in parsedCart && 'totalPayment' in parsedCart) {
                 return parsedCart;
             } else {
