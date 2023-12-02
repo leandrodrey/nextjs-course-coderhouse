@@ -15,7 +15,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = ({product}) => {
-console.log(product);
+
     const { dispatch: cartDispatch } = useContext(CartContext);
     const {count, handleSum, handleRest} = useItemCount();
 
