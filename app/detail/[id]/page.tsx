@@ -5,7 +5,7 @@ import Link from "next/link";
 import {IProductWithCategory} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {getProductById} from "@/services/ProductService";
-import Button from "@/app/components/ui/Button";
+import AddToCart from "@/app/components/ui/AddToCart";
 
 export const dynamic = 'force-dynamic';
 
@@ -39,7 +39,6 @@ interface ProductDetailProps {
 const ProductDetail: FC<ProductDetailProps> = async ({params}) => {
 
     const {id} = params;
-
     const product: IProductWithCategory = await getProductById(id);
 
     if (!product) {
@@ -68,30 +67,14 @@ const ProductDetail: FC<ProductDetailProps> = async ({params}) => {
                         <p className="text-gray-300 text-sm mb-4">{product.description}</p>
                         <div className="flex justify-between items-center">
                             <span className="text-xl font-bold text-gray-300">${product.price}</span>
-                            <Link href={`/category/${product.categoryId}`}>
-                                <span className="px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+                            <Link href={`/category/${product.categoryName}`}>
+                                <span className="capitalize px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
                                     {product.categoryName}
                                 </span>
                             </Link>
                         </div>
                     </div>
-                    <div className="my-4">
-                        <div className="">
-                            <div className="flex items-center mt-2">
-                                <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 hover:text-white">
-                                    -
-                                </button>
-                                <span className="mx-2 text-gray-300">1</span>
-                                <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 hover:text-white">
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                        <div className="flex py-4 justify-between">
-                            <Button text="Añadir al carrito"/>
-                            <Button text="Comprar ahora"/>
-                        </div>
-                    </div>
+                    <AddToCart product={product}/>
                 </div>
             </div>
         </div>
