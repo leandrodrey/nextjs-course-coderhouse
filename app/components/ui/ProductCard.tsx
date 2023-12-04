@@ -70,9 +70,8 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
                 </div>
                 <div>
                     <button className="bg-blue-300 text-black text-sm py-1 px-2 rounded transition duration-300 hover:bg-blue-600 shadow hover:text-white"
-                        onClick={() => addCart({...product, count})}
-                    >
-                        Agregar al carrito
+                        onClick={() => addCart({...product, count})}>
+                        Add to cart
                     </button>
                 </div>
             </div>
