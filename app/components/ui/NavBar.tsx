@@ -6,8 +6,13 @@ import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import SocialIcons from "@/app/components/ui/SocialIcons";
 import Menu from "@/app/components/ui/Menu";
 import CartWidget from "@/app/components/ui/CartWidget";
+import {ICategory} from "@/interfaces/ICategory";
 
-const NavBar: FC = () => {
+interface NavBarProps {
+    categories: ICategory[];
+}
+
+const NavBar: FC<NavBarProps> = ({categories}) => {
 
     const [open, setOpen] = useState(false);
 
@@ -34,8 +39,8 @@ const NavBar: FC = () => {
                                 Game Bazar
                             </h1>
                         </div>
-                        <Menu open={open}/>
-                        <CartWidget />
+                        <Menu open={open} categories={categories} />
+                        <CartWidget open={open} />
                     </div>
                     <SocialIcons menuOpen={open}/>
                 </div>
