@@ -44,6 +44,9 @@ export default async function RootLayout({children,}: {
             <html lang="en">
             <body className={inter.className}>
             <main className="w-full md:flex">
+                { allCategories.map((category: ICategory) => {
+                    return <div key={category._id.toString()}>{category.title}</div>
+                })}
                 <NavBar/>
                 <div className="content h-screen flex-1 p-7 pt-3 pl-20 md:pl-0">
                     {children}
