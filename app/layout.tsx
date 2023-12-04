@@ -2,8 +2,10 @@ import {ReactNode} from "react";
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import './globals.css'
-import NavBar from "@/app/components/ui/NavBar";
+import {ICategory} from "@/interfaces/ICategory";
+import {getAllCategories} from "@/services/CategoryService";
 import CartProvider from "@/context/CartProvider";
+import NavBar from "@/app/components/ui/NavBar";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -35,8 +37,8 @@ export default async function RootLayout({children,}: {
     children: ReactNode
 }) {
 
-    /* const allCategories: ICategory[] = await getAllCategories();*/
-
+    const allCategories: ICategory[] = await getAllCategories();
+    console.log(allCategories);
     return (
         <CartProvider>
             <html lang="en">
