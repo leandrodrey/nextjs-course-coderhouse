@@ -1,6 +1,6 @@
 'use client'
-import ProductsTableCard from "@/app/components/ui/ProductsTableCard";
-import ProductsTable from "@/app/components/ui/ProductsTable";
+import ProductsTableCard from "@/components/ui/ProductsTableCard";
+import ProductsTable from "@/components/ui/ProductsTable";
 import {FC, useContext} from "react";
 import {CartContext} from "@/context/CartProvider";
 import {IProductTable} from "@/interfaces/IProductTable";

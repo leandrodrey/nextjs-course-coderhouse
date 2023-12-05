@@ -1,6 +1,6 @@
 import {ReactElement} from "react";
 import {getProductByCategory} from "@/services/ProductService";
-import ProductsList from "@/app/components/ui/ProductsList";
+import ProductsList from "@/components/ui/ProductsList";
 import {IProduct} from "@/interfaces/IProduct";
 
 export const dynamic = 'force-dynamic';

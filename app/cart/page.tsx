@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import ProductsTableContainer from "@/app/components/ui/ProductsTableContainer";
+import ProductsTableContainer from "@/components/ui/ProductsTableContainer";
 
 export const dynamic = 'force-dynamic';
 

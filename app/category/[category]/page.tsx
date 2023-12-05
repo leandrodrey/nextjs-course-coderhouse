@@ -2,7 +2,7 @@ import {FC, Suspense} from "react";
 import type { Metadata } from 'next'
 import { IProduct } from "@/interfaces/IProduct";
 import {getProductByCategory} from "@/services/ProductService";
-import ProductsList from "@/app/components/ui/ProductsList";
+import ProductsList from "@/components/ui/ProductsList";
 
 export const dynamic = 'force-dynamic';
 

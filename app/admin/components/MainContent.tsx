@@ -2,7 +2,7 @@
 import {FC} from "react";
 import Link from "next/link";
 import {IProduct} from "@/interfaces/IProduct";
-import ProductsTableContainer from "@/app/components/ui/ProductsTableContainer";
+import ProductsTableContainer from "@/components/ui/ProductsTableContainer";
 
 interface MainContentProps {
     products: IProduct[];

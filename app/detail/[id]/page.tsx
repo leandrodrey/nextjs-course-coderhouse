@@ -5,7 +5,7 @@ import Link from "next/link";
 import {IProductWithCategory} from "@/interfaces/IProduct";
 import CloudinaryImage from "@/services/CloudinaryImage";
 import {getProductById} from "@/services/ProductService";
-import AddToCart from "@/app/components/ui/AddToCart";
+import AddToCart from "@/components/ui/AddToCart";
 
 export const dynamic = 'force-dynamic';
 

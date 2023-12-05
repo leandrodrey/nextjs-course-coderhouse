@@ -3,9 +3,9 @@ import {FC, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
-import SocialIcons from "@/app/components/ui/SocialIcons";
-import Menu from "@/app/components/ui/Menu";
-import CartWidget from "@/app/components/ui/CartWidget";
+import SocialIcons from "@/components/ui/SocialIcons";
+import Menu from "@/components/ui/Menu";
+import CartWidget from "@/components/ui/CartWidget";
 import {ICategory} from "@/interfaces/ICategory";
 
 interface NavBarProps {

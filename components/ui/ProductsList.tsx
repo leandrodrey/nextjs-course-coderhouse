@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {IProductWithCategory} from "@/interfaces/IProduct";
-import ProductCard from "@/app/components/ui/ProductCard";
+import ProductCard from "@/components/ui/ProductCard";
 
 interface ProductsContainerProps {
     products: IProductWithCategory[];

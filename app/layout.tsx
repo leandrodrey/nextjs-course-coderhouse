@@ -5,7 +5,7 @@ import './globals.css'
 import {ICategory} from "@/interfaces/ICategory";
 import {getAllCategories} from "@/services/CategoryService";
 import CartProvider from "@/context/CartProvider";
-import NavBar from "@/app/components/ui/NavBar";
+import NavBar from "@/components/ui/NavBar";
 
 const inter = Inter({subsets: ['latin']})
 
