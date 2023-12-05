@@ -1,20 +1,33 @@
-import { FC } from "react";
+import {FC, ReactElement} from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import CabinIcon from '@mui/icons-material/Cabin';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import { ICategory } from "@/interfaces/ICategory";
+import Loader from "@/components/ui/Loader";
+import UseCategories from "@/hooks/useCategories";
 
 interface MenuProps {
     open: boolean;
-    categories: ICategory[];
 }
 
-const Menu: FC<MenuProps> = ({ open, categories }) => {
+interface MenuOption {
+    title: string;
+    url: string;
+    icon: ReactElement;
+    gap: boolean;
+}
+
+const Menu: FC<MenuProps> = ({ open}) => {
     const pathname = usePathname()
 
-    const staticMenus = [
+    const { data, isError, isLoading } = UseCategories();
+
+    if (isError) return <div>failed to load</div>
+    if (isLoading) return <Loader />
+
+    const staticMenu = [
         { title: "Home",
             url: '/',
             icon: <CabinIcon />,
@@ -28,16 +41,16 @@ const Menu: FC<MenuProps> = ({ open, categories }) => {
         }
     ];
 
-    const categoryMenus = categories.map((category, index) => (
+    const categoriesMenu: MenuOption[] = data?.map((category: ICategory, index: number) => (
         {
             title: category.title,
             url: `/category/${category.title.toLowerCase()}`,
             icon: <VideogameAssetIcon />,
             gap: index === 0
         }
-    ));
+    )) || [];
 
-    const Menus = [...staticMenus, ...categoryMenus];
+    const Menus = [...staticMenu, ...categoriesMenu];
 
     return (
         <ul className="pt-6">
