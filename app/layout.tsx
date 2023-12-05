@@ -1,12 +1,9 @@
 import {ReactNode} from "react";
-import type {Metadata} from 'next'
-import { SessionProvider } from "next-auth/react"
 import {Inter} from 'next/font/google'
-import useSWR from "swr";
 import './globals.css'
-import {ICategory} from "@/interfaces/ICategory";
-import {getAllCategories} from "@/services/CategoryService";
-import CartProvider from "@/context/CartProvider";
+import {Metadata} from "next";
+import {getServerSession} from "next-auth";
+import ProviderWrapper from "@/app/ProviderWrapper";
 import NavBar from "@/components/ui/NavBar";
 
 const inter = Inter({subsets: ['latin']})
@@ -37,27 +34,24 @@ export const metadata: Metadata = {
 
 type RootLayoutProps = {
     children: ReactNode;
-    session: any;
 };
 
-export default async function RootLayout({children, session}: RootLayoutProps) {
+export default async function RootLayout({children}: RootLayoutProps) {
 
-    /*const allCategories: ICategory[] = await getAllCategories();*/
+    const session = await getServerSession();
 
     return (
-        <SessionProvider session={session}>
-            <CartProvider>
-                <html lang="en">
-                <body className={inter.className}>
-                <main className="w-full md:flex">
-                    <NavBar />
-                    <div className="content h-screen flex-1 p-7 pt-3 pl-20 md:pl-0">
-                        {children}
-                    </div>
-                </main>
-                </body>
-                </html>
-            </CartProvider>
-        </SessionProvider>
+        <html lang="en">
+        <body className={inter.className}>
+        <ProviderWrapper session={session}>
+            <main className="w-full md:flex">
+                <NavBar/>
+                <div className="content h-screen flex-1 p-7 pt-3 pl-20 md:pl-0">
+                    {children}
+                </div>
+            </main>
+        </ProviderWrapper>
+        </body>
+        </html>
     )
 }
