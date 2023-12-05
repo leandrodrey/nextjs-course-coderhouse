@@ -8,11 +8,7 @@ import Menu from "@/components/ui/Menu";
 import CartWidget from "@/components/ui/CartWidget";
 import {ICategory} from "@/interfaces/ICategory";
 
-interface NavBarProps {
-    categories: ICategory[];
-}
-
-const NavBar: FC<NavBarProps> = ({categories}) => {
+const NavBar: FC = () => {
 
     const [open, setOpen] = useState(false);
 
@@ -39,7 +35,7 @@ const NavBar: FC<NavBarProps> = ({categories}) => {
                                 Game Bazar
                             </h1>
                         </div>
-                        <Menu open={open} categories={categories} />
+                        <Menu open={open} />
                         <CartWidget open={open} />
                     </div>
                     <SocialIcons menuOpen={open}/>
