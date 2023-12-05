@@ -1,6 +1,8 @@
 import {ReactNode} from "react";
 import type {Metadata} from 'next'
+import { SessionProvider } from "next-auth/react"
 import {Inter} from 'next/font/google'
+import useSWR from "swr";
 import './globals.css'
 import {ICategory} from "@/interfaces/ICategory";
 import {getAllCategories} from "@/services/CategoryService";
@@ -33,24 +35,29 @@ export const metadata: Metadata = {
     },
 }
 
-export default async function RootLayout({children,}: {
-    children: ReactNode
-}) {
+type RootLayoutProps = {
+    children: ReactNode;
+    session: any;
+};
 
-    const allCategories: ICategory[] = await getAllCategories();
+export default async function RootLayout({children, session}: RootLayoutProps) {
+
+    /*const allCategories: ICategory[] = await getAllCategories();*/
 
     return (
-        <CartProvider>
-            <html lang="en">
-            <body className={inter.className}>
-            <main className="w-full md:flex">
-                <NavBar categories = {allCategories} />
-                <div className="content h-screen flex-1 p-7 pt-3 pl-20 md:pl-0">
-                    {children}
-                </div>
-            </main>
-            </body>
-            </html>
-        </CartProvider>
+        <SessionProvider session={session}>
+            <CartProvider>
+                <html lang="en">
+                <body className={inter.className}>
+                <main className="w-full md:flex">
+                    <NavBar />
+                    <div className="content h-screen flex-1 p-7 pt-3 pl-20 md:pl-0">
+                        {children}
+                    </div>
+                </main>
+                </body>
+                </html>
+            </CartProvider>
+        </SessionProvider>
     )
 }
