@@ -7,10 +7,8 @@ export default function Cart(): ReactElement {
 
     return (
         <>
-            <div className="container mx-auto mt-10 md:p-5">
-                <h1 className='mb-2 text-3xl'>Carrito de Compras</h1>
-                <ProductsTableContainer action='remove' context='cart' />
-            </div>
+            <h1 className='mb-5 text-3xl'>Carrito de Compras</h1>
+            <ProductsTableContainer action='remove' context='cart' />
         </>
     )
 }

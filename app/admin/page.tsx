@@ -12,8 +12,8 @@ export default async function AdminPage(): Promise<ReactElement> {
 
     return (
         <>
+            <Header/>
             <div className="flex-1 flex flex-col">
-                <Header/>
                 <MainContent products={allProducts}/>
             </div>
         </>
