@@ -4,10 +4,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import {FC, useContext} from "react";
 import {IProduct} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
-import {IProductsTable} from "@/interfaces/IProductTable";
+import {IProductTable} from "@/interfaces/IProductTable";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ProductsTableCard:FC<IProductsTable> = ({action, context}) => {
+const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
 
     const {cart, dispatch} = useContext(CartContext);
 
@@ -21,7 +21,7 @@ const ProductsTableCard:FC<IProductsTable> = ({action, context}) => {
     return (
         <>
             <div className="sm:hidden">
-                {cart.items.map((product) => (
+                {products && products.map((product) => (
                     <div key={product.id} className="bg-white text-gray-800 dark:text-gray-500 rounded-lg mt-5 shadow-2xl border-1 border-black">
                         <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 dark:text-gray-400 p-2 rounded-t-lg mb-1">
                             <div><strong>ID {product.id}</strong> - {product.title}</div>

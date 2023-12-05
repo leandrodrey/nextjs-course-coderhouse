@@ -3,12 +3,12 @@ import {FC, useContext} from "react";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloudinaryImage from "@/services/CloudinaryImage";
-import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
+import {IProduct} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
-import {IProductsTable} from "@/interfaces/IProductTable";
+import {IProductTable} from "@/interfaces/IProductTable";
 import EditIcon from "@mui/icons-material/Edit";
 
-const ProductsTable: FC<IProductsTable> = ({action, context}) => {
+const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
 
     const {cart, dispatch} = useContext(CartContext);
 
@@ -38,7 +38,7 @@ const ProductsTable: FC<IProductsTable> = ({action, context}) => {
             </tr>
             </thead>
             <tbody>
-            {cart.items.map((product: IProductWithCount) => (
+            {products && products.map((product) => (
                 <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
                     <td className="py-4 px-6">{product.id}</td>
                     <td className="py-4 px-6">{product.title}</td>
@@ -57,8 +57,8 @@ const ProductsTable: FC<IProductsTable> = ({action, context}) => {
                     <td className="py-4 px-6">${product.price.toFixed(2)}</td>
                     {context === 'cart' && (
                         <>
-                            <td className="py-4 px-6">{product.count}</td>
-                            <td className="py-4 px-6">${(product.price * product.count).toFixed(2)}</td>
+                            <td className="py-4 px-6"> {'count' in product ? product.count : 'N/A'}</td>
+                            <td className="py-4 px-6">{'count' in product ? `$${(product.price * product.count).toFixed(2)}` : 'N/A'}</td>
                         </>
                     )}
                     <td className="py-4 px-6">

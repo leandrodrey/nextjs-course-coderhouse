@@ -35,7 +35,7 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                 </button>
                             </div>
                             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-                                <ProductsTableContainer action="edit" context="admin" />
+                                <ProductsTableContainer action="edit" context="admin" products={products} />
                             </div>
                         </div>
                     </div>
