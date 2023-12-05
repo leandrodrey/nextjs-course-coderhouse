@@ -6,7 +6,6 @@ import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import SocialIcons from "@/components/ui/SocialIcons";
 import Menu from "@/components/ui/Menu";
 import CartWidget from "@/components/ui/CartWidget";
-import {ICategory} from "@/interfaces/ICategory";
 
 const NavBar: FC = () => {
 
