@@ -1,5 +1,5 @@
 import {FC} from "react";
-/*import type {Metadata, ResolvingMetadata} from 'next';*/
+import type {Metadata, ResolvingMetadata} from 'next';
 import Image from 'next/image';
 import Link from "next/link";
 import {IProductWithCategory} from "@/interfaces/IProduct";
@@ -9,14 +9,14 @@ import AddToCart from "@/app/components/ui/AddToCart";
 
 export const dynamic = 'force-dynamic';
 
-/*type Props = {
+type Props = {
     params: { id: number }
     searchParams: { [key: string]: string | string[] | undefined }
-}*/
+}
 
-/*export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
     const {id} = params;
-    const product: IProduct | undefined  = await getProductById(params.id);
+    const product: IProductWithCategory | undefined  = await getProductById(params.id);
 
     if (!product) {
         return {
@@ -27,8 +27,8 @@ export const dynamic = 'force-dynamic';
     return {
         title: product.title,
         description: product.description,
-        }
-}*/
+    }
+}
 
 interface ProductDetailProps {
     params: {
@@ -63,18 +63,20 @@ const ProductDetail: FC<ProductDetailProps> = async ({params}) => {
                 </div>
                 <div className="w-full md:w-1/2 lg:w-2/3 bg-stone-900 bg-opacity-90 rounded-lg p-6 shadow-xl flex flex-col justify-between">
                     <div className="">
-                        <h1 className="text-3xl font-bold text-blue-300 mb-3">{product.title}</h1>
+                        <div className="flex justify-between items-center mb-5">
+                            <h1 className="text-3xl font-bold text-blue-300 mb-3">{product.title}</h1>
+                            <span className="text-3xl text-gray-100">${product.price}</span>
+                        </div>
                         <p className="text-gray-300 text-sm mb-4">{product.description}</p>
                         <div className="flex justify-between items-center">
-                            <span className="text-xl font-bold text-gray-300">${product.price}</span>
                             <Link href={`/category/${product.categoryName}`}>
                                 <span className="capitalize px-2 py-1 bg-blue-200 text-blue-900 text-sm font-semibold rounded-full transition duration-300 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
                                     {product.categoryName}
                                 </span>
                             </Link>
+                            <AddToCart product={product}/>
                         </div>
                     </div>
-                    <AddToCart product={product}/>
                 </div>
             </div>
         </div>
