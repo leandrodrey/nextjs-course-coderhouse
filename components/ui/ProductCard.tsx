@@ -23,7 +23,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
             type: 'ADD_TO_CART',
             payload: product,
         });
-    };
+    }
 
     const maxLength = 100;
     const descriptionShort = product.description.length > maxLength ? `${product.description.substring(0, maxLength)}...` : product.description;

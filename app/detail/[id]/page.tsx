@@ -2,7 +2,7 @@ import {FC} from "react";
 import type {Metadata, ResolvingMetadata} from 'next';
 import {IProductWithCategory} from "@/interfaces/IProduct";
 import {getProductById} from "@/services/ProductService";
-import ProductCardDetail from "@/components/ProductCardDetail";
+import ProductCardDetail from "@/components/ui/ProductCardDetail";
 
 export const dynamic = 'force-dynamic';
 
