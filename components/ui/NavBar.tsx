@@ -6,11 +6,11 @@ import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import SocialIcons from "@/components/ui/SocialIcons";
 import Menu from "@/components/ui/Menu";
 import CartWidget from "@/components/ui/CartWidget";
+import MenuLogin from "@/components/ui/MenuLogIn";
 
 const NavBar: FC = () => {
 
     const [open, setOpen] = useState(false);
-
     const logoImage = "/logo.webp";
 
     return (
@@ -34,6 +34,7 @@ const NavBar: FC = () => {
                                 Game Bazar
                             </h1>
                         </div>
+                        <MenuLogin open={open} />
                         <Menu open={open} />
                         <CartWidget open={open} />
                     </div>
