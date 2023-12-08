@@ -50,8 +50,8 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                             width={640}
                             height={360}
                             className="w-10 h-10 rounded-full"
-                            placeholder="blur"
-                            blurDataURL={CloudinaryImage(product.image)}
+                            placeholder = "blur"
+                            blurDataURL="/loading.png"
                         />
                     </td>
                     <td className="py-4 px-6">${product.price.toFixed(2)}</td>

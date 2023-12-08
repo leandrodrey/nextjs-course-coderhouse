@@ -40,7 +40,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
                     height={360}
                     className="max-w-full h-auto rounded-lg"
                     placeholder = "blur"
-                    blurDataURL={productImage}
+                    blurDataURL="/loading.png"
                 />
             </Link>
             <div className="px-1 py-2">

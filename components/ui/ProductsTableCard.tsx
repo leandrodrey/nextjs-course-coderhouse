@@ -32,7 +32,7 @@ const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
                                 height={360}
                                 className="w-20 h-20 rounded-full"
                                 placeholder = "blur"
-                                blurDataURL={`${CloudinaryImage(product.image)}`}
+                                blurDataURL="/loading.png"
                             />
                         </div>
                         <div className="p-2">
