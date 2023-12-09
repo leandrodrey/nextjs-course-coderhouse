@@ -16,14 +16,14 @@ const MenuLogin: FC<MenuLoginProps> = ({ open}) => {
             {session.data ? (
                 <>
                     <button className="ml-1" title="Sign Out" onClick={() => signOut()}><LogoutIcon/></button>
-                    <span onClick={() => signOut()} className={`${!open && "hidden"} origin-left duration-200 text-blue-200 hover:text-blue-300 capitalize`}> {session.data?.user?.name}</span>
+                    <button onClick={() => signOut()} className={`${!open && "hidden"} origin-left duration-200 text-blue-200 hover:text-blue-300 capitalize`}> {session.data?.user?.name}</button>
                 </>
             ) : (
                 <>
                     <button title="Sign In" onClick={() => signIn()}><LoginIcon/></button>
-                    <span onClick={() => signIn()} className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
+                    <button onClick={() => signIn()} className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
                         SignIn
-                    </span>
+                    </button>
                 </>
             )}
         </div>
