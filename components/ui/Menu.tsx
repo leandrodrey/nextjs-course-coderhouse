@@ -63,9 +63,9 @@ const Menu: FC<MenuProps> = ({ open}) => {
                     `}
                 >
                     <Link title={menu.title} href={menu.url}>{menu.icon}</Link>
-                    <span className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
-                        <Link href={menu.url}>{menu.title}</Link>
-                    </span>
+                    <Link href={menu.url} className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
+                        {menu.title}
+                    </Link>
                 </li>
             ))}
         </ul>
