@@ -8,7 +8,7 @@ interface SocialIconsProps {
     menuOpen?: boolean;
 }
 
-const SocialIcons: FC<SocialIconsProps> = ({ menuOpen }) => {
+const MenuSocialIcons: FC<SocialIconsProps> = ({ menuOpen }) => {
     return (
         <div className={`flex ${menuOpen ? "space-x-3 opacity-100" : "space-y-3 opacity-50 flex-col items-center"} justify-center transition-opacity duration-500 `}>
             <Link href="#" className="text-xs text-blue-300 hover:text-white transition duration-300">
@@ -24,4 +24,4 @@ const SocialIcons: FC<SocialIconsProps> = ({ menuOpen }) => {
     )
 }
 
-export default SocialIcons;
+export default MenuSocialIcons;

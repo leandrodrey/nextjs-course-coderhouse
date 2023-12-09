@@ -3,7 +3,7 @@ import {FC, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
-import SocialIcons from "@/components/ui/SocialIcons";
+import MenuSocialIcons from "@/components/ui/MenuSocialIcons";
 import Menu from "@/components/ui/Menu";
 import CartWidget from "@/components/ui/CartWidget";
 import MenuLogin from "@/components/ui/MenuLogIn";
@@ -38,7 +38,7 @@ const NavBar: FC = () => {
                         <Menu open={open} />
                         <CartWidget open={open} />
                     </div>
-                    <SocialIcons menuOpen={open}/>
+                    <MenuSocialIcons menuOpen={open}/>
                 </div>
             </div>
         </>
