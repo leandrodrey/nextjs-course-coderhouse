@@ -9,7 +9,7 @@ export async function GET(request: NextRequest, {params}: { params: { productId:
     const {productId} = params;
 
     if (!mongoose.isValidObjectId(productId)) {
-        return new NextResponse(JSON.stringify({error: 'Invalid product ID'}), {
+        return new NextResponse(JSON.stringify({error: 'Provided product ID is invalid or malformed.'}), {
             status: 400,
             headers: {
                 'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, {params}: { params: { productId:
     try {
         const product = await ProductModel.findById(productId);
         if (!product) {
-            return new NextResponse(JSON.stringify({error: 'Product not found'}), {
+            return new NextResponse(JSON.stringify({error: 'Product with the specified ID was not found.'}), {
                 status: 404,
                 headers: {
                     'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest, {params}: { params: { productId:
             }
         });
     } catch (error) {
-        let errorMessage = 'An unknown error occurred';
+        let errorMessage = 'An error occurred while retrieving product data.';
         if (error instanceof Error) {
             errorMessage = error.message;
         }

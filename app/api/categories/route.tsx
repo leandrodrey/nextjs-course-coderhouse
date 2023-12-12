@@ -13,7 +13,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
             }
         });
     } catch (error) {
-        let errorMessage = 'An unknown error occurred';
+        let errorMessage = 'An error occurred while fetching categories.';
         if (error instanceof Error) {
             errorMessage = error.message;
         }

@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, { params }: { params: { category
             } else {
                 const categoryData = await CategoryModel.findOne({ title: category });
                 if (!categoryData) {
-                    return new NextResponse(JSON.stringify({ error: 'Category not found' }), {
+                    return new NextResponse(JSON.stringify({ error: `No products found in the '${category}' category.` }), {
                         status: 404,
                         headers: {
                             'Content-Type': 'application/json'
@@ -28,6 +28,15 @@ export async function GET(request: NextRequest, { params }: { params: { category
                 }
                 products = await ProductModel.find({ categoryId: categoryData._id });
             }
+        }
+
+        if (!products.length) {
+            return new NextResponse(JSON.stringify({ error: `No products available in the selected category: ${category}.` }), {
+                status: 404,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
         }
 
         const productsWithCategory: IProductWithCategory[] = await Promise.all(products.map(async (product) => {
@@ -45,7 +54,7 @@ export async function GET(request: NextRequest, { params }: { params: { category
             }
         });
     } catch (error) {
-        let errorMessage = 'An unknown error occurred';
+        let errorMessage = `Failed to retrieve products for category '${category}'.`;
         if (error instanceof Error) {
             errorMessage = error.message;
         }
