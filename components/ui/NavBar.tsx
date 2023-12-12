@@ -1,4 +1,3 @@
-"use client";
 import {FC, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,7 +10,7 @@ import MenuLogin from "@/components/ui/MenuLogIn";
 const NavBar: FC = () => {
 
     const [open, setOpen] = useState(false);
-    const logoImage = "/logo.webp";
+    const logoImage = "logo.webp";
 
     return (
         <>
@@ -22,7 +21,7 @@ const NavBar: FC = () => {
                         <div className="flex flex-col gap-x-4 items-center">
                             <Link href="/">
                                 <Image
-                                    src={logoImage}
+                                    src={`/gamebazar/${logoImage}`}
                                     alt="Game Bazar Logo"
                                     width={640}
                                     height={360}
