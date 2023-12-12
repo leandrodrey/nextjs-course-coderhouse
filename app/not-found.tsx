@@ -1,16 +1,14 @@
+'use client'
 import {NextPage} from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import CloudinaryImage from "@/services/CloudinaryImage";
 
 const NotFoundPage: NextPage = () => {
-
-    const notFoundImage = CloudinaryImage("404error");
 
     return (
         <div className="flex flex-col items-center justify-center h-full text-center">
             <Image
-                src={notFoundImage}
+                src="/gamebazar/404error.png"
                 alt="Page Not Found"
                 width={400}
                 height={400}
