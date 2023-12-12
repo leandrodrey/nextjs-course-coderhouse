@@ -8,7 +8,7 @@ import {IProductTable} from "@/interfaces/IProductTable";
 
 const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
 
-    const {cart, dispatch} = useContext(CartContext);
+    const {dispatch} = useContext(CartContext);
 
     const removeItemFromCart = (product: IProduct) => {
         dispatch({

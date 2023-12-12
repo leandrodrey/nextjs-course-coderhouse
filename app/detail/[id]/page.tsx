@@ -13,7 +13,7 @@ type Props = {
 
 export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
     const {id} = params;
-    const product: IProductWithCategory | undefined  = await getProductById(params.id);
+    const product: IProductWithCategory | undefined  = await getProductById(id);
 
     if (!product) {
         return {
