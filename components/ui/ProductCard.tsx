@@ -2,10 +2,8 @@
 import {FC, useContext} from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import {PlusCircleIcon, MinusCircleIcon} from "@heroicons/react/24/solid";
 import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
-import CloudinaryImage from "@/services/CloudinaryImage";
 import {CartContext} from "@/context/CartProvider";
 import useItemCount from "@/hooks/useItemCount";
 
@@ -28,13 +26,11 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
     const maxLength = 100;
     const descriptionShort = product.description.length > maxLength ? `${product.description.substring(0, maxLength)}...` : product.description;
 
-    const productImage = CloudinaryImage(product.image);
-
     return (
         <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full mt-4 md:mt-0 md:w-1/2 lg:w-1/3 xl:w-1/4">
             <Link href={`/detail/${product._id}`} className="transition duration-300 hover:text-blue-600" role="link">
                 <Image
-                    src={productImage}
+                    src={`/gamebazar/${product.image}.png`}
                     alt={`Imagen del producto: ${product.title}`}
                     width={640}
                     height={360}
@@ -60,9 +56,13 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
                 <p className="text-white-700 mb-4 text-sm">{descriptionShort}</p>
                 <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                        <button onClick={() => handleRest()} className="cardActions__restButton" color="secondary" disabled={count === 1}><ChevronLeftIcon/></button>
-                        <span>{count}</span>
-                        <button onClick={() => handleSum()} className="cardActions__sumButton" color="secondary"><ChevronRightIcon/></button>
+                        <button onClick={() => handleRest()} color="secondary" disabled={count === 1}>
+                            <MinusCircleIcon className={`h-6 w-6 ${count === 1 ? "text-gray-500" : "text-blue-300"}`}/>
+                        </button>
+                        <span className="mx-2">{count}</span>
+                        <button onClick={() => handleSum()} color="secondary">
+                            <PlusCircleIcon className="h-6 w-6 text-blue-300"/>
+                        </button>
                     </div>
                     <div className="flex items-center">
                         <p className="text-gray-300 text-lg font-bold ml-2">${product.price}</p>
