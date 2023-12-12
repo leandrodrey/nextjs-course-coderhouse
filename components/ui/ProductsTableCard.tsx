@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import {XCircleIcon, PencilIcon} from "@heroicons/react/24/solid";
 import {FC, useContext} from "react";

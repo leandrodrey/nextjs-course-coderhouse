@@ -2,9 +2,9 @@
 import ProductsTableCard from "@/components/ui/ProductsTableCard";
 import ProductsTable from "@/components/ui/ProductsTable";
 import {FC, useContext} from "react";
-import {CartContext} from "@/context/CartProvider";
 import {IProductTable} from "@/interfaces/IProductTable";
 import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
+import {CartContext} from "@/context/CartProvider";
 import EmptyCart from "@/components/ui/EmptyCart";
 
 const ProductsTableContainer:FC<IProductTable> = ({action= 'remove', context= 'cart', products}) => {
