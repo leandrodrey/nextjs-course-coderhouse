@@ -1,9 +1,7 @@
 import {FC, ReactElement} from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
-import CabinIcon from '@mui/icons-material/Cabin';
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import {HomeIcon, UserIcon, RocketLaunchIcon} from "@heroicons/react/24/solid";
 import { ICategory } from "@/interfaces/ICategory";
 import Loader from "@/components/ui/Loader";
 import UseCategories from "@/hooks/useCategories";
@@ -30,13 +28,13 @@ const Menu: FC<MenuProps> = ({ open}) => {
     const staticMenu = [
         { title: "Home",
             url: '/',
-            icon: <CabinIcon />,
+            icon: <HomeIcon className="h-6 w-6" />,
             gap: false
         },
         {
             title: "Admin",
             url: '/admin',
-            icon: <AccountBoxOutlinedIcon />,
+            icon: <UserIcon className="h-6 w-6" />,
             gap: false
         }
     ];
@@ -45,7 +43,7 @@ const Menu: FC<MenuProps> = ({ open}) => {
         {
             title: category.title,
             url: `/category/${category.title.toLowerCase()}`,
-            icon: <VideogameAssetIcon />,
+            icon: <RocketLaunchIcon className="h-6 w-6" />,
             gap: index === 0
         }
     )) || [];

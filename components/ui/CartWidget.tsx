@@ -1,6 +1,6 @@
 'use client'
 import {FC, useContext} from "react";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {ShoppingCartIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import {CartContext} from "@/context/CartProvider";
 
@@ -16,14 +16,14 @@ const CartWidget: FC<CartWidgetProps> = ({ open }) => {
         <>
             <div className='flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 relative mt-9'>
                 <Link href='/cart'>
-                    <ShoppingCartIcon/>
+                    <ShoppingCartIcon className="h-6 w-6" />
                     <span className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
                         Cart
                     </span>
                 </Link>
                 {cart.items.length > 0 && (
                     <div className='flex'>
-                        <div className='ml-2 bg-blue-500 text-white rounded-full w-3 h-3 absolute left-4 top-5'>
+                        <div className='ml-2 bg-blue-700 text-white rounded-full w-4 h-4 absolute left-4 top-6'>
                             <span className='text-xs flex justify-center items-center h-full'>
                                 {cart.items.length}
                             </span>

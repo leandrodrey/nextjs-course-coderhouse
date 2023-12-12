@@ -1,7 +1,8 @@
+'use client'
 import {FC, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+import {ChevronLeftIcon} from "@heroicons/react/24/solid";
 import MenuSocialIcons from "@/components/ui/MenuSocialIcons";
 import Menu from "@/components/ui/Menu";
 import CartWidget from "@/components/ui/CartWidget";
@@ -10,18 +11,17 @@ import MenuLogin from "@/components/ui/MenuLogIn";
 const NavBar: FC = () => {
 
     const [open, setOpen] = useState(false);
-    const logoImage = "logo.webp";
 
     return (
         <>
             <div className={` ${open ? "w-60" : "w-20"} duration-600 transition`}>
                 <div className={` ${open ? "w-60" : "w-20"} flex flex-col justify-between bg-[#0f0f0f] p-5 pt-8 z-[999] duration-600 transition fixed top-0 left-0 h-full`}>
                     <div>
-                        <ArrowBackIosOutlinedIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-10 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}/>
+                        <ChevronLeftIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-10 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}/>
                         <div className="flex flex-col gap-x-4 items-center">
                             <Link href="/">
                                 <Image
-                                    src={`/gamebazar/${logoImage}`}
+                                    src="/gamebazar/logo.png"
                                     alt="Game Bazar Logo"
                                     width={640}
                                     height={360}
