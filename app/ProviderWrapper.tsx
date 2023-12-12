@@ -1,7 +1,7 @@
 'use client'
 import {FC, ReactNode} from "react";
-import { SessionProvider } from "next-auth/react"
 import {Session} from "next-auth";
+import { SessionProvider } from "next-auth/react"
 import CartProvider from "@/context/CartProvider";
 
 interface ProviderWrapperProps {
