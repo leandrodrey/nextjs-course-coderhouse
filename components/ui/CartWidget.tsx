@@ -1,7 +1,7 @@
 'use client'
 import {FC, useContext} from "react";
-import {ShoppingCartIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
+import {ShoppingCartIcon} from "@heroicons/react/24/solid";
 import {CartContext} from "@/context/CartProvider";
 
 interface CartWidgetProps {
@@ -22,12 +22,10 @@ const CartWidget: FC<CartWidgetProps> = ({ open }) => {
                     </span>
                 </Link>
                 {cart.items.length > 0 && (
-                    <div className='flex'>
-                        <div className='ml-2 bg-blue-700 text-white rounded-full w-4 h-4 absolute left-4 top-6'>
-                            <span className='text-xs flex justify-center items-center h-full'>
-                                {cart.items.length}
-                            </span>
-                        </div>
+                    <div className='ml-2 bg-blue-700 text-white rounded-full w-4 h-4 absolute left-4 top-6'>
+                        <span className='text-xs flex justify-center items-center h-full'>
+                            {cart.items.length}
+                        </span>
                     </div>
                 )}
             </div>

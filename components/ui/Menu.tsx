@@ -1,13 +1,13 @@
+'use client'
 import {FC, ReactElement} from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import {HomeIcon, UserIcon, RocketLaunchIcon} from "@heroicons/react/24/solid";
 import { ICategory } from "@/interfaces/ICategory";
-import Loader from "@/components/ui/Loader";
-import UseCategories from "@/hooks/useCategories";
 
 interface MenuProps {
     open: boolean;
+    categories: ICategory[];
 }
 
 interface MenuOption {
@@ -17,13 +17,8 @@ interface MenuOption {
     gap: boolean;
 }
 
-const Menu: FC<MenuProps> = ({ open}) => {
+const Menu: FC<MenuProps> = ({ open, categories}) => {
     const pathname = usePathname()
-
-    const { data, isError, isLoading } = UseCategories();
-
-    if (isError) return <div>failed to load</div>
-    if (isLoading) return <Loader />
 
     const staticMenu = [
         { title: "Home",
@@ -39,7 +34,7 @@ const Menu: FC<MenuProps> = ({ open}) => {
         }
     ];
 
-    const categoriesMenu: MenuOption[] = data?.map((category: ICategory, index: number) => (
+    const categoriesMenu: MenuOption[] = categories?.map((category: ICategory, index: number) => (
         {
             title: category.title,
             url: `/category/${category.title.toLowerCase()}`,
