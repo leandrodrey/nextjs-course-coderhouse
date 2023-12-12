@@ -1,8 +1,8 @@
 import {ReactElement} from 'react';
+import {IProduct} from "@/interfaces/IProduct";
 import {getProductByCategory} from "@/services/ProductService";
 import Header from '@/app/admin/components/Header';
 import MainContent from '@/app/admin/components/MainContent';
-import {IProduct} from "@/interfaces/IProduct";
 
 export const dynamic = 'force-dynamic';
 

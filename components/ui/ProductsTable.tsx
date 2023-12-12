@@ -1,11 +1,10 @@
 'use client'
 import {FC, useContext} from "react";
 import Image from "next/image";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {XCircleIcon, PencilIcon} from "@heroicons/react/24/solid";
 import {IProduct} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
 import {IProductTable} from "@/interfaces/IProductTable";
-import EditIcon from "@mui/icons-material/Edit";
 
 const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
 
@@ -62,8 +61,8 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                     )}
                     <td className="py-4 px-6">
                         {action === 'remove' ?
-                            (<DeleteIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer' onClick={() => removeItemFromCart(product)}/>) :
-                            (<EditIcon className="text-blue-300 hover:text-blue-700 transition duration-300"/>)
+                            (<XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer' onClick={() => removeItemFromCart(product)}/>) :
+                            (<PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300"/>)
                         }
                     </td>
                 </tr>

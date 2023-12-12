@@ -1,10 +1,9 @@
 import Image from "next/image";
-import EditIcon from "@mui/icons-material/Edit";
+import {XCircleIcon, PencilIcon} from "@heroicons/react/24/solid";
 import {FC, useContext} from "react";
 import {IProduct} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
 import {IProductTable} from "@/interfaces/IProductTable";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
 
@@ -42,8 +41,8 @@ const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
                         <div className="flex justify-between p-2">
                             <div><strong>Category Name:</strong> {product.categoryName} </div>
                             {action === 'remove' ?
-                                (<DeleteIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer' onClick={() => removeItemFromCart(product)}/>) :
-                                (<EditIcon className="text-blue-300 hover:text-blue-700 transition duration-300"/>)
+                                (<XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer' onClick={() => removeItemFromCart(product)}/>) :
+                                (<PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300"/>)
                             }
                         </div>
                     </div>
