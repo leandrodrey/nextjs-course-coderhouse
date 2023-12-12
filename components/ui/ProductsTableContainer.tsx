@@ -1,20 +1,37 @@
 'use client'
-import ProductsTableCard from "@/components/ui/ProductsTableCard";
-import ProductsTable from "@/components/ui/ProductsTable";
-import {FC, useContext} from "react";
+import {FC, useContext, useEffect, useState} from "react";
 import {IProductTable} from "@/interfaces/IProductTable";
 import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
+import ProductsTable from "@/components/ui/ProductsTable";
+import ProductsTableCard from "@/components/ui/ProductsTableCard";
 import EmptyCart from "@/components/ui/EmptyCart";
+import Loader from "@/components/ui/Loader";
 
 const ProductsTableContainer:FC<IProductTable> = ({action= 'remove', context= 'cart', products}) => {
 
     const {cart} = useContext(CartContext);
+    const [isLoading, setIsLoading] = useState(true);
+    const [componentProducts, setComponentProducts] = useState<IProductWithCount[] | IProduct[]>([]);
 
-    const componentProducts = context === 'cart' ? cart.items as IProductWithCount[] : products as IProduct[];
+    useEffect(() => {
+        const newComponentProducts = context === 'cart' ? cart.items as IProductWithCount[] : products as IProduct[];
+        setComponentProducts(newComponentProducts);
+        if (newComponentProducts) {
+            setIsLoading(false);
+        }
+    }, [cart.items, products, context]);
+
+    if (isLoading) {
+        return <Loader />;
+    }
 
     if (!componentProducts.length) {
-        return <EmptyCart />;
+        if (context === 'cart') {
+            return <EmptyCart />;
+        } else if (context === 'admin') {
+            return ("TODO - Add a message for empty products")
+        }
     }
 
     return (
