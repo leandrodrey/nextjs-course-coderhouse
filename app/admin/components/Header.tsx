@@ -1,15 +1,11 @@
-"use client";
 import {FC} from "react";
 import Image from "next/image";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import CloudinaryImage from "@/services/CloudinaryImage";
 
 interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = () => {
-
-    const avatarImage = CloudinaryImage("user_avatar");
 
     return (
         <header className="bg-stone-900 shadow-sm">
@@ -25,7 +21,7 @@ const Header: FC<HeaderProps> = () => {
                 <div className="flex items-center">
                     <h1 className="mr-3">Bienvenido, <span className="text-blue-300 font-semibold">Admin</span></h1>
                     <Image
-                        src={avatarImage}
+                        src="/gamebazar/user_avatar.png"
                         alt="User Avatar"
                         width={100}
                         height={100}
