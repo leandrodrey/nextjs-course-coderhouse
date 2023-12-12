@@ -17,8 +17,8 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
 
     if (!product) {
         return {
-            title: "Producto no encontrado",
-            description: "El producto solicitado no existe en nuestra base de datos.",
+            title: "Product Not Found",
+            description: "The requested product does not exist in our database.",
         };
     }
     return {
@@ -39,7 +39,7 @@ const ProductDetailPage: FC<ProductDetailProps> = async ({params}) => {
     const product: IProductWithCategory = await getProductById(id);
 
     if (!product) {
-        return <div className="text-center text-xl text-red-500 p-5">Producto no encontrado</div>;
+        return <div className="text-center text-xl text-red-500 p-5">Product Not Found</div>;
     }
 
     return (

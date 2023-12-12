@@ -25,7 +25,7 @@ const ProductCategory: FC<ProductCategoryProps> = async ({params}) => {
     const filteredProducts: IProduct[] = await getProductByCategory(category);
 
     if (!filteredProducts.length) {
-        return <div>Productos no encontrados</div>;
+        return <div>Products Not Found</div>;
     }
 
     return (
