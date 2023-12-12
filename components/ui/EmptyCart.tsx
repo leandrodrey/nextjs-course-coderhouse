@@ -9,7 +9,7 @@ const EmptyCart: FC = () => {
             <div className="flex flex-col items-center justify-center">
                 <h1 className="text-3xl">There are no products in the cart!</h1>
                 <Image
-                    src="/gamebazar/ybhx45zwsibzbkvjr6nc"
+                    src="/gamebazar/ybhx45zwsibzbkvjr6nc.png"
                     alt='There are no products in the cart!'
                     width={400}
                     height={400}
