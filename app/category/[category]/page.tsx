@@ -1,14 +1,15 @@
 import {FC, Suspense} from "react";
-import type { Metadata } from 'next'
-import { IProduct } from "@/interfaces/IProduct";
+import type {Metadata} from 'next'
+import {IProduct} from "@/interfaces/IProduct";
 import {getProductByCategory} from "@/services/ProductService";
 import ProductsList from "@/components/ui/ProductsList";
+import Loader from "@/components/ui/Loader";
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-    title: 'Productos por categoría',
-    description: 'Productos filtrados por categoría',
+    title: 'Products by Category',
+    description: 'Products filtered by category',
 }
 
 interface ProductCategoryProps {
@@ -17,7 +18,7 @@ interface ProductCategoryProps {
     };
 }
 
-const ProductCategory: FC<ProductCategoryProps> = async ({ params }) => {
+const ProductCategory: FC<ProductCategoryProps> = async ({params}) => {
 
     const {category} = params;
 
@@ -29,8 +30,8 @@ const ProductCategory: FC<ProductCategoryProps> = async ({ params }) => {
 
     return (
         <>
-            <Suspense fallback={<div>Loading...</div>}>
-                <ProductsList products={filteredProducts} />
+            <Suspense fallback={<Loader/>}>
+                <ProductsList products={filteredProducts}/>
             </Suspense>
         </>
     )
