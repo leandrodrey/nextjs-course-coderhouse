@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "@/components/ui/AddToCart";
-import CloudinaryImage from "@/services/CloudinaryImage";
 import {FC} from "react";
 import {IProductWithCategory} from "@/interfaces/IProduct";
 
@@ -11,13 +10,11 @@ interface ProductCardDetailProps {
 
 const ProductCardDetail: FC<ProductCardDetailProps> = ({product}) => {
 
-    const productImage = CloudinaryImage(product.image);
-
     return (
         <div className="md:flex md:items-stretch">
             <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center mb-4 md:mb-0">
                 <Image
-                    src={productImage}
+                    src={`/gamebazar/${product.image}.png`}
                     alt={`Imagen de ${product.title}`}
                     width={640}
                     height={640}
