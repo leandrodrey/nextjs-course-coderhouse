@@ -55,7 +55,7 @@ const Menu: FC<MenuProps> = ({ open, categories}) => {
                         ${pathname === menu.url ? "text-blue-600" : ""} 
                     `}
                 >
-                    <Link title={menu.title} href={menu.url}>{menu.icon}</Link>
+                    <Link title={menu.title} className="hover:text-blue-300" href={menu.url}>{menu.icon}</Link>
                     <Link href={menu.url} className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
                         {menu.title}
                     </Link>
