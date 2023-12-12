@@ -2,7 +2,6 @@
 import {FC, useContext} from "react";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CloudinaryImage from "@/services/CloudinaryImage";
 import {IProduct} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
 import {IProductTable} from "@/interfaces/IProductTable";
@@ -45,7 +44,7 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                     <td className="py-4 px-6 hidden sm:table-cell">{`${product.description.substring(0, 100)}...`}</td>
                     <td className="py-4 px-6 hidden lg:table-cell">
                         <Image
-                            src={CloudinaryImage(product.image)}
+                            src={`/gamebazar/${product.image}.png`}
                             alt={`Imagen del producto: ${product.title}`}
                             width={640}
                             height={360}

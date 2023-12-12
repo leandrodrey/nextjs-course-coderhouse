@@ -1,5 +1,4 @@
 import Image from "next/image";
-import CloudinaryImage from "@/services/CloudinaryImage";
 import EditIcon from "@mui/icons-material/Edit";
 import {FC, useContext} from "react";
 import {IProduct} from "@/interfaces/IProduct";
@@ -26,7 +25,7 @@ const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
                         <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 dark:text-gray-400 p-2 rounded-t-lg mb-1">
                             <div><strong>ID {product.id}</strong> - {product.title}</div>
                             <Image
-                                src={`${CloudinaryImage(product.image)}`}
+                                src={`/gamebazar/${product.image}`}
                                 alt={`Imagen del producto: ${product.title}`}
                                 width={640}
                                 height={360}
