@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.0.18",
+        "formik": "^2.4.5",
         "mongodb": "^6.3.0",
         "mongoose": "^8.0.2",
         "next": "^14.0.4",
