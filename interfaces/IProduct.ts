@@ -9,6 +9,7 @@ export interface IProduct {
     price: number;
     categoryId: Types.ObjectId;
     categoryName: string;
+    stock: number;
 }
 
 export interface IProductWithCategory extends IProduct {
