@@ -26,7 +26,10 @@ const OrderForm: FC = () => {
 
     const { cart } = useContext(CartContext);
 
-    const handleSubmit = async (values, { setSubmitting }) => {
+    const handleSubmit = async (
+        values: typeof initialValues,
+        { setSubmitting } : { setSubmitting: (isSubmitting: boolean) => void }
+    ) => {
 
         const orderData = {
             ...values,
