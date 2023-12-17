@@ -38,6 +38,9 @@ const ProductCardDetail: FC<ProductCardDetailProps> = ({product}) => {
                         </Link>
                         <AddToCart product={product}/>
                     </div>
+                    <div className="flex flex-row-reverse items-center mt-4">
+                        <span className="text-gray-300 text-sm">Stock: {product.stock}</span>
+                    </div>
                 </div>
             </div>
         </div>

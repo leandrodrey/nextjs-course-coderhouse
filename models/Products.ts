@@ -22,6 +22,10 @@ const productsSchema = new Schema<IProduct>({
     title: {
         type: String,
         required: true
+    },
+    stock: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true });
 
