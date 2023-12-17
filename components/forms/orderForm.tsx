@@ -24,8 +24,12 @@ const OrderSchema = Yup.object().shape({
 
 const OrderForm: FC = () => {
 
-    const {cart} = useContext(CartContext);
+    const {cart, dispatch} = useContext(CartContext);
     const [submitOrderId, setSubmitOrderId] = useState('');
+
+    const removeAllItemsFromCart = () => dispatch({
+        type: 'REMOVE_ALL_ITEMS_FROM_CART'
+    });
 
     const handleSubmit = async (
         values: typeof initialValues,
@@ -57,6 +61,7 @@ const OrderForm: FC = () => {
             console.error('Error submitting order:', error);
         }
         setSubmitting(false);
+        removeAllItemsFromCart();
     };
 
     if (submitOrderId) {
@@ -113,7 +118,12 @@ const OrderForm: FC = () => {
                         <ErrorMessage name="country" component="div" className="text-red-500 text-xs italic"/>
                     </div>
 
-                    <button type="submit" disabled={isSubmitting} className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button
+                        type="submit"
+                        disabled={cart.items.length === 0 || isSubmitting}
+                        className={`w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline 
+                            ${cart.items.length === 0 || isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700'} text-white`}
+                    >
                         Submit Order!
                     </button>
                 </Form>
