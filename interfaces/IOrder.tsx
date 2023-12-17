@@ -14,6 +14,6 @@ export interface IOrder {
     address: string;
     city: string;
     country: string;
-    totalPrice: number;
+    totalPayment: number;
     products: IOrderProduct[];
 }

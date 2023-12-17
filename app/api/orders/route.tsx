@@ -1,19 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
-import CategoryModel from '@/models/Category';
-import { db } from "@/database";
+import OrderModel from '@/models/Order';
+import { db } from '@/database';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
     await db.connect();
+
     try {
-        const categories = await CategoryModel.find();
-        return new NextResponse(JSON.stringify(categories), {
-            status: 200,
+        const orderData = await request.json();
+        const newOrder = new OrderModel(orderData);
+        const savedOrder = await newOrder.save();
+
+        const responseObj = {
+            message: 'Order created successfully',
+            orderNumber: savedOrder.id
+        };
+
+        return new NextResponse(JSON.stringify(responseObj), {
+            status: 201,
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+
     } catch (error) {
-        let errorMessage = 'An error occurred while fetching categories.';
+        let errorMessage = 'An error occurred while creating the order.';
         if (error instanceof Error) {
             errorMessage = error.message;
         }

@@ -1,7 +1,7 @@
 import mongoose, { Model, Schema } from 'mongoose';
 import {IProduct} from '@/interfaces/IProduct';
 
-const productSchema = new Schema<IProduct>({
+const productsSchema = new Schema<IProduct>({
     categoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
@@ -25,18 +25,18 @@ const productSchema = new Schema<IProduct>({
     }
 }, { timestamps: true });
 
-productSchema.virtual('id').get(function () {
+productsSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
 
-productSchema.set('toJSON', {
+productsSchema.set('toJSON', {
     virtuals: true
 });
 
-productSchema.set('toObject', {
+productsSchema.set('toObject', {
     virtuals: true
 });
 
-const ProductModel: Model<IProduct> = mongoose.models.Product || mongoose.model<IProduct>('Product', productSchema);
+const ProductModel: Model<IProduct> = mongoose.models.Product || mongoose.model<IProduct>('Product', productsSchema);
 
 export default ProductModel;

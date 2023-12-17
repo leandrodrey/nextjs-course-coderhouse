@@ -1,6 +1,18 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { IOrder } from '@/interfaces/IOrder';
 
+const orderProductSchema = new Schema({
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true
+    }
+});
+
 const orderSchema = new Schema<IOrder>({
     fullName: {
         type: String,
@@ -26,14 +38,11 @@ const orderSchema = new Schema<IOrder>({
         type: String,
         required: true
     },
-    totalPrice: {
+    totalPayment: {
         type: Number,
         required: true
     },
-    products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-    }]
+    products: [orderProductSchema]
 }, { timestamps: true });
 
 orderSchema.virtual('id').get(function () {

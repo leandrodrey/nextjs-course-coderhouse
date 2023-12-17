@@ -1,5 +1,5 @@
 'use client'
-import React, {FC, useContext} from 'react';
+import React, {FC, useContext, useState} from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
 import {CartContext} from "@/context/CartProvider";
@@ -24,19 +24,25 @@ const OrderSchema = Yup.object().shape({
 
 const OrderForm: FC = () => {
 
-    const { cart } = useContext(CartContext);
+    const {cart} = useContext(CartContext);
+    const [submitSuccess, setSubmitSuccess] = useState('');
 
     const handleSubmit = async (
         values: typeof initialValues,
-        { setSubmitting } : { setSubmitting: (isSubmitting: boolean) => void }
+        {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }
     ) => {
+
+        const orderProducts = cart.items.map(item => ({
+            productId: item._id,
+            quantity: item.count
+        }));
 
         const orderData = {
             ...values,
-            cartItems: cart.items,
+            products: orderProducts,
             totalPayment: cart.totalPayment,
         };
-
+        console.log(orderData)
         try {
             const response = await fetch('/api/orders', {
                 method: 'POST',
@@ -45,21 +51,22 @@ const OrderForm: FC = () => {
                 },
                 body: JSON.stringify(orderData),
             });
-
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
-            }
-
             const data = await response.json();
-            console.log(data.message);
-
-            // Aquí podrías redirigir o manejar la respuesta exitosa.
+            console.log(data);
+            setSubmitSuccess(`Order created successfully! Order number: ${data.orderNumber}`);
         } catch (error) {
             console.error('Error submitting order:', error);
         }
-
         setSubmitting(false);
     };
+
+    if (submitSuccess) {
+        return (
+            <div className="text-green-500 text-3xl flex justify-center items-center h-full pb-10">
+                <span>{submitSuccess}</span>
+            </div>
+        )
+    }
 
     return (
         <Formik
