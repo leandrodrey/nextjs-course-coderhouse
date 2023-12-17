@@ -26,7 +26,6 @@ const OrderForm = () => (
         initialValues={initialValues}
         validationSchema={OrderSchema}
         onSubmit={(values, {setSubmitting}) => {
-            console.log(values);
             setSubmitting(false);
         }}
     >

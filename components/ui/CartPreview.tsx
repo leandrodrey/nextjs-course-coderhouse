@@ -8,7 +8,7 @@ const CartPreview: FC = () => {
 
     return (
         <div className="bg-black p-4 text-white">
-            <h3 className="mb-4 text-lg">Cart Preview</h3>
+            <h3 className="mb-10 text-lg">Cart Preview</h3>
             <ul className="space-y-4">
                 {cart.items.map((item, index) => (
                     <li key={index} className="flex justify-between items-center">
