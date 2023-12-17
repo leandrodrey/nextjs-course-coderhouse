@@ -1,5 +1,5 @@
 'use client'
-import {FC, useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import {Formik, Field, Form, ErrorMessage, useField} from 'formik';
 import * as Yup from 'yup';
 import {ICategory} from "@/interfaces/ICategory";
@@ -39,9 +39,13 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
         try {
             // Subir imagen
             const imageData = new FormData();
-            imageData.append('image', values.image);
+            if (values.image) {
+                imageData.append('image', values.image);
+            } else {
+                throw new Error('No image provided');
+            }
 
-            const imageResponse = await fetch('/api/upload', {
+            const imageResponse = await fetch('/api/product/upload', {
                 method: 'POST',
                 body: imageData,
             });
@@ -85,10 +89,10 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
         setSubmitting(false);
     };
 
-    const FileInput = ({ ...props }) => {
-        const [field, meta, helpers] = useField(props);
+    const FileInput = ({ name, ...props }: { name: string; [key: string]: any }) => {
+        const [field, meta, helpers] = useField(name);
 
-        const handleChange = (event) => {
+        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             const files = event.target.files;
             let file = null;
             if (files && files.length) {
@@ -99,7 +103,7 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
 
         return (
             <>
-                <input type="file" onChange={handleChange} {...props} />
+                <input type="file" name={name} onChange={handleChange} {...props} />
                 {meta.touched && meta.error ? (
                     <div className="text-red-500 text-xs italic">{meta.error}</div>
                 ) : null}
