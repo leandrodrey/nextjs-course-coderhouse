@@ -1,40 +1,68 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/database';
-import mongoose from 'mongoose';
+import { promises as fsPromises, createWriteStream } from 'fs';
+import path from 'path';
 import ProductModel from '@/models/Products';
+import { db } from '@/database';
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+import { Readable } from 'stream';
+
+const pipelineAsync = promisify(pipeline);
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
     await db.connect();
 
     try {
-        // En lugar de `request.json()`, usa `request.formData()` para obtener los datos del formulario.
         const formData = await request.formData();
         const title = formData.get('title');
         const description = formData.get('description');
         const price = formData.get('price');
         const stock = formData.get('stock');
         const imageFile = formData.get('image');
+        const categoryId = formData.get('categoryId');
 
-        // Asegúrate de validar cada campo y convertirlos a los tipos esperados
-        if (typeof title !== 'string' || typeof description !== 'string' ||
-            typeof price !== 'string' || typeof stock !== 'string' || !imageFile) {
-            return new NextResponse(JSON.stringify({
-                error: 'Invalid form data'
-            }), {
-                status: 400,
-                headers: { 'Content-Type': 'application/json' }
-            });
+        if (
+            typeof title !== 'string' ||
+            typeof description !== 'string' ||
+            typeof price !== 'string' ||
+            typeof stock !== 'string' ||
+            typeof categoryId !== 'string' ||
+            !(imageFile instanceof Blob) // Cambia File a Blob si no estás en un entorno de navegador
+        ) {
+            throw new Error('Invalid form data');
         }
 
-        // Aquí deberías manejar la carga de archivos. Por ejemplo, guardar el archivo en el sistema de archivos o en un servicio de almacenamiento.
-        // Por ejemplo, puedes usar `imageFile.stream()` para obtener un ReadableStream y luego escribirlo en el sistema de archivos.
+        // Crea el directorio si no existe
+        const uploadDir = path.join(process.cwd(), 'public/gamebazar');
+        await fsPromises.mkdir(uploadDir, { recursive: true });
+
+        const imageFilePath = path.join(uploadDir, imageFile.name);
+
+        // Guarda la imagen en el sistema de archivos
+        const imageFileStream = imageFile.stream();
+        const reader = imageFileStream.getReader();
+
+        const nodeStream = new Readable({
+            async read() {
+                const result = await reader.read();
+                if (result.done) {
+                    this.push(null);
+                } else {
+                    this.push(new Uint8Array(result.value));
+                }
+            }
+        });
+
+        const fileStream = createWriteStream(imageFilePath);
+        await pipelineAsync(nodeStream, fileStream);
 
         const newProduct = new ProductModel({
             title,
             description,
             price: parseFloat(price),
             stock: parseInt(stock),
-            // Aquí deberías guardar el nombre de archivo o URL después de cargar la imagen.
+            image: `/gamebazar/${imageFile.name}`,
+            categoryId: parseInt(categoryId)
         });
 
         const savedProduct = await newProduct.save();
