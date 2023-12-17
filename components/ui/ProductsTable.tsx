@@ -26,6 +26,7 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                 <th scope="col" className="py-3 px-6 hidden sm:table-cell">Description</th>
                 <th scope="col" className="py-3 px-6 hidden lg:table-cell">Image</th>
                 <th scope="col" className="py-3 px-6">Price</th>
+                <th scope="col" className="py-3 px-6">Stock</th>
                 {context === 'cart' && (
                     <>
                         <th scope="col" className="py-3 px-6">Count</th>
@@ -48,7 +49,7 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                             width={640}
                             height={360}
                             className="w-10 h-10 rounded-full"
-                            placeholder = "blur"
+                            placeholder="blur"
                             blurDataURL="/loading.png"
                         />
                     </td>
@@ -59,10 +60,11 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                             <td className="py-4 px-6">{'count' in product ? `$${(product.price * product.count).toFixed(2)}` : 'N/A'}</td>
                         </>
                     )}
+                    <td className="py-4 px-6">{product.stock}</td>
                     <td className="py-4 px-6">
                         {action === 'remove' ?
-                            (<XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer' onClick={() => removeItemFromCart(product)}/>) :
-                            (<PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300"/>)
+                            (<XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6' onClick={() => removeItemFromCart(product)}/>) :
+                            (<PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6"/>)
                         }
                     </td>
                 </tr>
