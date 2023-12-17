@@ -38,7 +38,7 @@ const ProductsTableContainer:FC<IProductTable> = ({action= 'remove', context= 'c
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
             <ProductsTable products={componentProducts} action={action} context={context} />
             <ProductsTableCard products={componentProducts} action={action} context={context} />
-            <p className="text-lg text-gray-300 mt-4 text-right">Total: <span className='text-2xl'>${cart.totalPayment.toFixed(2)}</span></p>
+            <p className="text-lg text-gray-300 mt-4 text-right">Total Order: <span className='text-2xl'>${cart.totalPayment.toFixed(2)}</span></p>
         </div>
     );
 }
