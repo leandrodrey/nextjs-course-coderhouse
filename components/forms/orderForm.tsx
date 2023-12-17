@@ -25,7 +25,7 @@ const OrderSchema = Yup.object().shape({
 const OrderForm: FC = () => {
 
     const {cart} = useContext(CartContext);
-    const [submitSuccess, setSubmitSuccess] = useState('');
+    const [submitOrderId, setSubmitOrderId] = useState('');
 
     const handleSubmit = async (
         values: typeof initialValues,
@@ -33,7 +33,7 @@ const OrderForm: FC = () => {
     ) => {
 
         const orderProducts = cart.items.map(item => ({
-            productId: item._id,
+            productId: item.id,
             quantity: item.count
         }));
 
@@ -42,7 +42,7 @@ const OrderForm: FC = () => {
             products: orderProducts,
             totalPayment: cart.totalPayment,
         };
-        console.log(orderData)
+
         try {
             const response = await fetch('/api/orders', {
                 method: 'POST',
@@ -52,18 +52,18 @@ const OrderForm: FC = () => {
                 body: JSON.stringify(orderData),
             });
             const data = await response.json();
-            console.log(data);
-            setSubmitSuccess(`Order created successfully! Order number: ${data.orderNumber}`);
+            setSubmitOrderId(data.orderNumber);
         } catch (error) {
             console.error('Error submitting order:', error);
         }
         setSubmitting(false);
     };
 
-    if (submitSuccess) {
+    if (submitOrderId) {
         return (
-            <div className="text-green-500 text-3xl flex justify-center items-center h-full pb-10">
-                <span>{submitSuccess}</span>
+            <div className="flex flex-col justify-center items-center h-full pb-10">
+                <p className="text-green-500 text-3xl pb-6"> Your order has been submitted successfully!</p>
+                <p className="text-lg">Your order number is: {submitOrderId}</p>
             </div>
         )
     }
@@ -114,7 +114,7 @@ const OrderForm: FC = () => {
                     </div>
 
                     <button type="submit" disabled={isSubmitting} className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Submit Order
+                        Submit Order!
                     </button>
                 </Form>
             )}
