@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import OrderForm from "@/components/forms/orderForm";
+import OrderForm from "@/components/forms/OrderForm";
 import CartPreview from "@/components/ui/CartPreview";
 
 export default function CheckOutPage(): ReactElement {
