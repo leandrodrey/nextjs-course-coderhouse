@@ -55,3 +55,88 @@ export async function GET(request: NextRequest, {params}: { params: { productId:
         await db.disconnect();
     }
 }
+
+export async function PUT(request: NextRequest, {params}: { params: { productId: string } }): Promise<NextResponse> {
+    const {productId} = params;
+
+    if (!mongoose.isValidObjectId(productId)) {
+        return new NextResponse(JSON.stringify({error: 'Invalid productId'}), {
+            status: 400,
+            headers: {'Content-Type': 'application/json'}
+        });
+    }
+
+    const productData = await request.json();
+    await db.connect();
+
+    try {
+        const updatedProduct = await ProductModel.findByIdAndUpdate(
+            productId,
+            productData,
+            {new: true}
+        );
+
+        if (!updatedProduct) {
+            return new NextResponse(JSON.stringify({error: 'Product not found'}), {
+                status: 404,
+                headers: {'Content-Type': 'application/json'}
+            });
+        }
+
+        return new NextResponse(JSON.stringify(updatedProduct), {
+            status: 200,
+            headers: {'Content-Type': 'application/json'}
+        });
+    } catch (error) {
+        let errorMessage = 'An error occurred while updating the product.';
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        }
+        return new NextResponse(JSON.stringify({error: errorMessage}), {
+            status: 500,
+            headers: {'Content-Type': 'application/json'}
+        });
+    } finally {
+        await db.disconnect();
+    }
+}
+
+
+export async function DELETE(request: NextRequest, {params}: { params: { productId: string } }): Promise<NextResponse> {
+    const {productId} = params;
+
+    if (!mongoose.isValidObjectId(productId)) {
+        return new NextResponse(JSON.stringify({error: 'Invalid productId'}), {
+            status: 400,
+            headers: {'Content-Type': 'application/json'}
+        });
+    }
+
+    await db.connect();
+    try {
+        const deletedProduct = await ProductModel.findByIdAndDelete(productId);
+        if (!deletedProduct) {
+            return new NextResponse(JSON.stringify({error: 'Product not found'}), {
+                status: 404,
+                headers: {'Content-Type': 'application/json'}
+            });
+        }
+
+        return new NextResponse(JSON.stringify({message: 'Product deleted successfully'}), {
+            status: 200,
+            headers: {'Content-Type': 'application/json'}
+        });
+    } catch (error) {
+        let errorMessage = 'An error occurred while deleting the product.';
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        }
+        return new NextResponse(JSON.stringify({error: errorMessage}), {
+            status: 500,
+            headers: {'Content-Type': 'application/json'}
+        });
+    } finally {
+        await db.disconnect();
+    }
+}
+
