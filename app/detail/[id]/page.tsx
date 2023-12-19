@@ -7,7 +7,7 @@ import ProductCardDetail from "@/components/ui/ProductCardDetail";
 export const dynamic = 'force-dynamic';
 
 type Props = {
-    params: { id: number }
+    params: { id: string }
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -29,7 +29,7 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
 
 interface ProductDetailProps {
     params: {
-        id: number;
+        id: string;
     };
 }
 
