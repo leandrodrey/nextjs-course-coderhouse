@@ -1,6 +1,6 @@
 'use client'
 import React, {FC, useContext, useState} from 'react';
-import {ErrorMessage, Field, Form, Formik} from 'formik';
+import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {CartContext} from "@/context/CartProvider";
 
@@ -33,7 +33,7 @@ const OrderForm: FC = () => {
 
     const handleSubmit = async (
         values: typeof initialValues,
-        {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }
+        {setSubmitting}: FormikHelpers<typeof initialValues>
     ) => {
 
         const orderProducts = cart.items.map(item => ({
