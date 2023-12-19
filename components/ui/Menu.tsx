@@ -52,11 +52,10 @@ const Menu: FC<MenuProps> = ({ open, categories}) => {
                     className={`
                         flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                         ${menu.gap ? "mt-9" : "mt-2"} 
-                        ${pathname === menu.url ? "text-blue-600" : ""} 
                     `}
                 >
-                    <Link title={menu.title} className="hover:text-blue-300" href={menu.url}>{menu.icon}</Link>
-                    <Link href={menu.url} className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize`}>
+                    <Link title={menu.title} className={`hover:text-blue-300 ${pathname === menu.url ? "text-blue-300" : ""} `} href={menu.url}>{menu.icon}</Link>
+                    <Link href={menu.url} className={`${!open && "hidden"} origin-left duration-200 hover:text-blue-300 capitalize ${pathname === menu.url ? "text-blue-300" : ""} `}>
                         {menu.title}
                     </Link>
                 </li>
