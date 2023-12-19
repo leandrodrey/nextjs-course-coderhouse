@@ -2,7 +2,7 @@
 import {FC} from "react";
 import Link from "next/link";
 import {IProduct} from "@/interfaces/IProduct";
-import ProductsTableContainer from "@/components/ui/ProductsTableContainer";
+import ProductsAdminTable from "@/components/ui/ProductsAdminTable";
 
 interface MainContentProps {
     products: IProduct[];
@@ -25,7 +25,7 @@ const MainContent: FC<MainContentProps> = ({products}) => {
                                 </Link>
                             </div>
                             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-                                <ProductsTableContainer action="edit" context="admin" products={products} />
+                                <ProductsAdminTable products={products}/>
                             </div>
                         </div>
                     </div>
