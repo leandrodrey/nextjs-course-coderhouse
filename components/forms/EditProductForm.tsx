@@ -1,21 +1,15 @@
 'use client'
 import React, {FC, useState} from 'react';
+import Link from "next/link";
 import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
+import {IProduct} from "@/interfaces/IProduct";
 import {ICategory} from "@/interfaces/ICategory";
-import Link from "next/link";
 
-interface CreateProductFormProps {
+interface EditProductFormProps {
     categories: ICategory[];
+    product: IProduct;
 }
-
-const initialValues = {
-    title: '',
-    description: '',
-    price: '',
-    stock: '',
-    categoryId: ''
-};
 
 const ProductSchema = Yup.object().shape({
     title: Yup.string().required('Required'),
@@ -25,9 +19,16 @@ const ProductSchema = Yup.object().shape({
     categoryId: Yup.string().required('Required')
 });
 
-const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
+const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
+    const [productUpdated, setProductUpdated] = useState<boolean>(false);
 
-    const [productCreated, setProductCreated] = useState('');
+    const initialValues = {
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        stock: product.stock,
+        categoryId: product.categoryId,
+    };
 
     const handleSubmit = async (
         values: typeof initialValues,
@@ -35,45 +36,34 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
     ) => {
         setSubmitting(true);
         try {
-            const productData = {
-                title: values.title,
-                description: values.description,
-                price: values.price,
-                stock: values.stock,
-                categoryId: values.categoryId,
-            };
-            const productResponse = await fetch('/api/products', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(productData),
+            const productResponse = await fetch(`/api/products/${product.id}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(values),
             });
 
             if (!productResponse.ok) {
-                const errorResponse = await productResponse.json();
-                const errorMessage = errorResponse.error || 'Error creating product';
-                console.error('Error:', errorMessage);
+                console.error('Server error');
             }
+
             const productResult = await productResponse.json();
-            setProductCreated(productResult.title);
+            setProductUpdated(productResult.title);
+
         } catch (error) {
-            console.error('Error during fetch:', error);
+            console.error('Error:', error);
         }
         setSubmitting(false);
     };
 
-    if (productCreated) {
+    if (productUpdated) {
         return (
             <div className="flex flex-col justify-center items-center h-full pb-10">
-                <p className="text-green-500 text-3xl pt-6"> Your product {productCreated} has been submitted successfully!</p>
-                <div  className="flex justify-between pt-10" >
-                    <Link className="text-blue-500 text-xl p-6" href="/admin" prefetch={false}>
-                        Go back to dashboard
-                    </Link>
-                </div>
+                <p className="text-green-500 text-3xl pt-6">Your product {productUpdated} has been updated successfully!</p>
+                <Link className="text-blue-500 text-xl p-6" href="/admin" prefetch={false}>
+                    Go back to dashboard
+                </Link>
             </div>
-        )
+        );
     }
 
     return (
@@ -82,7 +72,7 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
             validationSchema={ProductSchema}
             onSubmit={handleSubmit}
         >
-            {({isSubmitting, setFieldValue}) => (
+            {({isSubmitting}) => (
                 <Form className="p-6 flex flex-wrap items-start justify-between">
                     <div className="mb-4 pr-2  w-1/2 ">
                         <label htmlFor="title" className="block text-white text-sm font-bold mb-2">Title</label>
@@ -128,7 +118,7 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
                             className={`w-1/4 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                             ${isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700'} text-white`}
                         >
-                            Create Product!
+                            Edit Product!
                         </button>
 
                         <button type="reset" className="w-1/4 font-bold ml-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gray-500 hover:bg-gray-700 text-white">
@@ -141,4 +131,4 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
     );
 };
 
-export default CreateProductForm;
+export default EditProductForm;
