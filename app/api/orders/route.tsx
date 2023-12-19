@@ -4,6 +4,13 @@ import { db } from '@/database';
 import mongoose from "mongoose";
 import ProductModel from "@/models/Products";
 
+/**
+ * Perform a POST request to create a new order.
+ *
+ * @async
+ * @param {NextRequest} request - The request object containing the order data.
+ * @returns {Promise<NextResponse>} The response object containing the result of the operation.
+ */
 export async function POST(request: NextRequest): Promise<NextResponse> {
     await db.connect();
 
