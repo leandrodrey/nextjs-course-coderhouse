@@ -1,20 +1,27 @@
 'use client'
-import {FC, useContext} from "react";
+import {FC, useState} from "react";
 import Image from "next/image";
-import {XCircleIcon, PencilIcon} from "@heroicons/react/24/solid";
-import {IProduct} from "@/interfaces/IProduct";
-import {CartContext} from "@/context/CartProvider";
-import {IProductTable} from "@/interfaces/IProductTable";
+import { PencilIcon, XCircleIcon } from "@heroicons/react/24/solid";
+import { IProduct } from "@/interfaces/IProduct";
+import { deleteProductById } from "@/services/ProductService";
+import Link from "next/link";
 
-const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
+interface IProductsTableProps {
+    products: IProduct[];
+}
 
-    const {dispatch} = useContext(CartContext);
+const ProductsAdminTable: FC<IProductsTableProps> = ({ products }) => {
 
-    const removeItemFromCart = (product: IProduct) => {
-        dispatch({
-            type: 'REMOVE_ITEM_FROM_CART',
-            payload: product
-        });
+    const [productsList, setProductsList] = useState<IProduct[]>(products);
+
+    const handleDeleteProduct = async (productId: string) => {
+        try {
+            await deleteProductById(productId);
+            const updatedProducts = productsList.filter(product => product.id !== productId);
+            setProductsList(updatedProducts);
+        } catch (error) {
+            console.error('Error deleting product:', error);
+        }
     }
 
     return (
@@ -27,17 +34,11 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                 <th scope="col" className="py-3 px-6 hidden lg:table-cell">Image</th>
                 <th scope="col" className="py-3 px-6">Price</th>
                 <th scope="col" className="py-3 px-6">Stock</th>
-                {context === 'cart' && (
-                    <>
-                        <th scope="col" className="py-3 px-6">Count</th>
-                        <th scope="col" className="py-3 px-6">Subtotal</th>
-                    </>
-                )}
                 <th scope="col" className="py-3 px-6">Action</th>
             </tr>
             </thead>
             <tbody>
-            {products && products.map((product) => (
+            {productsList && productsList.map((product) => (
                 <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
                     <td className="py-4 px-6">{product.id}</td>
                     <td className="py-4 px-6">{product.title}</td>
@@ -54,18 +55,12 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
                         />
                     </td>
                     <td className="py-4 px-6">${product.price.toFixed(2)}</td>
-                    {context === 'cart' && (
-                        <>
-                            <td className="py-4 px-6"> {'count' in product ? product.count : 'N/A'}</td>
-                            <td className="py-4 px-6">{'count' in product ? `$${(product.price * product.count).toFixed(2)}` : 'N/A'}</td>
-                        </>
-                    )}
                     <td className="py-4 px-6">{product.stock}</td>
                     <td className="py-4 px-6">
-                        {action === 'remove' ?
-                            (<XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6' onClick={() => removeItemFromCart(product)}/>) :
-                            (<PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6"/>)
-                        }
+                        <div className="flex items-center space-x-4">
+                            <Link href={`admin/products/edit/${product._id}`}><PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6"/></Link>
+                            <XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6' onClick={() => handleDeleteProduct(product.id)}/>
+                        </div>
                     </td>
                 </tr>
             ))}
@@ -74,4 +69,4 @@ const ProductsTable: FC<IProductTable> = ({action, context, products}) => {
     );
 }
 
-export default ProductsTable;
+export default ProductsAdminTable;
