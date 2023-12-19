@@ -5,6 +5,16 @@ import CategoryModel from '@/models/Category';
 import {IProductWithCategory} from "@/interfaces/IProduct";
 import { db } from "@/database";
 
+/**
+ * Retrieves products based on category.
+ *
+ * @async
+ * @param {NextRequest} request - The request object.
+ * @param {Object} params - The request parameters.
+ * @param {string} params.category - The category to filter products by.
+ * @returns {Promise<NextResponse>} - The response object containing the products.
+ * @throws {Error} - Throws an error if products retrieval fails.
+ */
 export async function GET(request: NextRequest, { params }: { params: { category: string } }): Promise<NextResponse> {
     const { category } = params;
 
