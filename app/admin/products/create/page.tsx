@@ -11,8 +11,8 @@ export default async function CreateProductsPage(): Promise<ReactElement> {
 
     return (
         <>
-            <h1>Create a new Product</h1>
-            <CreateProductForm categories={allCategories} />
+            <h2 className='mb-5 text-3xl'>Create a new Product</h2>
+            <CreateProductForm categories={allCategories}/>
         </>
     );
 };
