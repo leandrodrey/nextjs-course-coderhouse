@@ -1,3 +1,4 @@
+/*
 'use client'
 import { CldImage } from "next-cloudinary";
 import {XCircleIcon, PencilIcon} from "@heroicons/react/24/solid";
@@ -53,3 +54,4 @@ const ProductsTableCard:FC = ({action, context, products}) => {
 }
 
 export default ProductsTableCard;
+*/
