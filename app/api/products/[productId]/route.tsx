@@ -117,7 +117,6 @@ export async function PUT(request: NextRequest, {params}: { params: { productId:
     }
 }
 
-
 /**
  * Deletes a product by its productId.
  *
@@ -165,4 +164,3 @@ export async function DELETE(request: NextRequest, {params}: { params: { product
         await db.disconnect();
     }
 }
-

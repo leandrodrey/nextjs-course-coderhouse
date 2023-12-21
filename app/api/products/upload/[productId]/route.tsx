@@ -1,28 +1,65 @@
-import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
-import formidable from 'formidable';
-import fs from 'fs';
+import {NextRequest, NextResponse} from 'next/server';
+import * as formidable from "formidable";
+import cloudinary from '@/services/Cloudinary';
+import mongoose from "mongoose";
 
-const pipelineAsync = promisify(pipeline);
+export async function POST(request: NextRequest, {params}: { params: { productId: string } }): Promise<NextResponse> {
 
-export async function POST(request: NextRequest): Promise<NextResponse | void> {
+    const {productId} = params;
+
+    if (!mongoose.isValidObjectId(productId)) {
+        return new NextResponse(JSON.stringify({error: 'Provided product ID is invalid or malformed.'}), {
+            status: 400,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     const form = new formidable.IncomingForm();
-    form.uploadDir = "./public/uploads";
-    form.keepExtensions = true;
 
-    form.parse(request, async (err: Error, fields: formidable.Fields, files: formidable.Files) => {
-        if (err) {
-            res.status(500).json({ error: 'Error processing the file' });
-            return;
-        }
+    return new Promise((resolve, reject) => {
+        // @ts-ignore
+        form.parse(request, async (err, fields, files) => {
+            if (err) {
+                reject(new Response(JSON.stringify({ error: 'Error processing the file' }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' },
+                }));
+                return;
+            }
 
-        // Mueve el archivo a la carpeta 'public/gamebazar'
-        const oldPath = files.image.filepath;
-        const newPath = path.join(process.cwd(), 'public/gamebazar', files.image.originalFilename);
-        await fs.rename(oldPath, newPath);
+            if (!files.file) {
+                return new NextResponse(JSON.stringify({ error: 'No file uploaded' }), {
+                    status: 400,
+                    headers: { 'Content-Type': 'application/json' },
+                });
+            }
 
-        res.status(200).json({ fileName: files.image.originalFilename });
+            const file = files.file[0];
+            const cloudinaryResponse = await cloudinary.v2.uploader.upload(file.filepath, { public_id: productId });
+            const imageUrl = cloudinaryResponse.public_id;
+
+            const updateResponse = await fetch(`/api/products/${productId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageUrl }),
+            });
+
+            if (!updateResponse.ok) {
+                reject(new Response(JSON.stringify({ error: 'Failed to update product image' }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' },
+                }));
+                return;
+            }
+
+            const updatedProduct = await updateResponse.json();
+            resolve(new NextResponse(JSON.stringify(updatedProduct), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' },
+            }));
+        });
     });
+
 }
