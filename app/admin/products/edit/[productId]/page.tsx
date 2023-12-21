@@ -20,6 +20,7 @@ const EditProductPage: FC<EditProductPageProps> = async ({params}) => {
 
     return (
         <>
+            <h2 className="text-2xl text-gray-200">Edit Product <span className="text-blue-300">{product.title}</span></h2>
             <EditProductForm categories={allCategories} product={product} />
         </>
     )
