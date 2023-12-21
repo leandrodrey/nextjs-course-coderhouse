@@ -1,7 +1,7 @@
 'use client'
 import {FC, useState} from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import {ChevronLeftIcon} from "@heroicons/react/24/solid";
 import {ICategory} from "@/interfaces/ICategory";
 import MenuLogin from "@/components/ui/MenuLogIn";
@@ -24,8 +24,8 @@ const NavBar: FC<NavBarProps> = ({categories}) => {
                     <ChevronLeftIcon className={`text-blue-300 absolute cursor-pointer -right-3 top-10 w-7 ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}/>
                     <div className="flex flex-col gap-x-4 items-center">
                         <Link href="/">
-                            <Image
-                                src="/gamebazar/logo.png"
+                            <CldImage
+                                src="/gamebazar/logo"
                                 alt="Game Bazar Logo"
                                 width={640}
                                 height={360}
