@@ -5,6 +5,7 @@ import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {IProduct} from "@/interfaces/IProduct";
 import {ICategory} from "@/interfaces/ICategory";
+import ProductSuccess from "@/components/ui/ProductSuccess";
 
 interface EditProductFormProps {
     categories: ICategory[];
@@ -20,7 +21,7 @@ const ProductSchema = Yup.object().shape({
 });
 
 const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
-    const [productUpdated, setProductUpdated] = useState<boolean>(false);
+    const [productUpdated, setProductUpdated] = useState("");
 
     const initialValues = {
         title: product.title,
@@ -57,12 +58,7 @@ const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
 
     if (productUpdated) {
         return (
-            <div className="flex flex-col justify-center items-center h-full pb-10">
-                <p className="text-green-500 text-3xl pt-6">Your product {productUpdated} has been updated successfully!</p>
-                <Link className="text-blue-500 text-xl p-6" href="/admin" prefetch={false}>
-                    Go back to dashboard
-                </Link>
-            </div>
+            <ProductSuccess productTitle={productUpdated} productId={product.id} action="edit" />
         );
     }
 

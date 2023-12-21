@@ -3,7 +3,7 @@ import React, {FC, useState} from 'react';
 import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {ICategory} from "@/interfaces/ICategory";
-import Link from "next/link";
+import ProductSuccess from "@/components/ui/ProductSuccess";
 
 interface CreateProductFormProps {
     categories: ICategory[];
@@ -28,6 +28,7 @@ const ProductSchema = Yup.object().shape({
 const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
 
     const [productCreated, setProductCreated] = useState('');
+    const [productCreatedId, setProductCreatedId] = useState('');
 
     const handleSubmit = async (
         values: typeof initialValues,
@@ -57,6 +58,7 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
             }
             const productResult = await productResponse.json();
             setProductCreated(productResult.title);
+            setProductCreatedId(productResult.id);
         } catch (error) {
             console.error('Error during fetch:', error);
         }
@@ -65,14 +67,7 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
 
     if (productCreated) {
         return (
-            <div className="flex flex-col justify-center items-center h-full pb-10">
-                <p className="text-green-500 text-3xl pt-6"> Your product {productCreated} has been submitted successfully!</p>
-                <div  className="flex justify-between pt-10" >
-                    <Link className="text-blue-500 text-xl p-6" href="/admin" prefetch={false}>
-                        Go back to dashboard
-                    </Link>
-                </div>
-            </div>
+            <ProductSuccess productTitle={productCreated} productId={productCreatedId} action="create"/>
         )
     }
 
