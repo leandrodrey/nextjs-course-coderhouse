@@ -1,7 +1,7 @@
 'use client'
 import {FC, useContext} from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 import {PlusCircleIcon, MinusCircleIcon} from "@heroicons/react/24/solid";
 import {IProduct, IProductWithCount} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
@@ -29,8 +29,8 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
     return (
         <div className="bg-stone-900 bg-opacity-90 shadow rounded-lg p-4 min-w-[300px] max-w-[400px] w-full mt-4 md:mt-0 md:w-1/2 lg:w-1/3 xl:w-1/4">
             <Link href={`/detail/${product._id}`} className="transition duration-300 hover:text-blue-600" role="link">
-                <Image
-                    src={`/gamebazar/${product.image}.png`}
+                <CldImage
+                    src={`${product.image}`}
                     alt={`Imagen del producto: ${product.title}`}
                     width={640}
                     height={360}
