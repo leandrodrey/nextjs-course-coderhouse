@@ -77,7 +77,7 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
             validationSchema={ProductSchema}
             onSubmit={handleSubmit}
         >
-            {({isSubmitting, setFieldValue}) => (
+            {({isSubmitting}) => (
                 <Form className="p-6 flex flex-wrap items-start justify-between">
                     <div className="mb-4 pr-2  w-1/2 ">
                         <label htmlFor="title" className="block text-white text-sm font-bold mb-2">Title</label>

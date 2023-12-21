@@ -1,6 +1,5 @@
 'use client'
 import React, {FC, useState} from 'react';
-import Link from "next/link";
 import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {IProduct} from "@/interfaces/IProduct";
