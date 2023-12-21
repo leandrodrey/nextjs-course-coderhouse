@@ -1,12 +1,11 @@
 'use client'
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import {XCircleIcon, PencilIcon} from "@heroicons/react/24/solid";
 import {FC, useContext} from "react";
 import {IProduct} from "@/interfaces/IProduct";
 import {CartContext} from "@/context/CartProvider";
-import {IProductTable} from "@/interfaces/IProductTable";
 
-const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
+const ProductsTableCard:FC = ({action, context, products}) => {
 
     const {dispatch} = useContext(CartContext);
 
@@ -24,8 +23,8 @@ const ProductsTableCard:FC<IProductTable> = ({action, context, products}) => {
                     <div key={product.id} className="bg-white text-gray-800 dark:text-gray-500 rounded-lg mt-5 shadow-2xl border-1 border-black">
                         <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 dark:text-gray-400 p-2 rounded-t-lg mb-1">
                             <div><strong>ID {product.id}</strong> - {product.title}</div>
-                            <Image
-                                src={`/gamebazar/${product.image}`}
+                            <CldImage
+                                src={`${product.image}`}
                                 alt={`Imagen del producto: ${product.title}`}
                                 width={640}
                                 height={360}

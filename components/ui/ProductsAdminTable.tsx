@@ -1,6 +1,6 @@
 'use client'
 import {FC, useState} from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { PencilIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import { IProduct } from "@/interfaces/IProduct";
 import { deleteProductById } from "@/services/ProductService";
@@ -28,9 +28,9 @@ const ProductsAdminTable: FC<IProductsTableProps> = ({ products }) => {
         <table className="hidden md:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" className="py-3 px-6">ID</th>
+                <th scope="col" className="py-3 px-6 hidden lg:table-cell">ID</th>
                 <th scope="col" className="py-3 px-6">Title</th>
-                <th scope="col" className="py-3 px-6 hidden sm:table-cell">Description</th>
+                <th scope="col" className="py-3 px-6 hidden lg:table-cell">Description</th>
                 <th scope="col" className="py-3 px-6 hidden lg:table-cell">Image</th>
                 <th scope="col" className="py-3 px-6">Price</th>
                 <th scope="col" className="py-3 px-6">Stock</th>
@@ -40,12 +40,12 @@ const ProductsAdminTable: FC<IProductsTableProps> = ({ products }) => {
             <tbody>
             {productsList && productsList.map((product) => (
                 <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
-                    <td className="py-4 px-6">{product.id}</td>
+                    <td className="py-4 px-6 hidden lg:table-cell">{product.id}</td>
                     <td className="py-4 px-6">{product.title}</td>
-                    <td className="py-4 px-6 hidden sm:table-cell">{`${product.description.substring(0, 100)}...`}</td>
+                    <td className="py-4 px-6 hidden lg:table-cell">{`${product.description.substring(0, 100)}...`}</td>
                     <td className="py-4 px-6 hidden lg:table-cell">
-                        <Image
-                            src={`/gamebazar/${product.image}.png`}
+                        <CldImage
+                            src={`${product.image}`}
                             alt={`Imagen del producto: ${product.title}`}
                             width={640}
                             height={360}
