@@ -1,7 +1,7 @@
 'use client'
 import {FC, useContext} from "react";
+import { CldImage } from "next-cloudinary";
 import {CartContext} from "@/context/CartProvider";
-import Image from "next/image";
 
 const CartPreview: FC = () => {
     const {cart} = useContext(CartContext);
@@ -13,8 +13,8 @@ const CartPreview: FC = () => {
                 {cart.items.map((item, index) => (
                     <li key={index} className="flex justify-between items-center">
                         <div className="flex items-center space-x-1">
-                            <Image
-                                src={`/gamebazar/${item.image}.png`}
+                            <CldImage
+                                src={`${item.image}`}
                                 alt={`Imagen del producto: ${item.title}`}
                                 width={640}
                                 height={360}
