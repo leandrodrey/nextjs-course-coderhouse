@@ -15,7 +15,8 @@ const Header: FC = () => {
                 <div className="flex items-center">
                     {session.data && (
                         <>
-                            <h2 className="mr-3">Bienvenido, <span className="text-blue-300 font-semibold">{session.data?.user?.name}</span></h2>
+                            <h2 className="mr-3">Bienvenido, <span className="text-blue-300 font-semibold">{session.data?.user?.name}</span>
+                            </h2>
                             <Image
                                 src={userImage}
                                 alt="User Avatar"
@@ -23,7 +24,7 @@ const Header: FC = () => {
                                 height={100}
                                 className="object-contain rounded-full shadow-md"
                                 placeholder="blur"
-                                blurDataURL="/gamebazar/user_avatar.png"
+                                blurDataURL="gamebazar/user_avatar.png"
                             />
                         </>
                     )}
