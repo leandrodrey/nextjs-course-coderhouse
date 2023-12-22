@@ -7,7 +7,7 @@ const Header: FC = () => {
 
     const session = useSession();
     const user = session.data?.user as IUser;
-    const userImage = user?.image || '/gamebazar/user_avatar.png';
+    const userImage = user?.image || 'gamebazar/user_avatar.png';
 
     return (
         <header className="bg-stone-900 shadow-sm">
