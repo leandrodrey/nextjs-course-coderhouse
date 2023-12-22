@@ -106,13 +106,13 @@ const UploadImageForm: FC<UploadImageFormProps> = ({productId}) => {
     return (
         <section className="container mx-auto p-4">
             <div className="items-center mb-3">
-                <div {...getRootProps({className: 'dropzone border-dashed border-2 border-gray-300 rounded p-4 text-center cursor-pointer flex-grow h-20  hover:border-blue-300'})}>
+                <div {...getRootProps({className: 'dropzone border-dashed border-2 border-gray-300 rounded p-4 text-center cursor-pointer flex-grow md:h-20  hover:border-blue-300'})}>
                     <input {...getInputProps()} />
                     <p className="text-blue-500 text-xl font-semibold">Drag and drop some files here, or click to select files</p>
                     <em className="text-gray-300 text-sm">(Only 1 file and *.jpg and *.png images will be accepted)</em>
                 </div>
             </div>
-            <div className="mt-4 flex">
+            <div className="mt-4 flex flex-col md:flex-row">
                 {acceptedFileItems.length > 0 && uploadImageUrl && (
                     <div className="mt-4">
                         <CldImage
