@@ -64,16 +64,16 @@ I deployed this app in Heroku. You can see it here: https://nextjs-course-coderh
 - POST: Add new product
 
 ### Products: /api/products/[productId]
-- PUT: Update product
-- DELETE: Delete product
+- PUT: Update product by id
+- DELETE: Delete product by id
 
 ### Products: /api/products/category/[categoryId]
-- GET: Get products by category
+- GET: Get products by category id or category name
 
 ### Categories: /api/categories
-- POST: Add new category
+- GET: Get all categories
 
 ### Orders: /api/orders
-- POST: Add new order
+- POST: Create a new order
 
 ### Auth: /api/auth
