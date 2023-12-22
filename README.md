@@ -73,4 +73,7 @@ I deployed this app in Heroku. You can see it here: https://nextjs-course-coderh
 ## Categories: /api/categories
 - POST: Add new category
 
+## Orders: /api/orders
+- POST: Add new order
+
 ## Auth: /api/auth
