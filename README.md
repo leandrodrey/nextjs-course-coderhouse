@@ -8,6 +8,7 @@
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Built Using](#built_using)
+- [Endpoints](#endpoints)
 
 ## 🧐 About <a name = "about"></a>
 This is a course from Coderhouse about Next JS. The project is about creating a self-manageable Ecommerce website.
@@ -57,7 +58,7 @@ I deployed this app in Heroku. You can see it here: https://nextjs-course-coderh
 - - Yup - Forms validation
 -  [React Dropzone](https://react-dropzone.js.org/) - Upload Files
 
-## 🚀 Endpoints
+## 📝 Endpoints <a name = "endpoints"></a>
 
 ###  Products: /api/products
 - POST: Add new product
