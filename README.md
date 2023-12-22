@@ -63,17 +63,17 @@ I deployed this app in Heroku. You can see it here: https://nextjs-course-coderh
 ###  Products: /api/products
 - POST: Add new product
 
-## Products: /api/products/[productId]
+### Products: /api/products/[productId]
 - PUT: Update product
 - DELETE: Delete product
 
-## Products: /api/products/category/[categoryId]
+### Products: /api/products/category/[categoryId]
 - GET: Get products by category
 
-## Categories: /api/categories
+### Categories: /api/categories
 - POST: Add new category
 
-## Orders: /api/orders
+### Orders: /api/orders
 - POST: Add new order
 
-## Auth: /api/auth
+### Auth: /api/auth
