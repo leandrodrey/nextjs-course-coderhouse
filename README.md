@@ -56,3 +56,20 @@ I deployed this app in Heroku. You can see it here: https://nextjs-course-coderh
 - [Formik](https://formik.org//) - Forms
 - - Yup - Forms validation
 -  [React Dropzone](https://react-dropzone.js.org/) - Upload Files
+
+## 🚀 Endpoints
+
+###  Products: /api/products
+- POST: Add new product
+
+## Products: /api/products/[productId]
+- PUT: Update product
+- DELETE: Delete product
+
+## Products: /api/products/category/[categoryId]
+- GET: Get products by category
+
+## Categories: /api/categories
+- POST: Add new category
+
+## Auth: /api/auth
