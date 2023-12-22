@@ -1,7 +1,7 @@
 'use client'
 import {FC, useState} from "react";
 import Link from "next/link";
-import { CldImage } from "next-cloudinary";
+import {CldImage} from "next-cloudinary";
 import {ChevronLeftIcon} from "@heroicons/react/24/solid";
 import {ICategory} from "@/interfaces/ICategory";
 import MenuLogin from "@/components/ui/MenuLogIn";
@@ -37,9 +37,9 @@ const NavBar: FC<NavBarProps> = ({categories}) => {
                             Game Bazar
                         </h1>
                     </div>
-                    <MenuLogin open={open} />
-                    <Menu open={open} categories={categories} />
-                    <CartWidget open={open} />
+                    <MenuLogin open={open}/>
+                    <Menu open={open} categories={categories}/>
+                    <CartWidget open={open}/>
                 </div>
                 <MenuSocialIcons menuOpen={open}/>
             </div>

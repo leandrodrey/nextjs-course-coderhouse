@@ -1,9 +1,9 @@
 'use client'
 import {FC, ReactElement} from "react";
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
-import {HomeIcon, UserIcon, RocketLaunchIcon} from "@heroicons/react/24/solid";
-import { ICategory } from "@/interfaces/ICategory";
+import {usePathname} from 'next/navigation'
+import {HomeIcon, RocketLaunchIcon, UserIcon} from "@heroicons/react/24/solid";
+import {ICategory} from "@/interfaces/ICategory";
 
 interface MenuProps {
     open: boolean;
@@ -17,19 +17,20 @@ interface MenuOption {
     gap: boolean;
 }
 
-const Menu: FC<MenuProps> = ({ open, categories}) => {
+const Menu: FC<MenuProps> = ({open, categories}) => {
     const pathname = usePathname()
 
     const staticMenu = [
-        { title: "Home",
+        {
+            title: "Home",
             url: '/',
-            icon: <HomeIcon className="h-6 w-6" />,
+            icon: <HomeIcon className="h-6 w-6"/>,
             gap: false
         },
         {
             title: "Admin",
             url: '/admin',
-            icon: <UserIcon className="h-6 w-6" />,
+            icon: <UserIcon className="h-6 w-6"/>,
             gap: false
         }
     ];
@@ -38,7 +39,7 @@ const Menu: FC<MenuProps> = ({ open, categories}) => {
         {
             title: category.title,
             url: `/category/${category.title.toLowerCase()}`,
-            icon: <RocketLaunchIcon className="h-6 w-6" />,
+            icon: <RocketLaunchIcon className="h-6 w-6"/>,
             gap: index === 0
         }
     )) || [];
