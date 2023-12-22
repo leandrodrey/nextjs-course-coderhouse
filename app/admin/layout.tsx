@@ -15,11 +15,9 @@ export default function DashboardLayout({children}: {
     if (session) {
         return (
             <div className="container mx-auto mt-10 md:p-5">
-                {/*<p>Bienvenido, {session.user?.email}</p>*/}
-                {/*<button onClick={() => signOut()}>Logout</button>*/}
                 <div className="flex flex-col h-full flex-1">
                     <Header/>
-                    <div className="shadow rounded-lg p-6">
+                    <div className="shadow rounded-lg p-2 md:p-6">
                         {children}
                     </div>
                 </div>

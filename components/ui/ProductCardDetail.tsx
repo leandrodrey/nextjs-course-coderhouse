@@ -1,9 +1,9 @@
 'use client'
-import {CldImage} from "next-cloudinary";
-import Link from "next/link";
-import AddToCart from "@/components/ui/AddToCart";
 import {FC} from "react";
+import Link from "next/link";
+import {CldImage} from "next-cloudinary";
 import {IProductWithCategory} from "@/interfaces/IProduct";
+import AddToCart from "@/components/ui/AddToCart";
 
 interface ProductCardDetailProps {
     product: IProductWithCategory
@@ -26,7 +26,7 @@ const ProductCardDetail: FC<ProductCardDetailProps> = ({product}) => {
             </div>
             <div className="w-full md:w-1/2 lg:w-2/3 bg-stone-900 bg-opacity-90 rounded-lg p-6 shadow-xl flex flex-col justify-between">
                 <div className="">
-                    <div className="flex justify-between items-center mb-5">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-5">
                         <h1 className="text-3xl font-bold text-blue-300 mb-3">{product.title}</h1>
                         <span className="text-3xl text-gray-100">${product.price}</span>
                     </div>

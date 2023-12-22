@@ -68,26 +68,26 @@ const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
             onSubmit={handleSubmit}
         >
             {({isSubmitting}) => (
-                <Form className="p-6 flex flex-wrap items-start justify-between">
-                    <div className="mb-4 pr-2  w-1/2 ">
+                <Form className="md:p-6 md:flex md:flex-wrap md:items-start md:justify-between">
+                    <div className="mb-4 md:pr-2  md:w-1/2 ">
                         <label htmlFor="title" className="block text-white text-sm font-bold mb-2">Title</label>
                         <Field type="text" name="title" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                         <ErrorMessage name="title" component="div" className="text-red-300 text-xs italic"/>
                     </div>
 
-                    <div className="mb-4 pl-2 w-1/2">
+                    <div className="mb-4 md:pl-2 md:w-1/2">
                         <label htmlFor="price" className="block text-white text-sm font-bold mb-2">Price</label>
                         <Field type="number" name="price" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                         <ErrorMessage name="price" component="div" className="text-red-500 text-xs italic"/>
                     </div>
 
-                    <div className="mb-4 pr-2 w-1/2">
+                    <div className="mb-4 md:pr-2 md:w-1/2">
                         <label htmlFor="stock" className="block text-white text-sm font-bold mb-2">Stock</label>
                         <Field type="number" name="stock" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                         <ErrorMessage name="stock" component="div" className="text-red-500 text-xs italic"/>
                     </div>
 
-                    <div className="mb-4 pl-2 w-1/2">
+                    <div className="mb-4 md:pl-2 w-ful md:w-1/2">
                         <label htmlFor="categoryId" className="block text-white text-sm font-bold mb-2">Category</label>
                         <Field as="select" name="categoryId" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             <option value="">Select a category</option>
@@ -100,7 +100,7 @@ const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
                         <ErrorMessage name="categoryId" component="div" className="text-red-500 text-xs italic"/>
                     </div>
 
-                    <div className="mb-4 pl-2 w-full">
+                    <div className="mb-4 md:pl-2 w-full">
                         <label htmlFor="description" className="block text-white text-sm font-bold mb-2">Description</label>
                         <Field as="textarea" name="description" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                         <ErrorMessage name="description" component="div" className="text-red-500 text-xs italic"/>
@@ -110,14 +110,10 @@ const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className={`w-1/4 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                            className={`md:w-1/4 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                             ${isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700'} text-white`}
                         >
                             Edit Product!
-                        </button>
-
-                        <button type="reset" className="w-1/4 font-bold ml-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gray-500 hover:bg-gray-700 text-white">
-                            Reset
                         </button>
                     </div>
                 </Form>
