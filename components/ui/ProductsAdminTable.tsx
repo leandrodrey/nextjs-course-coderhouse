@@ -1,28 +1,49 @@
 'use client'
 import {FC, useState} from "react";
-import { CldImage } from "next-cloudinary";
-import { PencilIcon, XCircleIcon } from "@heroicons/react/24/solid";
-import { IProduct } from "@/interfaces/IProduct";
-import { deleteProductById } from "@/services/ProductService";
+import {CldImage} from "next-cloudinary";
+import {PencilIcon, XCircleIcon} from "@heroicons/react/24/solid";
+import {confirmAlert} from 'react-confirm-alert';
+import {IProduct} from "@/interfaces/IProduct";
+import {deleteProductById} from "@/services/ProductService";
 import Link from "next/link";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 interface IProductsTableProps {
     products: IProduct[];
 }
 
-const ProductsAdminTable: FC<IProductsTableProps> = ({ products }) => {
+const ProductsAdminTable: FC<IProductsTableProps> = ({products}) => {
 
     const [productsList, setProductsList] = useState<IProduct[]>(products);
 
-    const handleDeleteProduct = async (productId: string) => {
-        try {
-            await deleteProductById(productId);
-            const updatedProducts = productsList.filter(product => product.id !== productId);
-            setProductsList(updatedProducts);
-        } catch (error) {
-            console.error('Error deleting product:', error);
-        }
-    }
+    const handleDeleteProduct = async (productId: string, productTitle: string) => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div className='custom-ui bg-stone-900 p-6'>
+                        <h1 className="text-xl">Confirm to delete</h1>
+                        <p className="py-2">Are you sure you want to delete <span className="text-blue-600 font-semibold">{productTitle}</span>? This action cannot be undone.</p>
+                        <button
+                            onClick={async () => {
+                                try {
+                                    await deleteProductById(productId);
+                                    const updatedProducts = productsList.filter(product => product.id !== productId);
+                                    setProductsList(updatedProducts);
+                                } catch (error) {
+                                    console.error('Error deleting product:', error);
+                                }
+                                onClose();
+                            }}
+                            className="bg-red-600 rounded py-2 px-6 mr-4 hover:bg-red-400"
+                        >
+                            Yes
+                        </button>
+                        <button onClick={onClose} className="bg-gray-600 rounded py-2 px-6 hover:bg-gray-400">No</button>
+                    </div>
+                );
+            }
+        });
+    };
 
     return (
         <table className="md:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -59,7 +80,7 @@ const ProductsAdminTable: FC<IProductsTableProps> = ({ products }) => {
                     <td className="py-4 px-6">
                         <div className="flex items-center space-x-4">
                             <Link href={`admin/products/edit/${product._id}`}><PencilIcon className="text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6"/></Link>
-                            <XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6' onClick={() => handleDeleteProduct(product.id)}/>
+                            <XCircleIcon className='text-blue-300 hover:text-blue-700 transition duration-300 cursor-pointer h-6 w-6' onClick={() => handleDeleteProduct(product.id, product.title)}/>
                         </div>
                     </td>
                 </tr>

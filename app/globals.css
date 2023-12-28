@@ -24,3 +24,8 @@ body {
             rgb(var(--background-end-rgb))
     ) rgb(var(--background-start-rgb));
 }
+
+.react-confirm-alert-overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    /* Añadir más estilos aquí */
+}
