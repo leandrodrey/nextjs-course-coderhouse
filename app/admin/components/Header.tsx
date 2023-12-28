@@ -15,7 +15,7 @@ const Header: FC = () => {
             <div className="flex justify-center items-center mb-4">
                 <button className="" title="Sign Out" onClick={() => signOut()}>
                     <ArrowLeftOnRectangleIcon className="h-6 w-6"/></button>
-                <button onClick={() => signOut()} className={`${!open && "hidden"} origin-left duration-200 text-blue-200 hover:text-blue-300 capitalize ml-2`}>Logout</button>
+                <button onClick={() => signOut()} className={`origin-left duration-200 text-blue-200 hover:text-blue-300 capitalize ml-2`}>Logout</button>
             </div>
             {session.data && (
                 <div className="flex flex-col md:flex-row items-center text-center">
