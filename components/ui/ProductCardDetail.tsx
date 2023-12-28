@@ -1,11 +1,9 @@
 'use client'
 import {FC} from "react";
 import Link from "next/link";
-import {CldImage} from "next-cloudinary";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import {IProductWithCategory} from "@/interfaces/IProduct";
 import AddToCart from "@/components/ui/AddToCart";
+import Slider from "@/components/ui/Slider";
 
 interface ProductCardDetailProps {
     product: IProductWithCategory
@@ -18,24 +16,7 @@ const ProductCardDetail: FC<ProductCardDetailProps> = ({product}) => {
     return (
         <div className="md:flex md:items-stretch">
             <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center mb-4 md:mb-0">
-                <Swiper
-                    spaceBetween={50}
-                    slidesPerView={1}
-                >
-                    {images.map((image, index) => (
-                        <SwiperSlide key={index}>
-                            <CldImage
-                                src={image}
-                                alt={`Imagen de ${product.title}`}
-                                width={640}
-                                height={640}
-                                className="object-contain"
-                                placeholder="blur"
-                                blurDataURL="/loading.png"
-                            />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                <Slider title={product.title} images={images} />
             </div>
             <div className="w-full md:w-1/2 lg:w-2/3 bg-stone-900 bg-opacity-90 rounded-lg p-6 shadow-xl flex flex-col justify-between">
                 <div className="">
