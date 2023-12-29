@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import {ReactNode} from "react";
 import Header from "@/app/admin/components/Header";
 import {useSession} from "next-auth/react";
