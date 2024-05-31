@@ -5,7 +5,7 @@ import ProductsList from "@/components/ui/ProductsList";
 
 export default async function Home(): Promise<ReactElement> {
 
-    const allProducts: IProduct[] = await productService.getProductsByCategory('all');
+    const allProducts: IProduct[]| null  = await productService.getProductsByCategory('all');
 
     if (!allProducts) {
         return <div>Products Not Found</div>;

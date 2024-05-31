@@ -4,8 +4,6 @@ import {IProductWithCategory} from "@/interfaces/IProduct";
 import { productService } from '@/services/ProductService';
 import ProductCardDetail from "@/components/ui/ProductCardDetail";
 
-
-
 type Props = {
     params: { id: string }
     searchParams: { [key: string]: string | string[] | undefined }
@@ -13,7 +11,7 @@ type Props = {
 
 export async function generateMetadata({params}: Props, parent: ResolvingMetadata): Promise<Metadata> {
     const {id} = params;
-    const product: IProductWithCategory | undefined  = await productService.getProductById(id);
+    const product: IProductWithCategory | null  = await productService.getProductById(id);
 
     if (!product) {
         return {
@@ -36,7 +34,7 @@ interface ProductDetailProps {
 const ProductDetailPage: FC<ProductDetailProps> = async ({params}) => {
 
     const {id} = params;
-    const product: IProductWithCategory = await productService.getProductById(id);
+    const product: IProductWithCategory| null  = await productService.getProductById(id);
 
     if (!product) {
         return <div className="text-center text-xl text-red-500 p-5">Product Not Found</div>;

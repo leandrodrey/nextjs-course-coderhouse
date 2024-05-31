@@ -7,7 +7,6 @@ import ProviderWrapper from "@/app/ProviderWrapper";
 import NavBar from "@/components/ui/NavBar";
 import {ICategory} from "@/interfaces/ICategory";
 import { categoryService } from '@/services/CategoryService';
-import {NextResponse} from "next/server";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -43,7 +42,7 @@ export default async function RootLayout({children}: RootLayoutProps) {
 
     const session = await getServerSession();
 
-    const allCategories: ICategory[] = await categoryService.getCategories();
+    const allCategories: ICategory[]| null  = await categoryService.getCategories();
 
     if (!allCategories) {
         return <div>Products Not Found</div>;

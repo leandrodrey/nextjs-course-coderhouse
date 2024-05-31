@@ -5,8 +5,6 @@ import { productService } from '@/services/ProductService';
 import ProductsList from "@/components/ui/ProductsList";
 import Loader from "@/components/ui/Loader";
 
-
-
 export const metadata: Metadata = {
     title: 'Products by Category',
     description: 'Products filtered by category',
@@ -22,9 +20,9 @@ const ProductCategory: FC<ProductCategoryProps> = async ({params}) => {
 
     const {category} = params;
 
-    const filteredProducts: IProduct[] = await productService.getProductsByCategory(category);
+    const filteredProducts: IProduct[]| null  = await productService.getProductsByCategory(category);
 
-    if (!filteredProducts.length) {
+    if (!filteredProducts) {
         return <div>Products Not Found</div>;
     }
 
