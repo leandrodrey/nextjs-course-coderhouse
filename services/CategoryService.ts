@@ -1,9 +1,20 @@
-import {ICategory} from "@/interfaces/ICategory";
+import CategoryModel from '@/models/Category';
+import { db } from '@/database';
 
-export async function getAllCategories(): Promise<ICategory[]> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_CATEGORIES_URL}`);
-    if (!res.ok) {
-        throw new Error('Failed to fetch category data');
+class CategoryService {
+    async getCategories(): Promise<any[] | null> {
+        await db.connect();
+
+        try {
+            const categories = await CategoryModel.find().lean(); // Use .lean() for plain objects
+            return categories.map(category => ({ ...category, _id: category._id.toString() }));
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+            return null;
+        } finally {
+            await db.disconnect();
+        }
     }
-    return res.json();
 }
+
+export const categoryService = new CategoryService();

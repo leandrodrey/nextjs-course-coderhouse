@@ -1,26 +1,97 @@
-import { IProduct } from "@/interfaces/IProduct";
+import mongoose from 'mongoose';
+import CategoryModel from '@/models/Category';
+import ProductModel from '@/models/Products';
+import {IProductWithCategory} from '@/interfaces/IProduct';
+import {db} from '@/database';
 
-export async function getProductById(productId: string): Promise<IProduct> {
-    const res = await fetch(`${process.env.API_PRODUCTS_URL}/${productId}`, { cache: 'no-store' });
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+class ProductService {
+
+    async getProductById(productId: string): Promise<IProductWithCategory | null> {
+        if (!mongoose.isValidObjectId(productId)) {
+            return null; // Manejo de ID inválido
+        }
+
+        await db.connect();
+        try {
+            const product = await ProductModel.findById(productId);
+            if (!product) return null; // Producto no encontrado
+            const category = await CategoryModel.findById(product.categoryId);
+            return {
+                ...product.toObject(),
+                categoryName: category?.title || 'Unknown',
+            };
+        } finally {
+            await db.disconnect();
+        }
     }
-    return res.json();
+
+    async getProductsByCategory(category: string): Promise<IProductWithCategory[] | null> {
+        await db.connect();
+
+        try {
+            let products;
+
+            if (category === 'all') {
+                products = await ProductModel.find();
+            } else {
+                if (mongoose.isValidObjectId(category)) {
+                    products = await ProductModel.find({categoryId: category});
+                } else {
+                    const categoryData = await CategoryModel.findOne({title: category});
+                    if (!categoryData) {
+                        return null; // Manejo de categoría no encontrada
+                    }
+                    products = await ProductModel.find({categoryId: categoryData._id});
+                }
+            }
+
+            if (!products.length) {
+                return null; // Manejo de productos no disponibles en la categoría
+            }
+
+            const productsWithCategory: IProductWithCategory[] = await Promise.all(
+                products.map(async (product) => {
+                    const categoryData = await CategoryModel.findById(product.categoryId);
+                    return {
+                        ...product.toObject(),
+                        categoryName: categoryData?.title || 'Unknown',
+                    } as IProductWithCategory;
+                })
+            );
+
+            return productsWithCategory;
+        } finally {
+            await db.disconnect();
+        }
+    }
+
+    async updateProduct(productId: string, productData: any): Promise<IProductWithCategory | null> {
+        if (!mongoose.isValidObjectId(productId)) {
+            return null; // Manejo de ID inválido
+        }
+
+        await db.connect();
+        try {
+            const updatedProduct = await ProductModel.findByIdAndUpdate(productId, productData, {new: true});
+            return updatedProduct ? updatedProduct.toObject() : null; // Manejo de producto no encontrado
+        } finally {
+            await db.disconnect();
+        }
+    }
+
+    async deleteProductById(productId: string): Promise<boolean> {
+        if (!mongoose.isValidObjectId(productId)) {
+            return false; // Manejo de ID inválido
+        }
+
+        await db.connect();
+        try {
+            const deletedProduct = await ProductModel.findByIdAndDelete(productId);
+            return !!deletedProduct;
+        } finally {
+            await db.disconnect();
+        }
+    }
 }
 
-export async function getProductByCategory(category: number | string): Promise<IProduct[]> {
-    const res = await fetch(`${process.env.API_PRODUCTS_URL}/category/${category}`, { cache: 'no-store' });
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
-    return res.json();
-}
-
-export async function deleteProductById(productId: string): Promise<void> {
-    const res = await fetch(`api/products/${productId}`, { method: 'DELETE' });
-    if (!res.ok) {
-        const errorBody = await res.json();
-        const errorMessage = errorBody.error || 'Failed to delete the product';
-        throw new Error(errorMessage);
-    }
-}
+export const productService = new ProductService(); // Crear una instancia del servicio

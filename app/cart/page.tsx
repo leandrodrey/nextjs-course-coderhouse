@@ -1,7 +1,7 @@
 import {ReactElement} from "react";
 import ProductsCartTable from "@/components/ui/ProductsCartTable";
 
-export const dynamic = 'force-dynamic';
+
 
 export default function Cart(): ReactElement {
 

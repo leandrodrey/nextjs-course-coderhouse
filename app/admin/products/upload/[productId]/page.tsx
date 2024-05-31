@@ -4,7 +4,7 @@ import {IProductWithCategory} from "@/interfaces/IProduct";
 import {getProductById} from "@/services/ProductService";
 import ProductImage from "@/components/ui/ProductImage";
 
-export const dynamic = 'force-dynamic';
+
 
 interface UploadImagePageProps {
     params: {

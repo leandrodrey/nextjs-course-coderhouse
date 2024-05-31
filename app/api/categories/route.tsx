@@ -1,29 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import CategoryModel from '@/models/Category';
-import { db } from "@/database";
+import { categoryService } from '@/services/categoryService';
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
-    await db.connect();
-    try {
-        const categories = await CategoryModel.find();
-        return new NextResponse(JSON.stringify(categories), {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-    } catch (error) {
-        let errorMessage = 'An error occurred while fetching categories.';
-        if (error instanceof Error) {
-            errorMessage = error.message;
-        }
-        return new NextResponse(JSON.stringify({ error: errorMessage }), {
-            status: 500,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-    } finally {
-        await db.disconnect();
+
+    const categories = await categoryService.getCategories();
+
+    if (!categories) {
+        return new NextResponse(JSON.stringify({ error: 'Failed to fetch categories' }), { status: 500 });
     }
+
+    return new NextResponse(JSON.stringify(categories), { status: 200 });
 }

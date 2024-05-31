@@ -5,7 +5,7 @@ import {getAllCategories} from "@/services/CategoryService";
 import {getProductById} from "@/services/ProductService";
 import EditProductForm from "@/components/forms/EditProductForm";
 
-export const dynamic = 'force-dynamic';
+
 
 interface EditProductPageProps {
     params: {

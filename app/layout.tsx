@@ -6,7 +6,8 @@ import {getServerSession} from "next-auth";
 import ProviderWrapper from "@/app/ProviderWrapper";
 import NavBar from "@/components/ui/NavBar";
 import {ICategory} from "@/interfaces/ICategory";
-import {getAllCategories} from "@/services/CategoryService";
+import { categoryService } from '@/services/CategoryService';
+import {NextResponse} from "next/server";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -42,7 +43,11 @@ export default async function RootLayout({children}: RootLayoutProps) {
 
     const session = await getServerSession();
 
-    const allCategories: ICategory[] = await getAllCategories();
+    const allCategories: ICategory[] = await categoryService.getCategories();
+
+    if (!allCategories) {
+        return <div>Products Not Found</div>;
+    }
 
     return (
         <html lang="en">
