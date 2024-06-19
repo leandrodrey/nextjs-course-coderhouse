@@ -1,9 +1,9 @@
 import CategoryModel from '@/models/Category';
-import { db } from '@/database';
+import { connect, disconnect } from "@/database/db";
 
 class CategoryService {
     async getCategories(): Promise<any[] | null> {
-        await db.connect();
+        await connect();
 
         try {
             const categories = await CategoryModel.find().lean(); // Use .lean() for plain objects
@@ -12,7 +12,7 @@ class CategoryService {
             console.error('Error fetching categories:', error);
             return null;
         } finally {
-            await db.disconnect();
+            await disconnect();
         }
     }
 }

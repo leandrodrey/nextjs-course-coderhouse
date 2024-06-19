@@ -1,11 +1,11 @@
 import {NextRequest, NextResponse} from 'next/server';
 import mongoose from 'mongoose';
 import ProductModel from '@/models/Products';
-import {db} from '@/database';
+import { connect, disconnect } from "@/database/db";
 import {IProduct} from '@/interfaces/IProduct';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
-    await db.connect();
+    await connect();
 
     try {
         const productData: IProduct = await request.json();
@@ -41,6 +41,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             }
         });
     } finally {
-        await db.disconnect();
+        await disconnect();
     }
 }

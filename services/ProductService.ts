@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import CategoryModel from '@/models/Category';
 import ProductModel from '@/models/Products';
 import {IProductWithCategory} from '@/interfaces/IProduct';
-import {db} from '@/database';
+import { connect, disconnect } from "@/database/db";
 
 class ProductService {
 
@@ -11,7 +11,7 @@ class ProductService {
             return null;
         }
 
-        await db.connect();
+        await connect();
         try {
             const product = await ProductModel.findById(productId);
             if (!product) return null;
@@ -21,12 +21,12 @@ class ProductService {
                 categoryName: category?.title || 'Unknown',
             };
         } finally {
-            await db.disconnect();
+            await disconnect();
         }
     }
 
     async getProductsByCategory(category: number | string): Promise<IProductWithCategory[] | null> {
-        await db.connect();
+        await connect();
 
         try {
             let products;
@@ -61,7 +61,7 @@ class ProductService {
 
             return productsWithCategory;
         } finally {
-            await db.disconnect();
+            await disconnect();
         }
     }
 
@@ -70,12 +70,12 @@ class ProductService {
             return null;
         }
 
-        await db.connect();
+        await connect();
         try {
             const updatedProduct = await ProductModel.findByIdAndUpdate(productId, productData, {new: true});
             return updatedProduct ? updatedProduct.toObject() : null;
         } finally {
-            await db.disconnect();
+            await disconnect();
         }
     }
 
@@ -84,12 +84,12 @@ class ProductService {
             return false;
         }
 
-        await db.connect();
+        await connect();
         try {
             const deletedProduct = await ProductModel.findByIdAndDelete(productId);
             return !!deletedProduct;
         } finally {
-            await db.disconnect();
+            await disconnect();
         }
     }
 }
