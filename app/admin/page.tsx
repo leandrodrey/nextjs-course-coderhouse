@@ -1,13 +1,15 @@
 import {ReactElement} from 'react';
-import {IProduct} from "@/interfaces/IProduct";
-import {getProductByCategory} from "@/services/ProductService";
+import {IProductWithCategory} from "@/interfaces/IProduct";
+import { productService } from '@/services/ProductService';
 import MainContent from '@/app/admin/components/MainContent';
-
-
 
 export default async function AdminPage(): Promise<ReactElement> {
 
-    const allProducts: IProduct[] = await getProductByCategory('all');
+    const allProducts: IProductWithCategory[] | null = await productService.getProductsByCategory('all');
+
+    if (!allProducts) {
+        return <div>Products Not Found</div>;
+    }
 
     return (
         <>
