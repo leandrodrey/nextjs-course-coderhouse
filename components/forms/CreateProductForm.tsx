@@ -102,8 +102,8 @@ const CreateProductForm: FC<CreateProductFormProps> = ({categories}) => {
                         <Field as="select" name="categoryId" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             <option value="">Select a category</option>
                             {categories.map((category) => (
-                                <option key={category._id.toString()} value={category._id.toString()}>
-                                    {category.title}
+                                <option key={category?._id?.toString() ?? ''} value={category?._id?.toString() ?? ''}>
+                                    {category?.title ?? 'Unknown Category'}
                                 </option>
                             ))}
                         </Field>

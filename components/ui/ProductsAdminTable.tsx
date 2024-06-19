@@ -4,7 +4,7 @@ import {CldImage} from "next-cloudinary";
 import {PencilIcon, XCircleIcon} from "@heroicons/react/24/solid";
 import {confirmAlert} from 'react-confirm-alert';
 import {IProduct} from "@/interfaces/IProduct";
-import {deleteProductById} from "@/services/ProductService";
+import {productService} from "@/services/ProductService";
 import Link from "next/link";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -26,7 +26,7 @@ const ProductsAdminTable: FC<IProductsTableProps> = ({products}) => {
                         <button
                             onClick={async () => {
                                 try {
-                                    await deleteProductById(productId);
+                                    await productService.deleteProductById(productId);
                                     const updatedProducts = productsList.filter(product => product.id !== productId);
                                     setProductsList(updatedProducts);
                                 } catch (error) {

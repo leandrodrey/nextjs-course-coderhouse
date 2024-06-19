@@ -1,13 +1,15 @@
 import {ReactElement} from 'react';
 import CreateProductForm from "@/components/forms/CreateProductForm";
 import {ICategory} from "@/interfaces/ICategory";
-import {getAllCategories} from "@/services/CategoryService";
-
-
+import {categoryService} from "@/services/CategoryService";
 
 export default async function CreateProductsPage(): Promise<ReactElement> {
 
-    const allCategories: ICategory[] = await getAllCategories();
+    const allCategories: ICategory[] | null = await categoryService.getCategories();
+
+    if (!allCategories) {
+        return <div>Categories Not Found</div>;
+    }
 
     return (
         <>

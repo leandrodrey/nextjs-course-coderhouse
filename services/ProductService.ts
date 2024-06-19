@@ -8,13 +8,13 @@ class ProductService {
 
     async getProductById(productId: string): Promise<IProductWithCategory | null> {
         if (!mongoose.isValidObjectId(productId)) {
-            return null; // Manejo de ID inválido
+            return null;
         }
 
         await db.connect();
         try {
             const product = await ProductModel.findById(productId);
-            if (!product) return null; // Producto no encontrado
+            if (!product) return null;
             const category = await CategoryModel.findById(product.categoryId);
             return {
                 ...product.toObject(),
@@ -25,7 +25,7 @@ class ProductService {
         }
     }
 
-    async getProductsByCategory(category: string): Promise<IProductWithCategory[] | null> {
+    async getProductsByCategory(category: number | string): Promise<IProductWithCategory[] | null> {
         await db.connect();
 
         try {
@@ -39,14 +39,14 @@ class ProductService {
                 } else {
                     const categoryData = await CategoryModel.findOne({title: category});
                     if (!categoryData) {
-                        return null; // Manejo de categoría no encontrada
+                        return null;
                     }
                     products = await ProductModel.find({categoryId: categoryData._id});
                 }
             }
 
             if (!products.length) {
-                return null; // Manejo de productos no disponibles en la categoría
+                return null;
             }
 
             const productsWithCategory: IProductWithCategory[] = await Promise.all(
@@ -67,13 +67,13 @@ class ProductService {
 
     async updateProduct(productId: string, productData: any): Promise<IProductWithCategory | null> {
         if (!mongoose.isValidObjectId(productId)) {
-            return null; // Manejo de ID inválido
+            return null;
         }
 
         await db.connect();
         try {
             const updatedProduct = await ProductModel.findByIdAndUpdate(productId, productData, {new: true});
-            return updatedProduct ? updatedProduct.toObject() : null; // Manejo de producto no encontrado
+            return updatedProduct ? updatedProduct.toObject() : null;
         } finally {
             await db.disconnect();
         }
@@ -81,7 +81,7 @@ class ProductService {
 
     async deleteProductById(productId: string): Promise<boolean> {
         if (!mongoose.isValidObjectId(productId)) {
-            return false; // Manejo de ID inválido
+            return false;
         }
 
         await db.connect();
@@ -94,4 +94,4 @@ class ProductService {
     }
 }
 
-export const productService = new ProductService(); // Crear una instancia del servicio
+export const productService = new ProductService();

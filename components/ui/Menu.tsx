@@ -35,14 +35,14 @@ const Menu: FC<MenuProps> = ({open, categories}) => {
         }
     ];
 
-    const categoriesMenu: MenuOption[] = categories?.map((category: ICategory, index: number) => (
+    const categoriesMenu: MenuOption[] = categories?.map((category, index) => (
         {
-            title: category.title,
-            url: `/category/${category.title.toLowerCase()}`,
-            icon: <RocketLaunchIcon className="h-6 w-6"/>,
+            title: category?.title ?? 'Unknown Category', // Use nullish coalescing
+            url: `/category/${category?.title.toLowerCase() ?? ''}`, // Use optional chaining
+            icon: <RocketLaunchIcon className="h-6 w-6" />,
             gap: index === 0
         }
-    )) || [];
+    )) ?? [];
 
     const Menus = [...staticMenu, ...categoriesMenu];
 

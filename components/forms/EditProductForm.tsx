@@ -57,7 +57,7 @@ const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
 
     if (productUpdated) {
         return (
-            <ProductSuccess productTitle={productUpdated} productId={product.id} action="edit" />
+            <ProductSuccess productTitle={productUpdated} productId={product.id} action="edit"/>
         );
     }
 
@@ -89,11 +89,15 @@ const EditProductForm: FC<EditProductFormProps> = ({categories, product}) => {
 
                     <div className="mb-4 md:pl-2 w-ful md:w-1/2">
                         <label htmlFor="categoryId" className="block text-white text-sm font-bold mb-2">Category</label>
-                        <Field as="select" name="categoryId" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <Field
+                            as="select"
+                            name="categoryId"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        >
                             <option value="">Select a category</option>
                             {categories.map((category) => (
-                                <option key={category._id.toString()} value={category._id.toString()}>
-                                    {category.title}
+                                <option key={category?._id?.toString() ?? ''} value={category?._id?.toString() ?? ''}>
+                                    {category?.title ?? 'Unknown Category'}
                                 </option>
                             ))}
                         </Field>
