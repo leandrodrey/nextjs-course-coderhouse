@@ -1,7 +1,7 @@
 import {FC} from "react";
 import UploadImageForm from "@/components/forms/UploadImageForm";
 import {IProductWithCategory} from "@/interfaces/IProduct";
-import { productService } from "@/services/ProductService";
+import {productService} from "@/services/ProductService";
 import ProductImage from "@/components/ui/ProductImage";
 
 interface UploadImagePageProps {
