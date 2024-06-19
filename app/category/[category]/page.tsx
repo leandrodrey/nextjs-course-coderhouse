@@ -21,6 +21,7 @@ const ProductCategory: FC<ProductCategoryProps> = async ({params}) => {
     const {category} = params;
 
     const filteredProducts: IProduct[]| null  = await productService.getProductsByCategory(category);
+    const data = JSON.parse(JSON.stringify(filteredProducts))
 
     if (!filteredProducts) {
         return <div>Products Not Found</div>;
@@ -29,7 +30,7 @@ const ProductCategory: FC<ProductCategoryProps> = async ({params}) => {
     return (
         <>
             <Suspense fallback={<Loader/>}>
-                <ProductsList products={filteredProducts}/>
+                <ProductsList products={data}/>
             </Suspense>
         </>
     )

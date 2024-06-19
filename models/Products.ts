@@ -1,5 +1,6 @@
 import mongoose, { Model, Schema } from 'mongoose';
 import {IProduct} from '@/interfaces/IProduct';
+import CategoryModel from "./Category";
 
 const productsSchema = new Schema<IProduct>({
     categoryId: {
@@ -41,6 +42,11 @@ productsSchema.set('toObject', {
     virtuals: true
 });
 
-const ProductModel: Model<IProduct> = mongoose.models.Product || mongoose.model<IProduct>('Product', productsSchema);
+let ProductModel: Model<IProduct>;
+try {
+    ProductModel = mongoose.model<IProduct>('Product');
+} catch (error) {
+    ProductModel = mongoose.model<IProduct>('Product', productsSchema);
+}
 
 export default ProductModel;

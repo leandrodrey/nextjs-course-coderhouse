@@ -6,6 +6,7 @@ import MainContent from '@/app/admin/components/MainContent';
 export default async function AdminPage(): Promise<ReactElement> {
 
     const allProducts: IProductWithCategory[] | null = await productService.getProductsByCategory('all');
+    const data = JSON.parse(JSON.stringify(allProducts))
 
     if (!allProducts) {
         return <div>Products Not Found</div>;

@@ -35,6 +35,7 @@ const ProductDetailPage: FC<ProductDetailProps> = async ({params}) => {
 
     const {id} = params;
     const product: IProductWithCategory| null  = await productService.getProductById(id);
+    const data = JSON.parse(JSON.stringify(product))
 
     if (!product) {
         return <div className="text-center text-xl text-red-500 p-5">Product Not Found</div>;
@@ -42,7 +43,7 @@ const ProductDetailPage: FC<ProductDetailProps> = async ({params}) => {
 
     return (
         <div className="container mx-auto mt-10 md:p-5">
-            <ProductCardDetail product={product} />
+            <ProductCardDetail product={data} />
         </div>
     );
 };
