@@ -45,7 +45,7 @@ NEXT_PUBLIC_CLOUDINARY_API_SECRET=
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
-I deployed this app in Heroku. You can see it here: https://nextjs-course-coderhouse-b317a42d52e3.herokuapp.com/
+I deployed this app in Vercel. You can see it here: [https://nextjs-course-coderhouse-b317a42d52e3.herokuapp.com/](https://nextjs-course-coderhouse.vercel.app/)
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [Next JS](https://nextjs.org/) - React Framework
